@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "CWLateralSlide"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "侧滑框架."
 
 s.description  = <<-DESC
@@ -85,7 +85,7 @@ s.description  = <<-DESC
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "ViewControllerTransition/CWLateralSlide/*.{h,m}"
+  s.source_files  = "CWLateralSlide/*.{h,m}"
 #s.exclude_files = "Classes/Exclude"
 
 
