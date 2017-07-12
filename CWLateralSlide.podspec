@@ -19,8 +19,8 @@ Pod::Spec.new do |s|
   s.version      = "1.0.1"
   s.summary      = "侧滑框架."
 
-s.description  = <<-DESC
-"一行代码集成侧滑功能."                       DESC
+  s.description  = "一行代码集成侧滑功能."
+
 
   s.homepage     = "https://github.com/ChavezChen/CWLateralSlide"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
@@ -62,7 +62,7 @@ s.description  = <<-DESC
   # s.platform     = :ios, "5.0"
 
   #  When using multiple platforms
-  # s.ios.deployment_target = "5.0"
+   s.ios.deployment_target = "7.0"
   # s.osx.deployment_target = "10.7"
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
@@ -74,7 +74,7 @@ s.description  = <<-DESC
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/ChavezChen/CWLateralSlide.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/ChavezChen/CWLateralSlide.git", :tag => "1.0.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -85,9 +85,7 @@ s.description  = <<-DESC
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "CWLateralSlide/*.{h,m}"
+  s.source_files  = 'CWLateralSlide/*.{h,m}'
 #s.exclude_files = "Classes/Exclude"
-
-
 
 end
