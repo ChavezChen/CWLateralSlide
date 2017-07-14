@@ -37,7 +37,9 @@
     // 注册手势驱动
     __weak typeof(self)weakSelf = self;
     [self cw_registerShowIntractiveWithEdgeGesture:YES direction:CWDrawerTransitionDirectionLeft transitionBlock:^{
-        [weakSelf leftClick];
+//        [weakSelf leftClick];
+        LeftViewController *vc = [[LeftViewController alloc] init];
+        [weakSelf cw_presentViewController:vc configuration:nil];
     }];
     
 }

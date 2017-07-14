@@ -53,33 +53,24 @@
     [super viewDidLoad];
     
     
-//    [self setupbackImage];
-    
     [self setupTableView];
     
     
 }
 
 - (void)setupTableView {
-    // 因为present出来的视图是全屏布局的，所以在这里 tableview的x原点要向右边偏移一定距离（屏幕的宽度 减去之前设置的distance 默认为屏幕的0.75）
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(kCWSCREENWIDTH * (1 - 0.75), 300, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)-300) style:UITableViewStylePlain];
+    
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 300, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)-300) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:tableView];
-        tableView.backgroundColor = [UIColor clearColor];
+    tableView.backgroundColor = [UIColor clearColor];
     _tableView = tableView;
     
     [tableView registerNib:[UINib nibWithNibName:@"NextTableViewCell" bundle:nil] forCellReuseIdentifier:@"NextCell"];
 }
 
-- (void)setupbackImage {
-    UIImageView *imageV = [[UIImageView alloc] initWithFrame:self.view.bounds];
-//    imageV.backgroundColor = [UIColor clearColor];
-    imageV.contentMode = UIViewContentModeScaleAspectFill;
-    imageV.image = [UIImage imageNamed:@"image.jpg"];
-    [self.view addSubview:imageV];
-}
 
 
 - (void)dealloc {
@@ -88,6 +79,7 @@
 
 
 #pragma mark - UITableViewDataSource
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.imageArray.count;
 }
@@ -96,10 +88,11 @@
     NextTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NextCell"];
     cell.imageName = self.imageArray[indexPath.row];
     cell.title = self.titleArray[indexPath.row];
-        cell.backgroundColor = [UIColor clearColor];
+    cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
 
+#pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     

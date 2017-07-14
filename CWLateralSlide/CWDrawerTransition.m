@@ -91,7 +91,7 @@
         fromVC.view.transform = CGAffineTransformConcat(t1, t2);
         
         if (self.configuration.direction == CWDrawerTransitionDirectionRight) {
-            toVC.view.transform = CGAffineTransformMakeTranslation(ret * x, 0);
+            toVC.view.transform = CGAffineTransformMakeTranslation(ret * (x - CGRectGetWidth(containerView.frame) + width), 0);
         }else {
             toVC.view.transform = CGAffineTransformMakeTranslation(ret * width / 2, 0);
             

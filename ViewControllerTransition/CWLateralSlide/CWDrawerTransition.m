@@ -35,7 +35,7 @@
 
 #pragma mark - UIViewControllerAnimatedTransitioning
 - (NSTimeInterval)transitionDuration:(nullable id <UIViewControllerContextTransitioning>)transitionContext {
-    return _type == CWDrawerTransitiontypeShow ? 0.5f : 0.25f;
+    return _type == CWDrawerTransitiontypeShow ? 0.4f : 0.25f;
 }
 
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
@@ -91,7 +91,7 @@
         fromVC.view.transform = CGAffineTransformConcat(t1, t2);
         
         if (self.configuration.direction == CWDrawerTransitionDirectionRight) {
-            toVC.view.transform = CGAffineTransformMakeTranslation(ret * x, 0);
+            toVC.view.transform = CGAffineTransformMakeTranslation(ret * (x - CGRectGetWidth(containerView.frame) + width), 0);
         }else {
             toVC.view.transform = CGAffineTransformMakeTranslation(ret * width / 2, 0);
             
