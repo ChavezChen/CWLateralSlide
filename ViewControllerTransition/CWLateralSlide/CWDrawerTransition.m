@@ -69,6 +69,7 @@
         imageV = [[UIImageView alloc] initWithFrame:containerView.bounds];
         imageV.image = self.configuration.backImage;
         imageV.transform = CGAffineTransformMakeScale(1.4, 1.4);
+        imageV.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     }
     [containerView addSubview:imageV];
     
@@ -161,6 +162,8 @@
 
         self.backgroundColor = [UIColor blackColor];
         self.alpha = 0;
+        
+        self.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap)];
         tap.numberOfTapsRequired = 1;
