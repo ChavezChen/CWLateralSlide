@@ -99,7 +99,7 @@
     
     NextViewController *vc = [NextViewController new];
     
-    [self cw_pushViewController:vc];
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 
