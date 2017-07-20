@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ViewControllerTransition/CWLateralSlide/CWDrawerTransition.m"
-            timestampString = "520760682.624252"
+            timestampString = "522052135.096567"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
             landmarkName = "-animationViewHidden:"
             landmarkType = "7">
          </BreakpointContent>
