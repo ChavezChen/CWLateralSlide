@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "CWLateralSlide"
-  s.version      = "1.0.3"
+  s.version      = "1.1.0"
   s.summary      = "侧滑框架."
 
   s.description  = "一行代码集成侧滑功能."
