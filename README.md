@@ -4,7 +4,7 @@
 [真！一行代码集成0耦合QQ侧滑功能](http://www.jianshu.com/p/6b83846d461c) 
 
     示例图
-![](http://upload-images.jianshu.io/upload_images/6476196-4a88e373e5341d5b.gif?imageMogr2/auto-orient/strip)
+![](https://github.com/ChavezChen/CWLateralSlide/blob/master/示例图1.gif)
 
 使用方法：
 首先导入我们的分类：#import "UIViewController+CWLateralSlide.h" 里面仅有3个函数.
