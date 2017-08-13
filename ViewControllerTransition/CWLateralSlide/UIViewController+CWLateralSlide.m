@@ -14,13 +14,12 @@
 
 @implementation UIViewController (CWLateralSlide)
 
-
-- (void)cw_presentViewController:(UIViewController *)viewController configuration:(CWLateralSlideConfiguration *)configuration {
+- (void)cw_showDrawerViewController:(UIViewController *)viewController animationType:(CWDrawerAnimationType)animationType configuration:(CWLateralSlideConfiguration *)configuration {
     
     if (viewController == nil) return;
-
+    
     if (configuration == nil)
-        configuration = [CWLateralSlideConfiguration configurationWithDistance:kCWSCREENWIDTH * 0.75 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionDirectionLeft backImage:nil];
+        configuration = [CWLateralSlideConfiguration defaultConfiguration];
     
     CWLateralSlideAnimator *animator = objc_getAssociatedObject(self, &CWLateralSlideAnimatorKey);
     
@@ -36,7 +35,7 @@
     
     [animator setValue:interactiveHidden forKey:@"interactiveHidden"];
     animator.configuration = configuration;
-
+    animator.animationType = animationType;
     [self presentViewController:viewController animated:YES completion:nil];
     
 }

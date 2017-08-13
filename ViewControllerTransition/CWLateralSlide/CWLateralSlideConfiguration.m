@@ -10,6 +10,10 @@
 
 @implementation CWLateralSlideConfiguration
 
++ (instancetype)defaultConfiguration {
+    return [CWLateralSlideConfiguration configurationWithDistance:kCWSCREENWIDTH * 0.75 maskAlpha:0.4 scaleY:1.0 direction:CWDrawerTransitionDirectionLeft backImage:nil];
+}
+
 - (instancetype)initWithDistance:(float)distance maskAlpha:(float)alpha scaleY:(float)scaleY direction:(CWDrawerTransitionDirection)direction backImage:(UIImage *)backImage {
     if (self = [super init]) {
         _distance = distance;

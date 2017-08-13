@@ -15,11 +15,17 @@ typedef NS_ENUM(NSUInteger,CWDrawerTransitiontype) {
     CWDrawerTransitiontypeHidden
 };
 
+
+typedef NS_ENUM(NSUInteger,CWDrawerAnimationType) {
+    CWDrawerAnimationTypeDefault = 0,
+    CWDrawerAnimationTypeMask
+};
+
 @interface CWDrawerTransition : NSObject<UIViewControllerAnimatedTransitioning>
 
-- (instancetype)initWithTransitionType:(CWDrawerTransitiontype)type configuration:(CWLateralSlideConfiguration *)configuration;
+- (instancetype)initWithTransitionType:(CWDrawerTransitiontype)transitionType animationType:(CWDrawerAnimationType)animationType configuration:(CWLateralSlideConfiguration *)configuration;
 
-+ (instancetype)transitionWithType:(CWDrawerTransitiontype)type configuration:(CWLateralSlideConfiguration *)configuration;
++ (instancetype)transitionWithType:(CWDrawerTransitiontype)transitionType animationType:(CWDrawerAnimationType)animationType configuration:(CWLateralSlideConfiguration *)configuration;
 
 @end
 

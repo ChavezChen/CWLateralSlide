@@ -16,30 +16,32 @@
 
 @implementation CWDrawerTransition
 {
-    CWDrawerTransitiontype _type;
+    CWDrawerTransitiontype _TransitionType;
+    CWDrawerAnimationType _animationType;
 }
 
 
-- (instancetype)initWithTransitionType:(CWDrawerTransitiontype)type configuration:(CWLateralSlideConfiguration *)configuration {
+- (instancetype)initWithTransitionType:(CWDrawerTransitiontype)transitionType animationType:(CWDrawerAnimationType)animationType configuration:(CWLateralSlideConfiguration *)configuration {
     if (self = [super init]) {
-        _type = type;
+        _TransitionType = transitionType;
+        _animationType = animationType;
         _configuration = configuration;
     }
     return self;
 }
 
-+ (instancetype)transitionWithType:(CWDrawerTransitiontype)type configuration:(CWLateralSlideConfiguration *)configuration {
-    return [[self alloc] initWithTransitionType:type configuration:configuration];
++ (instancetype)transitionWithType:(CWDrawerTransitiontype)transitionType animationType:(CWDrawerAnimationType)animationType configuration:(CWLateralSlideConfiguration *)configuration {
+    return [[self alloc] initWithTransitionType:transitionType animationType:animationType configuration:configuration];
 }
 
 
 #pragma mark - UIViewControllerAnimatedTransitioning
 - (NSTimeInterval)transitionDuration:(nullable id <UIViewControllerContextTransitioning>)transitionContext {
-    return _type == CWDrawerTransitiontypeShow ? 0.4f : 0.25f;
+    return _TransitionType == CWDrawerTransitiontypeShow ? 0.4f : 0.25f;
 }
 
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
-    switch (_type) {
+    switch (_TransitionType) {
         case CWDrawerTransitiontypeShow:
             [self animationViewShow:transitionContext];
             break;
@@ -53,11 +55,55 @@
 
 #pragma mark - private methods
 - (void)animationViewShow:(id <UIViewControllerContextTransitioning>)transitionContext {
+    if (_animationType == CWDrawerAnimationTypeDefault) {
+        [self defaultAnimationWithContext:transitionContext];
+    }else if (_animationType == CWDrawerAnimationTypeMask) {
+        [self maskAnimationWithContext:transitionContext];
+    }else {
+        
+    }
+    
+    
+}
+
+- (void)animationViewHidden:(id <UIViewControllerContextTransitioning>)transitionContext {
     
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
+    UIView *maskView = toVC.view.subviews.lastObject;
+    UIView *containerView = [transitionContext containerView];
+    
+    UIImageView *backImageView;
+    if ([containerView.subviews.firstObject isKindOfClass:[UIImageView class]])
+        backImageView = containerView.subviews.firstObject;
+    
+    [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        
+        fromVC.view.transform = CGAffineTransformIdentity;
+        toVC.view.transform = CGAffineTransformIdentity;
+        maskView.alpha = 0;
+        backImageView.transform = CGAffineTransformMakeScale(1.4, 1.4);
+        
+    } completion:^(BOOL finished) {
+        
+        if (![transitionContext transitionWasCancelled]) {
+            [transitionContext completeTransition:YES];
+            [maskView removeFromSuperview];
+            [backImageView removeFromSuperview];
+        }else {
+            [transitionContext completeTransition:NO];
+        }
+        
+    }];
+    
+}
 
+- (void)defaultAnimationWithContext:(id <UIViewControllerContextTransitioning>)transitionContext {
+    UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    
+    
     UIView *maskView = [[MsakView alloc] initWithFrame:fromVC.view.bounds];
     
     [fromVC.view addSubview:maskView];
@@ -111,41 +157,55 @@
             [imageV removeFromSuperview];
         }
     }];
-    
 }
 
-- (void)animationViewHidden:(id <UIViewControllerContextTransitioning>)transitionContext {
-    
+- (void)maskAnimationWithContext:(id <UIViewControllerContextTransitioning>)transitionContext {
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    UIView *maskView = toVC.view.subviews.lastObject;
+    
+    UIView *maskView = [[MsakView alloc] initWithFrame:fromVC.view.bounds];
+    
+    [fromVC.view addSubview:maskView];
+    
     UIView *containerView = [transitionContext containerView];
     
-    UIImageView *backImageView;
-    if ([containerView.subviews.firstObject isKindOfClass:[UIImageView class]])
-        backImageView = containerView.subviews.firstObject;
+    CGFloat width = self.configuration.distance;
+    CGFloat x = - width;
+    CGFloat ret = 1;
+    if (self.configuration.direction == CWDrawerTransitionDirectionRight) {
+        x = kCWSCREENWIDTH;
+        ret = -1;
+    }
+    toVC.view.frame = CGRectMake(x, 0, width, CGRectGetHeight(containerView.frame));
     
-    [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+    [containerView addSubview:fromVC.view];
+    [containerView addSubview:toVC.view];
+
+    
+    [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         
-        fromVC.view.transform = CGAffineTransformIdentity;
-        toVC.view.transform = CGAffineTransformIdentity;
-        maskView.alpha = 0;
-        backImageView.transform = CGAffineTransformMakeScale(1.4, 1.4);
+//        if (self.configuration.direction == CWDrawerTransitionDirectionRight) {
+//            toVC.view.transform = CGAffineTransformMakeTranslation(ret * (x - CGRectGetWidth(containerView.frame) + width), 0);
+//        }else {
+            toVC.view.transform = CGAffineTransformMakeTranslation(ret * width , 0);
+            
+//        }
+        maskView.alpha = self.configuration.maskAlpha;
         
     } completion:^(BOOL finished) {
         
         if (![transitionContext transitionWasCancelled]) {
             [transitionContext completeTransition:YES];
-            [maskView removeFromSuperview];
-            [backImageView removeFromSuperview];
+            [containerView addSubview:fromVC.view];
+            [containerView bringSubviewToFront:toVC.view];
+            maskView.userInteractionEnabled = YES;
         }else {
             [transitionContext completeTransition:NO];
         }
-        
     }];
-    
 }
+
 
 - (void)dealloc {
 //    NSLog(@"%s",__func__);

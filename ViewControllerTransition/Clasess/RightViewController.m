@@ -55,6 +55,7 @@
     
     [self setupTableView];
     
+//    [self setupHeader];
     
 }
 
@@ -71,7 +72,13 @@
     [tableView registerNib:[UINib nibWithNibName:@"NextTableViewCell" bundle:nil] forCellReuseIdentifier:@"NextCell"];
 }
 
-
+//- (void)setupHeader {
+//    UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds) * 0.75, 300)];
+////    imageV.backgroundColor = [UIColor clearColor];
+//    imageV.contentMode = UIViewContentModeScaleAspectFit;
+//    imageV.image = [UIImage imageNamed:@"image.jpg"];
+//    [self.view addSubview:imageV];
+//}
 
 - (void)dealloc {
     NSLog(@"%s",__func__);

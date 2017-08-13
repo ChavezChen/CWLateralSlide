@@ -12,7 +12,8 @@
 
 @interface CWLateralSlideAnimator : NSObject<UIViewControllerTransitioningDelegate>
 
-@property (nonatomic,strong)CWLateralSlideConfiguration *configuration;
+@property (nonatomic,strong) CWLateralSlideConfiguration *configuration;
+@property (nonatomic,assign) CWDrawerAnimationType animationType;
 
 - (instancetype)initWithConfiguration:(CWLateralSlideConfiguration *)configuration;
 

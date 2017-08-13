@@ -78,7 +78,7 @@
     UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kCWSCREENWIDTH * 0.75, 300)];
     imageV.backgroundColor = [UIColor clearColor];
     imageV.contentMode = UIViewContentModeScaleAspectFill;
-    imageV.image = [UIImage imageNamed:@"image.jpg"];
+    imageV.image = [UIImage imageNamed:@"1.jpg"];
     [self.view addSubview:imageV];
 }
 

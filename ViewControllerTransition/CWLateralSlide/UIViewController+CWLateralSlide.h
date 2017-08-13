@@ -13,13 +13,17 @@
 @interface UIViewController (CWLateralSlide)
 
 
+
 /**
  呼出侧滑控制器的方法（主要）
 
  @param viewController 需要侧滑显示出来的控制器
+ @param animationType 侧滑时候的动画类型
  @param configuration 侧滑过程的一些参数配置，如果传nil会创建一个默认的配置参数
  */
-- (void)cw_presentViewController:(UIViewController *)viewController configuration:(CWLateralSlideConfiguration *)configuration;
+- (void)cw_showDrawerViewController:(UIViewController *)viewController
+                      animationType:(CWDrawerAnimationType)animationType
+                      configuration:(CWLateralSlideConfiguration *)configuration;
 
 
 /**
@@ -29,7 +33,8 @@
  @param direction 侧滑呼出的方向，请与配置参数里面的方向保持一致，配置参数为nil是传左侧呼出
  @param transitionBlock 手势过程中执行的操作。传整个点击present的事件即可（看demo的使用）
  */
-- (void)cw_registerShowIntractiveWithEdgeGesture:(BOOL)openEdgeGesture direction:(CWDrawerTransitionDirection)direction transitionBlock:(void(^)())transitionBlock;
+- (void)cw_registerShowIntractiveWithEdgeGesture:(BOOL)openEdgeGesture
+                                       direction:(CWDrawerTransitionDirection)direction transitionBlock:(void(^)())transitionBlock;
 
 
 /**
