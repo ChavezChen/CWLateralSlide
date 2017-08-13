@@ -4,7 +4,7 @@
 [真！一行代码集成0耦合QQ侧滑功能](http://www.jianshu.com/p/6b83846d461c) 
 
     示例图
-![](http://upload-images.jianshu.io/upload_images/6476196-a487cd8b091bf2da.gif?imageMogr2/auto-orient/strip)
+![](http://upload-images.jianshu.io/upload_images/6476196-4a88e373e5341d5b.gif?imageMogr2/auto-orient/strip)
 
 使用方法：
 首先导入我们的分类：#import "UIViewController+CWLateralSlide.h" 里面仅有3个函数.
@@ -12,7 +12,7 @@
    1、如果想实现一下示例图中左侧点击侧滑的功能，只需要1行代码：
 ```
 // 调用这个方法
-[self cw_presentViewController:vc configuration:nil];
+[self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:nil];
 ```
 vc为你需要侧滑出来的控制器，调用这个方法你就拥有了侧滑功能+左划返回功能，其实这样就已经有了一个很好的侧滑功能了，如果需要更多的一些功能，可以往下看
 
@@ -38,7 +38,7 @@ vc为你需要侧滑出来的控制器，调用这个方法你就拥有了侧滑
     
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:0.8 direction:CWDrawerTransitionDirectionRight backImage:[UIImage imageNamed:@"back.jpg"]];
     
-    [self cw_presentViewController:vc configuration:conf];
+    [self cw_showDrawerViewController:vc animationType:0 configuration:conf];
 }
 ```
 这样你就有了如示例图里面带有一定缩放的侧滑功能
