@@ -3,8 +3,8 @@
     实现的一些细节方面可以看一下我的文章
 [真！一行代码集成0耦合QQ侧滑功能](http://www.jianshu.com/p/6b83846d461c) 
 
-    示例图
-![](https://github.com/ChavezChen/CWLateralSlide/blob/master/示例图1.gif)
+    
+![效果](https://github.com/ChavezChen/CWLateralSlide/blob/master/GIF1.gif)
 
 使用方法：
 首先导入我们的分类：#import "UIViewController+CWLateralSlide.h" 里面仅有3个函数.
