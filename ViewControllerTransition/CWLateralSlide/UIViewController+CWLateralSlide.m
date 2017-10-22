@@ -36,6 +36,7 @@
     [animator setValue:interactiveHidden forKey:@"interactiveHidden"];
     animator.configuration = configuration;
     animator.animationType = animationType;
+
     [self presentViewController:viewController animated:YES completion:nil];
     
 }

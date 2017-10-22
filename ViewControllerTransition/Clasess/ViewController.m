@@ -33,8 +33,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
 //    NSLog(@"%@",self);
+//    self.view.backgroundColor = [UIColor whiteColor];
+//    self.navigationController.view.backgroundColor = [UIColor whiteColor];
+    self.tabBarController.view.backgroundColor = [UIColor whiteColor];
+    
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     
     [self setupNavBarItem];
     
@@ -45,12 +52,13 @@
     [self cw_registerShowIntractiveWithEdgeGesture:NO direction:CWDrawerTransitionDirectionLeft transitionBlock:^{
 //        [weakSelf leftClick];
 //        [weakSelf drawerMaskAnimationRight];
-        [weakSelf drawerMaskAnimationLeft];
+        [weakSelf drawerDefaultAnimationleftScaleY];
 
         
     }];
     
 }
+
 
 - (void)setupNavBarItem {
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(leftClick)];
@@ -69,6 +77,7 @@
 
 // 导航栏左边按钮的点击事件
 - (void)leftClick {
+    
     // 自己随心所欲创建的一个控制器
     LeftViewController *vc = [[LeftViewController alloc] init];
     // 调用这个方法

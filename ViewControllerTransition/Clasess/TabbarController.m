@@ -19,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     ViewController *vc1 = [[ViewController alloc] init];
     NavigationController *nav1 = [[NavigationController alloc] initWithRootViewController:vc1];
     vc1.title = @"聊天";
@@ -35,7 +36,11 @@
 }
 
 
-
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+//    NSLog(@".............%@",NSStringFromCGRect(self.view.frame));
+//    NSLog(@"%@",NSStringFromCGAffineTransform(self.view.transform) );
+}
 
 
 

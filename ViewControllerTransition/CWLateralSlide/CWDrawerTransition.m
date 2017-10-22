@@ -130,18 +130,18 @@
     [containerView addSubview:toVC.view];
     
     [containerView addSubview:fromVC.view];
-    
+//    NSLog(@"---%@",fromVC.view);
     [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         
         CGAffineTransform t1 = CGAffineTransformMakeTranslation(ret * width, 0);
         CGAffineTransform t2 = CGAffineTransformMakeScale(1.0, self.configuration.scaleY);
         fromVC.view.transform = CGAffineTransformConcat(t1, t2);
-        
+//        NSLog(@"---%@",fromVC.view);
+
         if (self.configuration.direction == CWDrawerTransitionDirectionRight) {
             toVC.view.transform = CGAffineTransformMakeTranslation(ret * (x - CGRectGetWidth(containerView.frame) + width), 0);
         }else {
             toVC.view.transform = CGAffineTransformMakeTranslation(ret * width / 2, 0);
-            
         }
         imageV.transform = CGAffineTransformIdentity;
         maskView.alpha = self.configuration.maskAlpha;
@@ -151,6 +151,8 @@
         if (![transitionContext transitionWasCancelled]) {
             [transitionContext completeTransition:YES];
             [containerView addSubview:fromVC.view];
+//            NSLog(@"1---%@",fromVC.view);
+//            NSLog(@"completeTransition...");
             maskView.userInteractionEnabled = YES;
         }else {
             [transitionContext completeTransition:NO];
@@ -162,7 +164,6 @@
 - (void)maskAnimationWithContext:(id <UIViewControllerContextTransitioning>)transitionContext {
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    
     
     UIView *maskView = [[MsakView alloc] initWithFrame:fromVC.view.bounds];
     
