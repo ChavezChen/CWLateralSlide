@@ -45,7 +45,7 @@
 {
     self = [super init];
     if (self) {
-        
+//        self.modalPresentationStyle = UIModalPresentationCustom;
     }
     return self;
 }

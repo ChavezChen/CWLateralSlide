@@ -31,7 +31,7 @@
 }
 
 - (void)dealloc {
-//    NSLog(@"%s",__func__);
+    NSLog(@"%s",__func__);
 }
 
 - (void)setConfiguration:(CWLateralSlideConfiguration *)configuration {
@@ -55,6 +55,7 @@
 }
 
 - (nullable id <UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id <UIViewControllerAnimatedTransitioning>)animator {
+//    NSLog(@"----------------------%@",self.interactiveHidden);
     return self.interactiveHidden.interacting ? self.interactiveHidden : nil;
 }
 

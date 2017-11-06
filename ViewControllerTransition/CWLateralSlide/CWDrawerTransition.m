@@ -37,7 +37,7 @@
 
 #pragma mark - UIViewControllerAnimatedTransitioning
 - (NSTimeInterval)transitionDuration:(nullable id <UIViewControllerContextTransitioning>)transitionContext {
-    return _TransitionType == CWDrawerTransitiontypeShow ? 0.4f : 0.25f;
+    return _TransitionType == CWDrawerTransitiontypeShow ? 0.25f : 0.25f;
 }
 
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
@@ -73,27 +73,25 @@
     
     UIView *maskView = toVC.view.subviews.lastObject;
     UIView *containerView = [transitionContext containerView];
-    
     UIImageView *backImageView;
     if ([containerView.subviews.firstObject isKindOfClass:[UIImageView class]])
         backImageView = containerView.subviews.firstObject;
     
-    [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+    [UIView animateKeyframesWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewKeyframeAnimationOptionCalculationModeCubic animations:^{
         
-        fromVC.view.transform = CGAffineTransformIdentity;
-        toVC.view.transform = CGAffineTransformIdentity;
-        maskView.alpha = 0;
-        backImageView.transform = CGAffineTransformMakeScale(1.4, 1.4);
+        [UIView addKeyframeWithRelativeStartTime:0.01 relativeDuration:0.99 animations:^{
+            toVC.view.transform = CGAffineTransformIdentity;
+            fromVC.view.transform = CGAffineTransformIdentity;
+            maskView.alpha = 0;
+            backImageView.transform = CGAffineTransformMakeScale(1.4, 1.4);
+        }];
         
     } completion:^(BOOL finished) {
-        
         if (![transitionContext transitionWasCancelled]) {
-            [transitionContext completeTransition:YES];
             [maskView removeFromSuperview];
             [backImageView removeFromSuperview];
-        }else {
-            [transitionContext completeTransition:NO];
         }
+        [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
         
     }];
     
@@ -103,11 +101,8 @@
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    
     UIView *maskView = [[MsakView alloc] initWithFrame:fromVC.view.bounds];
-    
     [fromVC.view addSubview:maskView];
-    
     UIView *containerView = [transitionContext containerView];
     
     UIImageView *imageV;
@@ -128,37 +123,40 @@
     }
     toVC.view.frame = CGRectMake(x, 0, CGRectGetWidth(containerView.frame), CGRectGetHeight(containerView.frame));
     [containerView addSubview:toVC.view];
-    
     [containerView addSubview:fromVC.view];
-//    NSLog(@"---%@",fromVC.view);
-    [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    
+    CGAffineTransform t1 = CGAffineTransformMakeTranslation(ret * width, 0);
+    CGAffineTransform t2 = CGAffineTransformMakeScale(1.0, self.configuration.scaleY);
+    CGAffineTransform fromVCTransform = CGAffineTransformConcat(t1, t2);
+    CGAffineTransform toVCTransform;
+    if (self.configuration.direction == CWDrawerTransitionDirectionRight) {
+        toVCTransform = CGAffineTransformMakeTranslation(ret * (x - CGRectGetWidth(containerView.frame) + width), 0);
+    }else {
+        toVCTransform = CGAffineTransformMakeTranslation(ret * width / 2, 0);
+    }
+    
+    [UIView animateKeyframesWithDuration:[self transitionDuration:transitionContext] delay:0 options:0 animations:^{
         
-        CGAffineTransform t1 = CGAffineTransformMakeTranslation(ret * width, 0);
-        CGAffineTransform t2 = CGAffineTransformMakeScale(1.0, self.configuration.scaleY);
-        fromVC.view.transform = CGAffineTransformConcat(t1, t2);
-//        NSLog(@"---%@",fromVC.view);
-
-        if (self.configuration.direction == CWDrawerTransitionDirectionRight) {
-            toVC.view.transform = CGAffineTransformMakeTranslation(ret * (x - CGRectGetWidth(containerView.frame) + width), 0);
-        }else {
-            toVC.view.transform = CGAffineTransformMakeTranslation(ret * width / 2, 0);
-        }
-        imageV.transform = CGAffineTransformIdentity;
-        maskView.alpha = self.configuration.maskAlpha;
+        [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:1.0 animations:^{
+            
+            fromVC.view.transform = fromVCTransform;
+            toVC.view.transform = toVCTransform;
+            imageV.transform = CGAffineTransformIdentity;
+            maskView.alpha = self.configuration.maskAlpha;
+            
+        }];
         
     } completion:^(BOOL finished) {
-        
         if (![transitionContext transitionWasCancelled]) {
+            maskView.userInteractionEnabled = YES;
             [transitionContext completeTransition:YES];
             [containerView addSubview:fromVC.view];
-//            NSLog(@"1---%@",fromVC.view);
-//            NSLog(@"completeTransition...");
-            maskView.userInteractionEnabled = YES;
         }else {
-            [transitionContext completeTransition:NO];
             [imageV removeFromSuperview];
+            [transitionContext completeTransition:NO];
         }
     }];
+    
 }
 
 - (void)maskAnimationWithContext:(id <UIViewControllerContextTransitioning>)transitionContext {
@@ -182,17 +180,15 @@
     
     [containerView addSubview:fromVC.view];
     [containerView addSubview:toVC.view];
-
     
-    [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    CGAffineTransform toVCTransiform = CGAffineTransformMakeTranslation(ret * width , 0);
+    
+    [UIView animateKeyframesWithDuration:[self transitionDuration:transitionContext] delay:0 options:0 animations:^{
         
-//        if (self.configuration.direction == CWDrawerTransitionDirectionRight) {
-//            toVC.view.transform = CGAffineTransformMakeTranslation(ret * (x - CGRectGetWidth(containerView.frame) + width), 0);
-//        }else {
-            toVC.view.transform = CGAffineTransformMakeTranslation(ret * width , 0);
-            
-//        }
-        maskView.alpha = self.configuration.maskAlpha;
+        [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:1.0 animations:^{
+            toVC.view.transform = toVCTransiform;
+            maskView.alpha = self.configuration.maskAlpha;
+        }];
         
     } completion:^(BOOL finished) {
         
@@ -205,11 +201,13 @@
             [transitionContext completeTransition:NO];
         }
     }];
+    
+    
 }
 
 
 - (void)dealloc {
-//    NSLog(@"%s",__func__);
+    //    NSLog(@"%s",__func__);
 }
 
 
@@ -220,7 +218,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-
+        
         self.backgroundColor = [UIColor blackColor];
         self.alpha = 0;
         
@@ -244,11 +242,11 @@
 
 - (void)handleGesture:(UIPanGestureRecognizer *)pan {
     [[NSNotificationCenter defaultCenter] postNotificationName:CWLateralSlidePanNotication object:pan];
-
+    
 }
 
 - (void)dealloc {
-//    NSLog(@"mask dealloc");
+    //    NSLog(@"mask dealloc");
 }
 
 @end

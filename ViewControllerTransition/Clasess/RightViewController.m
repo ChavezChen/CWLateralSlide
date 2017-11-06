@@ -80,9 +80,9 @@
 //    [self.view addSubview:imageV];
 //}
 
-//- (void)dealloc {
-//    NSLog(@"%s",__func__);
-//}
+- (void)dealloc {
+    NSLog(@"%s",__func__);
+}
 
 
 #pragma mark - UITableViewDataSource
