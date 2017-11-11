@@ -30,7 +30,13 @@ typedef NS_ENUM(NSUInteger,CWDrawerAnimationType) {
 @end
 
 
-@interface MsakView : UIView<UIGestureRecognizerDelegate>
+@interface MaskView : UIView<UIGestureRecognizerDelegate>
+
+@property (nonatomic,copy) NSArray *toViewSubViews;
+
++ (instancetype)shareInstance;
++ (void)releaseInstance;
+
 
 @end
 

@@ -71,7 +71,13 @@
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    UIView *maskView = toVC.view.subviews.lastObject;
+    MaskView *maskView = [MaskView shareInstance];
+    for (UIView *view in toVC.view.subviews) {
+        if (![maskView.toViewSubViews containsObject:view]) {
+            [view removeFromSuperview];
+        }
+    }
+    
     UIView *containerView = [transitionContext containerView];
     UIImageView *backImageView;
     if ([containerView.subviews.firstObject isKindOfClass:[UIImageView class]])
@@ -88,7 +94,9 @@
         
     } completion:^(BOOL finished) {
         if (![transitionContext transitionWasCancelled]) {
+            maskView.toViewSubViews = nil;
             [maskView removeFromSuperview];
+            [MaskView releaseInstance];
             [backImageView removeFromSuperview];
         }
         [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
@@ -101,7 +109,8 @@
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    UIView *maskView = [[MsakView alloc] initWithFrame:fromVC.view.bounds];
+    MaskView *maskView = [MaskView shareInstance];
+    maskView.frame = fromVC.view.bounds;
     [fromVC.view addSubview:maskView];
     UIView *containerView = [transitionContext containerView];
     
@@ -149,6 +158,7 @@
     } completion:^(BOOL finished) {
         if (![transitionContext transitionWasCancelled]) {
             maskView.userInteractionEnabled = YES;
+            maskView.toViewSubViews = fromVC.view.subviews;
             [transitionContext completeTransition:YES];
             [containerView addSubview:fromVC.view];
         }else {
@@ -163,8 +173,8 @@
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    UIView *maskView = [[MsakView alloc] initWithFrame:fromVC.view.bounds];
-    
+    MaskView *maskView = [MaskView shareInstance];
+    maskView.frame = fromVC.view.bounds;
     [fromVC.view addSubview:maskView];
     
     UIView *containerView = [transitionContext containerView];
@@ -194,6 +204,7 @@
         
         if (![transitionContext transitionWasCancelled]) {
             [transitionContext completeTransition:YES];
+            maskView.toViewSubViews = fromVC.view.subviews;
             [containerView addSubview:fromVC.view];
             [containerView bringSubviewToFront:toVC.view];
             maskView.userInteractionEnabled = YES;
@@ -207,14 +218,22 @@
 
 
 - (void)dealloc {
-    //    NSLog(@"%s",__func__);
+//    NSLog(@"%s",__func__);
 }
 
 
 @end
 
 
-@implementation MsakView
+@implementation MaskView
+static MaskView *cw_shareInstance = nil;
+static dispatch_once_t cw_onceToken;
++ (instancetype)shareInstance {
+    dispatch_once(&cw_onceToken, ^{
+        cw_shareInstance = [[MaskView alloc] init];
+    });
+    return cw_shareInstance;
+}
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -245,8 +264,13 @@
     
 }
 
++ (void)releaseInstance{
+    cw_onceToken = 0;
+    cw_shareInstance = nil;
+}
+
 - (void)dealloc {
-    //    NSLog(@"mask dealloc");
+//    NSLog(@"mask dealloc");
 }
 
 @end
