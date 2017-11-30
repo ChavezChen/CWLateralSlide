@@ -58,12 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ViewControllerTransition/CWLateralSlide/CWInteractiveTransition.m"
-            timestampString = "520754405.357449"
+            timestampString = "533440010.142127"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "53"
             endingLineNumber = "53"
-            landmarkName = "-addPanGestureForViewController:"
+            landmarkName = "+interactiveWithTransitiontype:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,12 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ViewControllerTransition/CWLateralSlide/CWInteractiveTransition.m"
-            timestampString = "520762997.984909"
+            timestampString = "533440010.162714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "109"
             endingLineNumber = "109"
-            landmarkName = "-cw_handleShowPan:"
+            landmarkName = "-showBeganTranslationX:gesture:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -90,28 +90,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ViewControllerTransition/CWLateralSlide/UIViewController+CWLateralSlide.m"
-            timestampString = "520850646.473656"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "-cw_registerShowIntractiveWithEdgeGesture:direction:transitionBlock:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ViewControllerTransition/CWLateralSlide/UIViewController+CWLateralSlide.m"
-            timestampString = "520761564.191621"
+            timestampString = "533726839.003341"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "22"
             endingLineNumber = "22"
-            landmarkName = "-cw_presentViewController:configuration:"
+            landmarkName = "-cw_showDrawerViewController:animationType:configuration:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

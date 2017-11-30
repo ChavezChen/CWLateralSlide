@@ -16,6 +16,7 @@
 		1AB2C1F11F022F9E003F5EE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AB2C1EF1F022F9E003F5EE0 /* Main.storyboard */; };
 		1AB2C1F31F022F9E003F5EE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AB2C1F21F022F9E003F5EE0 /* Assets.xcassets */; };
 		1AB2C1F61F022F9E003F5EE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AB2C1F41F022F9E003F5EE0 /* LaunchScreen.storyboard */; };
+		1AC4005D1FD006C90099EAB4 /* CWScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC4005C1FD006C90099EAB4 /* CWScrollView.m */; };
 		669409DA1F10B4B10095D997 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 669409D91F10B4B10095D997 /* 1.jpg */; };
 		669409E01F10BA240095D997 /* NextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 669409DE1F10BA240095D997 /* NextTableViewCell.m */; };
 		669409E11F10BA240095D997 /* NextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 669409DF1F10BA240095D997 /* NextTableViewCell.xib */; };
@@ -46,6 +47,8 @@
 		1AB2C1F21F022F9E003F5EE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1AB2C1F51F022F9E003F5EE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1AB2C1F71F022F9E003F5EE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1AC4005B1FD006C90099EAB4 /* CWScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CWScrollView.h; sourceTree = "<group>"; };
+		1AC4005C1FD006C90099EAB4 /* CWScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CWScrollView.m; sourceTree = "<group>"; };
 		669409D91F10B4B10095D997 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		669409DD1F10BA240095D997 /* NextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextTableViewCell.h; sourceTree = "<group>"; };
 		669409DE1F10BA240095D997 /* NextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextTableViewCell.m; sourceTree = "<group>"; };
@@ -98,6 +101,8 @@
 				669409E31F13A6250095D997 /* LeftViewController.m */,
 				669409E51F13A62E0095D997 /* RightViewController.h */,
 				669409E61F13A62E0095D997 /* RightViewController.m */,
+				1AC4005B1FD006C90099EAB4 /* CWScrollView.h */,
+				1AC4005C1FD006C90099EAB4 /* CWScrollView.m */,
 			);
 			path = Clasess;
 			sourceTree = "<group>";
@@ -235,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A8F225A1F04CD3E00322D76 /* NextViewController.m in Sources */,
+				1AC4005D1FD006C90099EAB4 /* CWScrollView.m in Sources */,
 				1A8F225B1F04CD3E00322D76 /* TabbarController.m in Sources */,
 				66940A4D1F1909BD0095D997 /* UIViewController+CWLateralSlide.m in Sources */,
 				66940A4A1F1909BD0095D997 /* CWInteractiveTransition.m in Sources */,

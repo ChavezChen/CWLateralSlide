@@ -7,10 +7,10 @@
 //
 
 #import "ViewController.h"
-
 #import "LeftViewController.h"
-
 #import "RightViewController.h"
+
+#import "CWScrollView.h"
 
 #import "UIViewController+CWLateralSlide.h"
 
@@ -20,6 +20,9 @@
 @property (nonatomic,weak) UITableView *tableView;
 
 @property (nonatomic,strong) NSMutableArray *datadSource;
+
+@property (nonatomic,weak)CWScrollView * contentScrollView;
+
 @end
 
 @implementation ViewController
@@ -34,9 +37,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-//    NSLog(@"%@",self);
-//    self.view.backgroundColor = [UIColor whiteColor];
-//    self.navigationController.view.backgroundColor = [UIColor whiteColor];
     self.tabBarController.view.backgroundColor = [UIColor whiteColor];
     
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
@@ -45,16 +45,12 @@
     
     [self setupNavBarItem];
     
-    [self setupTableView];
+    [self setupScrollView];
     
     // 注册手势驱动
     __weak typeof(self)weakSelf = self;
     [self cw_registerShowIntractiveWithEdgeGesture:NO direction:CWDrawerTransitionDirectionLeft transitionBlock:^{
-//        [weakSelf leftClick];
-//        [weakSelf drawerMaskAnimationRight];
-        [weakSelf drawerDefaultAnimationleftScaleY];
-
-        
+        [weakSelf leftClick];
     }];
     
 }
@@ -66,18 +62,30 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(rightClick)];
 }
 
-
-- (void)setupTableView {
-    UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    [self.view addSubview:tableView];
-    _tableView = tableView;
+- (void)setupScrollView {
+    CGFloat navigationHeight = self.navigationController.navigationBar.bounds.size.height;
+    CGFloat tabbarHeight = self.tabBarController.tabBar.bounds.size.height;
+    CWScrollView * contentScrollView = [[CWScrollView alloc] init];
+    contentScrollView.backgroundColor = [UIColor greenColor];
+    contentScrollView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - navigationHeight - tabbarHeight);
+    contentScrollView.pagingEnabled = YES;
+    contentScrollView.bounces = NO;
+    contentScrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.bounds) * 3, 0);
+    [self.view addSubview:contentScrollView];
+    _contentScrollView = contentScrollView;
+    _contentScrollView.delegate = self;
+//    _contentScrollView.showsHorizontalScrollIndicator = NO;
+    for (int i = 0; i < 3; i++) {
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(CGRectGetWidth(_contentScrollView.bounds) * i, 0, CGRectGetWidth(_contentScrollView.bounds), CGRectGetHeight(_contentScrollView.bounds)) style:UITableViewStylePlain];
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        [_contentScrollView addSubview:tableView];
+    }
 }
+
 
 // 导航栏左边按钮的点击事件
 - (void)leftClick {
-    
     // 自己随心所欲创建的一个控制器
     LeftViewController *vc = [[LeftViewController alloc] init];
     // 调用这个方法
