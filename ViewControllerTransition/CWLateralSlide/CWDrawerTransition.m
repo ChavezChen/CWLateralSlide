@@ -95,7 +95,6 @@
     } completion:^(BOOL finished) {
         if (![transitionContext transitionWasCancelled]) {
             maskView.toViewSubViews = nil;
-            [maskView removeFromSuperview];
             [MaskView releaseInstance];
             [backImageView removeFromSuperview];
         }
@@ -163,6 +162,7 @@
             [containerView addSubview:fromVC.view];
         }else {
             [imageV removeFromSuperview];
+            [MaskView releaseInstance];
             [transitionContext completeTransition:NO];
         }
     }];
@@ -209,6 +209,7 @@
             [containerView bringSubviewToFront:toVC.view];
             maskView.userInteractionEnabled = YES;
         }else {
+            [MaskView releaseInstance];
             [transitionContext completeTransition:NO];
         }
     }];
@@ -265,6 +266,7 @@ static dispatch_once_t cw_onceToken;
 }
 
 + (void)releaseInstance{
+    [cw_shareInstance removeFromSuperview];
     cw_onceToken = 0;
     cw_shareInstance = nil;
 }
