@@ -58,5 +58,9 @@ vc为你需要侧滑出来的控制器，调用这个方法你就拥有了侧滑
 
 还有疑问的可以下载demo看一下。。基本一看就会。。
 
-目前也支持cocoapods，只需要： pod 'CWLateralSlide', '~> 1.3.0' 目前是1.3.0版本，因为是新上传的，如果搜索不到，可以更新一下cocoapods或者清除一下repo的缓存再 重新搜索。。 最后希望大家给个star支持一下，感谢。
+目前也支持cocoapods，只需要： pod 'CWLateralSlide', '~> 1.3.0' 目前是1.3.0版本，因为是新上传的，如果搜索不到，可以更新一下cocoapods或者清除一下repo的缓存再 重新搜索。。搜索不到的解决方法(适用于任何框架不能搜索到最新版本的情况)：
+1、执行rm ~/Library/Caches/CocoaPods/search_index.json 删除索引的缓存再搜索，如果这样也搜索不到的话更新cocoapods
+2、执行 pod repo update --verbose 更新成功之后就没问题了
+
+最后希望大家给个star支持一下，感谢。
 
