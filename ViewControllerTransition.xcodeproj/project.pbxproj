@@ -150,16 +150,16 @@
 		666188411FDEC7DE0038D644 /* CWLateralSlide */ = {
 			isa = PBXGroup;
 			children = (
+				666188471FDEC7DE0038D644 /* CWInteractiveTransition.h */,
 				666188421FDEC7DE0038D644 /* CWInteractiveTransition.m */,
 				666188431FDEC7DE0038D644 /* CWDrawerTransition.h */,
-				666188441FDEC7DE0038D644 /* CWLateralSlideAnimator.h */,
-				666188451FDEC7DE0038D644 /* UIViewController+CWLateralSlide.m */,
-				666188461FDEC7DE0038D644 /* CWLateralSlideConfiguration.h */,
-				666188471FDEC7DE0038D644 /* CWInteractiveTransition.h */,
-				666188481FDEC7DE0038D644 /* CWLateralSlideAnimator.m */,
 				666188491FDEC7DE0038D644 /* CWDrawerTransition.m */,
-				6661884A1FDEC7DE0038D644 /* UIViewController+CWLateralSlide.h */,
+				666188441FDEC7DE0038D644 /* CWLateralSlideAnimator.h */,
+				666188481FDEC7DE0038D644 /* CWLateralSlideAnimator.m */,
+				666188461FDEC7DE0038D644 /* CWLateralSlideConfiguration.h */,
 				6661884B1FDEC7DE0038D644 /* CWLateralSlideConfiguration.m */,
+				6661884A1FDEC7DE0038D644 /* UIViewController+CWLateralSlide.h */,
+				666188451FDEC7DE0038D644 /* UIViewController+CWLateralSlide.m */,
 			);
 			path = CWLateralSlide;
 			sourceTree = SOURCE_ROOT;
