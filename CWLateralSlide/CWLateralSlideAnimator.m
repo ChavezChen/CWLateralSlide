@@ -31,7 +31,7 @@
 }
 
 - (void)dealloc {
-//    NSLog(@"%s",__func__);
+    NSLog(@"%s",__func__);
 }
 
 - (void)setConfiguration:(CWLateralSlideConfiguration *)configuration {
@@ -43,11 +43,11 @@
 
 #pragma mark -UIViewControllerTransitioningDelegate
 - (nullable id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-    return [CWDrawerTransition transitionWithType:CWDrawerTransitiontypeShow configuration:_configuration];
+    return [CWDrawerTransition transitionWithType:CWDrawerTransitiontypeShow animationType:_animationType configuration:_configuration];
 }
 
 - (nullable id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    return [CWDrawerTransition transitionWithType:CWDrawerTransitiontypeHidden configuration:_configuration];
+    return [CWDrawerTransition transitionWithType:CWDrawerTransitiontypeHidden animationType:_animationType configuration:_configuration];
 }
 
 - (nullable id <UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id <UIViewControllerAnimatedTransitioning>)animator {
@@ -55,6 +55,7 @@
 }
 
 - (nullable id <UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id <UIViewControllerAnimatedTransitioning>)animator {
+//    NSLog(@"----------------------%@",self.interactiveHidden);
     return self.interactiveHidden.interacting ? self.interactiveHidden : nil;
 }
 

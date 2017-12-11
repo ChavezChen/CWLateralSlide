@@ -17,17 +17,17 @@
 		1AB2C1F31F022F9E003F5EE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AB2C1F21F022F9E003F5EE0 /* Assets.xcassets */; };
 		1AB2C1F61F022F9E003F5EE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AB2C1F41F022F9E003F5EE0 /* LaunchScreen.storyboard */; };
 		1AC4005D1FD006C90099EAB4 /* CWScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC4005C1FD006C90099EAB4 /* CWScrollView.m */; };
+		6661884C1FDEC7DE0038D644 /* CWInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 666188421FDEC7DE0038D644 /* CWInteractiveTransition.m */; };
+		6661884D1FDEC7DE0038D644 /* UIViewController+CWLateralSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = 666188451FDEC7DE0038D644 /* UIViewController+CWLateralSlide.m */; };
+		6661884E1FDEC7DE0038D644 /* CWLateralSlideAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 666188481FDEC7DE0038D644 /* CWLateralSlideAnimator.m */; };
+		6661884F1FDEC7DE0038D644 /* CWDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 666188491FDEC7DE0038D644 /* CWDrawerTransition.m */; };
+		666188501FDEC7DE0038D644 /* CWLateralSlideConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 6661884B1FDEC7DE0038D644 /* CWLateralSlideConfiguration.m */; };
 		669409DA1F10B4B10095D997 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 669409D91F10B4B10095D997 /* 1.jpg */; };
 		669409E01F10BA240095D997 /* NextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 669409DE1F10BA240095D997 /* NextTableViewCell.m */; };
 		669409E11F10BA240095D997 /* NextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 669409DF1F10BA240095D997 /* NextTableViewCell.xib */; };
 		669409E41F13A6250095D997 /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669409E31F13A6250095D997 /* LeftViewController.m */; };
 		669409E71F13A62E0095D997 /* RightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669409E61F13A62E0095D997 /* RightViewController.m */; };
 		669409E91F13B9640095D997 /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 669409E81F13B9640095D997 /* 0.jpg */; };
-		66940A491F1909BD0095D997 /* CWDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 66940A401F1909BD0095D997 /* CWDrawerTransition.m */; };
-		66940A4A1F1909BD0095D997 /* CWInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 66940A421F1909BD0095D997 /* CWInteractiveTransition.m */; };
-		66940A4B1F1909BD0095D997 /* CWLateralSlideAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 66940A441F1909BD0095D997 /* CWLateralSlideAnimator.m */; };
-		66940A4C1F1909BD0095D997 /* CWLateralSlideConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 66940A461F1909BD0095D997 /* CWLateralSlideConfiguration.m */; };
-		66940A4D1F1909BD0095D997 /* UIViewController+CWLateralSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = 66940A481F1909BD0095D997 /* UIViewController+CWLateralSlide.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +49,16 @@
 		1AB2C1F71F022F9E003F5EE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AC4005B1FD006C90099EAB4 /* CWScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CWScrollView.h; sourceTree = "<group>"; };
 		1AC4005C1FD006C90099EAB4 /* CWScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CWScrollView.m; sourceTree = "<group>"; };
+		666188421FDEC7DE0038D644 /* CWInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWInteractiveTransition.m; sourceTree = "<group>"; };
+		666188431FDEC7DE0038D644 /* CWDrawerTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWDrawerTransition.h; sourceTree = "<group>"; };
+		666188441FDEC7DE0038D644 /* CWLateralSlideAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLateralSlideAnimator.h; sourceTree = "<group>"; };
+		666188451FDEC7DE0038D644 /* UIViewController+CWLateralSlide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CWLateralSlide.m"; sourceTree = "<group>"; };
+		666188461FDEC7DE0038D644 /* CWLateralSlideConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLateralSlideConfiguration.h; sourceTree = "<group>"; };
+		666188471FDEC7DE0038D644 /* CWInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWInteractiveTransition.h; sourceTree = "<group>"; };
+		666188481FDEC7DE0038D644 /* CWLateralSlideAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWLateralSlideAnimator.m; sourceTree = "<group>"; };
+		666188491FDEC7DE0038D644 /* CWDrawerTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWDrawerTransition.m; sourceTree = "<group>"; };
+		6661884A1FDEC7DE0038D644 /* UIViewController+CWLateralSlide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CWLateralSlide.h"; sourceTree = "<group>"; };
+		6661884B1FDEC7DE0038D644 /* CWLateralSlideConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWLateralSlideConfiguration.m; sourceTree = "<group>"; };
 		669409D91F10B4B10095D997 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		669409DD1F10BA240095D997 /* NextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextTableViewCell.h; sourceTree = "<group>"; };
 		669409DE1F10BA240095D997 /* NextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextTableViewCell.m; sourceTree = "<group>"; };
@@ -58,16 +68,6 @@
 		669409E51F13A62E0095D997 /* RightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightViewController.h; sourceTree = "<group>"; };
 		669409E61F13A62E0095D997 /* RightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightViewController.m; sourceTree = "<group>"; };
 		669409E81F13B9640095D997 /* 0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 0.jpg; sourceTree = "<group>"; };
-		66940A3F1F1909BD0095D997 /* CWDrawerTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWDrawerTransition.h; sourceTree = "<group>"; };
-		66940A401F1909BD0095D997 /* CWDrawerTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWDrawerTransition.m; sourceTree = "<group>"; };
-		66940A411F1909BD0095D997 /* CWInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWInteractiveTransition.h; sourceTree = "<group>"; };
-		66940A421F1909BD0095D997 /* CWInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWInteractiveTransition.m; sourceTree = "<group>"; };
-		66940A431F1909BD0095D997 /* CWLateralSlideAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLateralSlideAnimator.h; sourceTree = "<group>"; };
-		66940A441F1909BD0095D997 /* CWLateralSlideAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWLateralSlideAnimator.m; sourceTree = "<group>"; };
-		66940A451F1909BD0095D997 /* CWLateralSlideConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLateralSlideConfiguration.h; sourceTree = "<group>"; };
-		66940A461F1909BD0095D997 /* CWLateralSlideConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWLateralSlideConfiguration.m; sourceTree = "<group>"; };
-		66940A471F1909BD0095D997 /* UIViewController+CWLateralSlide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CWLateralSlide.h"; sourceTree = "<group>"; };
-		66940A481F1909BD0095D997 /* UIViewController+CWLateralSlide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CWLateralSlide.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +126,7 @@
 		1AB2C1E51F022F9E003F5EE0 /* ViewControllerTransition */ = {
 			isa = PBXGroup;
 			children = (
-				66940A3E1F1909BD0095D997 /* CWLateralSlide */,
+				666188411FDEC7DE0038D644 /* CWLateralSlide */,
 				1A8F22491F04CD3E00322D76 /* Clasess */,
 				1AB2C1E91F022F9E003F5EE0 /* AppDelegate.h */,
 				1AB2C1EA1F022F9E003F5EE0 /* AppDelegate.m */,
@@ -147,22 +147,22 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		66940A3E1F1909BD0095D997 /* CWLateralSlide */ = {
+		666188411FDEC7DE0038D644 /* CWLateralSlide */ = {
 			isa = PBXGroup;
 			children = (
-				66940A3F1F1909BD0095D997 /* CWDrawerTransition.h */,
-				66940A401F1909BD0095D997 /* CWDrawerTransition.m */,
-				66940A411F1909BD0095D997 /* CWInteractiveTransition.h */,
-				66940A421F1909BD0095D997 /* CWInteractiveTransition.m */,
-				66940A431F1909BD0095D997 /* CWLateralSlideAnimator.h */,
-				66940A441F1909BD0095D997 /* CWLateralSlideAnimator.m */,
-				66940A451F1909BD0095D997 /* CWLateralSlideConfiguration.h */,
-				66940A461F1909BD0095D997 /* CWLateralSlideConfiguration.m */,
-				66940A471F1909BD0095D997 /* UIViewController+CWLateralSlide.h */,
-				66940A481F1909BD0095D997 /* UIViewController+CWLateralSlide.m */,
+				666188421FDEC7DE0038D644 /* CWInteractiveTransition.m */,
+				666188431FDEC7DE0038D644 /* CWDrawerTransition.h */,
+				666188441FDEC7DE0038D644 /* CWLateralSlideAnimator.h */,
+				666188451FDEC7DE0038D644 /* UIViewController+CWLateralSlide.m */,
+				666188461FDEC7DE0038D644 /* CWLateralSlideConfiguration.h */,
+				666188471FDEC7DE0038D644 /* CWInteractiveTransition.h */,
+				666188481FDEC7DE0038D644 /* CWLateralSlideAnimator.m */,
+				666188491FDEC7DE0038D644 /* CWDrawerTransition.m */,
+				6661884A1FDEC7DE0038D644 /* UIViewController+CWLateralSlide.h */,
+				6661884B1FDEC7DE0038D644 /* CWLateralSlideConfiguration.m */,
 			);
 			path = CWLateralSlide;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -241,19 +241,19 @@
 			files = (
 				1A8F225A1F04CD3E00322D76 /* NextViewController.m in Sources */,
 				1AC4005D1FD006C90099EAB4 /* CWScrollView.m in Sources */,
+				6661884E1FDEC7DE0038D644 /* CWLateralSlideAnimator.m in Sources */,
+				6661884C1FDEC7DE0038D644 /* CWInteractiveTransition.m in Sources */,
 				1A8F225B1F04CD3E00322D76 /* TabbarController.m in Sources */,
-				66940A4D1F1909BD0095D997 /* UIViewController+CWLateralSlide.m in Sources */,
-				66940A4A1F1909BD0095D997 /* CWInteractiveTransition.m in Sources */,
 				1A8F225C1F04CD3E00322D76 /* ViewController.m in Sources */,
-				66940A4C1F1909BD0095D997 /* CWLateralSlideConfiguration.m in Sources */,
 				1AB2C1EB1F022F9E003F5EE0 /* AppDelegate.m in Sources */,
 				669409E71F13A62E0095D997 /* RightViewController.m in Sources */,
-				66940A491F1909BD0095D997 /* CWDrawerTransition.m in Sources */,
 				1A8F22591F04CD3E00322D76 /* NavigationController.m in Sources */,
+				6661884D1FDEC7DE0038D644 /* UIViewController+CWLateralSlide.m in Sources */,
 				669409E01F10BA240095D997 /* NextTableViewCell.m in Sources */,
+				6661884F1FDEC7DE0038D644 /* CWDrawerTransition.m in Sources */,
 				669409E41F13A6250095D997 /* LeftViewController.m in Sources */,
-				66940A4B1F1909BD0095D997 /* CWLateralSlideAnimator.m in Sources */,
 				1AB2C1E81F022F9E003F5EE0 /* main.m in Sources */,
+				666188501FDEC7DE0038D644 /* CWLateralSlideConfiguration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
