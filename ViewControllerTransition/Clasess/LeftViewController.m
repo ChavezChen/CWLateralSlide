@@ -35,7 +35,11 @@
 
 - (NSArray *)titleArray{
     if (_titleArray == nil) {
-        _titleArray = @[@"了解会员特权",@"钱包",@"个性装扮",@"我的收藏",@"我的相册",@"我的文件"];
+        if (_drawerType == DrawerDefaultRight || _drawerType == DrawerTypeMaskRight) {
+            _titleArray = @[@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面"];
+        }else {
+            _titleArray = @[@"present下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面"];
+        }
     }
     return _titleArray;
 }
@@ -45,7 +49,6 @@
 {
     self = [super init];
     if (self) {
-//        self.modalPresentationStyle = UIModalPresentationCustom;
     }
     return self;
 }
@@ -58,8 +61,29 @@
     
     [self setupTableView];
     
-    
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    CGRect rect = self.view.frame;
+    
+    switch (_drawerType) {
+        case DrawerDefaultLeft:
+            [self.view.superview sendSubviewToBack:self.view];
+            break;
+        case DrawerTypeMaskLeft:
+            rect.size.width = CGRectGetWidth(self.view.frame) * 0.75;
+            break;
+        default:
+            break;
+    }
+    
+    self.view.frame = rect;
+}
+
+
+
 
 - (void)setupTableView {
     
@@ -103,10 +127,15 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NextViewController *vc = [NextViewController new];
-    
-    [self cw_pushViewController:vc];
+
+    if (indexPath.row == 0 && _drawerType != DrawerDefaultRight && _drawerType != DrawerTypeMaskRight) {
+        [self presentViewController:vc animated:YES completion:nil];
+    }else {
+        [self cw_pushViewController:vc];
+    }
     
 }
 

@@ -88,6 +88,10 @@
 - (void)leftClick {
     // 自己随心所欲创建的一个控制器
     LeftViewController *vc = [[LeftViewController alloc] init];
+    
+    // 这个代码与框架无关，与demo相关，因为有兄弟在侧滑出来的界面，使用present到另一个界面返回的时候会有异常，这里提供各个场景的解决方式，需要在侧滑的界面present的同学可以借鉴一下！处理方式在leftViewController的viewDidAppear:方法内
+    vc.drawerType = DrawerDefaultLeft;
+    
     // 调用这个方法
     [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:nil];
 
@@ -114,6 +118,8 @@
 - (void)drawerDefaultAnimationRight{
     LeftViewController *vc = [[LeftViewController alloc] init];
     
+    vc.drawerType = DrawerDefaultRight;
+    
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:0 direction:CWDrawerTransitionDirectionRight backImage:nil];
     
     [self cw_showDrawerViewController:vc animationType:0 configuration:conf];
@@ -123,6 +129,10 @@
 - (void)drawerMaskAnimationLeft{
     
     LeftViewController *vc = [[LeftViewController alloc] init];
+    
+    // 这个代码与框架无关，与demo相关，因为有兄弟在侧滑出来的界面，使用present到另一个界面返回的时候会有异常，这里提供各个场景的解决方式，需要在侧滑的界面present的同学可以借鉴一下！处理方式在leftViewController的viewDidAppear:方法内
+    vc.drawerType = DrawerTypeMaskLeft;
+
     // 调用这个方法
     [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeMask configuration:nil];
 }
@@ -130,6 +140,8 @@
 - (void)drawerMaskAnimationRight{
     
     LeftViewController *vc = [[LeftViewController alloc] init];
+    
+    vc.drawerType = DrawerTypeMaskRight;
     
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:0 direction:CWDrawerTransitionDirectionRight backImage:nil];
 

@@ -31,7 +31,7 @@
 
 - (NSArray *)titleArray{
     if (_titleArray == nil) {
-        _titleArray = @[@"啦啦啦啦",@"囖囖囖囖",@"呵呵呵呵",@"嘿嘿嘿嘿",@"哈哈哈哈",@"嘻嘻嘻嘻"];
+        _titleArray = @[@"dimiss界面",@"push界面",@"呵呵呵呵",@"嘿嘿嘿嘿",@"哈哈哈哈",@"嘻嘻嘻嘻"];
     }
     return _titleArray;
 }
@@ -98,7 +98,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NextViewController *vc = [NextViewController new];
-    
+    if (indexPath.row == 0) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        return;
+    }
     [self.navigationController pushViewController:vc animated:YES];
     
 }
