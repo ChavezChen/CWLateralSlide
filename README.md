@@ -4,7 +4,7 @@
 我们的优势:没有所谓的leftVC，rightVC，对整个项目没有任何限制和依赖，不需要设置啥XXXTabbarController这种根控制器，也没有任何需要继承自某某类～真正的**0耦合、0侵入、0污染**。使用极致简单，真正的大白话操作。。侧滑的控制器拥有完整的生命周期函数调用。也就是说，侧滑的界面在隐藏的情况下，并不会对app产生额外的内存占用（正确的被释放）。
 
 实现的一些细节方面可以看一下我的文章
-[一行代码集成0耦合QQ侧滑功能](https://juejin.im/post/5a3136aa6fb9a0451543e1f6) 
+[需要侧滑抽屉效果？一行代码足以](https://juejin.im/post/5a444b94518825698e7259f6) 
 
     
 ![效果](https://github.com/ChavezChen/CWLateralSlide/blob/master/GIF1.gif)
