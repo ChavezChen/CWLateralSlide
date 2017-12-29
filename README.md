@@ -10,7 +10,7 @@
 [需要侧滑抽屉效果？一行代码足以](https://juejin.im/post/5a444b94518825698e7259f6) 
 
     
-![效果](https://github.com/ChavezChen/CWLateralSlide/blob/master/GIF1.gif)
+![效果](https://github.com/ChavezChen/CWLateralSlide/blob/master/示例图.gif)
 
 使用方法：
 首先导入我们的分类：#import "UIViewController+CWLateralSlide.h" 里面仅有3个函数.
