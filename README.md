@@ -1,6 +1,10 @@
 # CWLateralSlide
 
-## 更新： demo增加侧滑抽屉界面进行系统present的场景与解决方式
+## 更新：
+```
+1、更新注册手势驱动界面方法cw_registerShowIntractiveWithEdgeGesture:，老方法删掉了，更新之后只需要将方法换一下就好了。（感谢idozhuoyong童鞋提供的优化方案🙏）
+2、注册 demo增加侧滑抽屉界面进行系统present的场景与解决方式
+```
 
 目前有一些侧滑框架适用场景的局限性很高，且固定死的模板，比如设置一个leftVC，rightVC，middleVC为TabbarVC（根控制器），如果我要使用这种方式来实现侧滑，就必须根据它的要求来调整我们整个APP的架构，侵入型很高，新项目还好，老项目只能说，o shit！😁。假如界面要换交互方式，由于耦合高，替换成本是比较大的，而且侧滑的抽屉界面会一直存在内存里，展示在我们看不见的地方（屏幕外，或者根控制器下边）。
 
@@ -26,12 +30,14 @@ vc为你需要侧滑出来的控制器，调用这个方法你就拥有了侧滑
 ```objective-c
     // 注册手势驱动
     __weak typeof(self)weakSelf = self;
-    // 第一个参数为是否开启边缘手势，开启则默认从边缘50距离内有效，第二个参数为控制器从哪个方向滑出，第三个block为手势过程中我们希望做的操作
-    [self cw_registerShowIntractiveWithEdgeGesture:YES direction:CWDrawerTransitionDirectionLeft transitionBlock:^{
-    // leftClick里面其实就是左边按钮的点击事件，里面也只有下面的两行代码，为了更明确的知会大家需要做什么，所以把这两行代码写到这里来了
-//        [weakSelf leftClick];
-        LeftViewController *vc = [[LeftViewController alloc] init];
-        [weakSelf cw_presentViewController:vc configuration:nil];
+    // 第一个参数为是否开启边缘手势，开启则默认从边缘50距离内有效，第二个block为手势过程中我们希望做的操作
+    [self cw_registerShowIntractiveWithEdgeGesture:NO transitionDirectionAutoBlock:^(CWDrawerTransitionDirection direction) {
+        //NSLog(@"direction = %ld", direction);
+        if (direction == CWDrawerTransitionDirectionLeft) { // 左侧滑出
+            [weakSelf leftClick];
+        } else if (direction == CWDrawerTransitionDirectionRight) { // 右侧滑出
+            [weakSelf rightClick];
+        }
     }];
 ```
 做完第二步，我们在界面上往右滑动的时候，左侧的控制器会跟着出现
@@ -64,7 +70,7 @@ vc为你需要侧滑出来的控制器，调用这个方法你就拥有了侧滑
 
 还有不是很了解的可以下载demo看一下。有任何问题欢迎大家向我提issue，我会积极响应大家的问题。。
 
-目前也支持cocoapods，只需要： pod 'CWLateralSlide', '~> 1.3.0' 目前是1.3.0版本，因为是新上传的，如果搜索不到，可以更新一下cocoapods或者清除一下repo的缓存再 重新搜索。。搜索不到的解决方法(适用于任何框架不能搜索到最新版本的情况)：
+目前也支持cocoapods，只需要： pod 'CWLateralSlide', '~> 1.4.0' 目前是1.4.0版本，因为是新上传的，如果搜索不到，可以更新一下cocoapods或者清除一下repo的缓存再 重新搜索。。搜索不到的解决方法(适用于任何框架不能搜索到最新版本的情况)：
 ```
 1、执行rm ~/Library/Caches/CocoaPods/search_index.json 删除索引的缓存再搜索，如果这样也搜索不到的话更新cocoapods
 2、执行 pod repo update --verbose 更新成功之后就没问题了
