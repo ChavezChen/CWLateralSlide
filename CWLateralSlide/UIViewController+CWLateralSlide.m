@@ -14,6 +14,7 @@
 
 @implementation UIViewController (CWLateralSlide)
 
+// 显示抽屉
 - (void)cw_showDrawerViewController:(UIViewController *)viewController animationType:(CWDrawerAnimationType)animationType configuration:(CWLateralSlideConfiguration *)configuration {
     
     if (viewController == nil) return;
@@ -41,6 +42,24 @@
     
 }
 
+// 注册抽屉手势
+- (void)cw_registerShowIntractiveWithEdgeGesture:(BOOL)openEdgeGesture transitionDirectionAutoBlock:(void(^)(CWDrawerTransitionDirection direction))transitionDirectionAutoBlock {
+    
+    CWLateralSlideAnimator *animator = [CWLateralSlideAnimator lateralSlideAnimatorWithConfiguration:nil];
+    self.transitioningDelegate = animator;
+    
+    objc_setAssociatedObject(self, &CWLateralSlideAnimatorKey, animator, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+    CWInteractiveTransition *interactiveShow = [CWInteractiveTransition interactiveWithTransitiontype:CWDrawerTransitiontypeShow];
+    [interactiveShow addPanGestureForViewController:self];
+    [interactiveShow setValue:@(openEdgeGesture) forKey:@"openEdgeGesture"];
+    [interactiveShow setValue:transitionDirectionAutoBlock forKey:@"transitionDirectionAutoBlock"];
+    [interactiveShow setValue:@(CWDrawerTransitionDirectionLeft) forKey:@"direction"];
+    
+    [animator setValue:interactiveShow forKey:@"interactiveShow"];
+}
+
+// 抽屉内push界面
 - (void)cw_pushViewController:(UIViewController *)viewController{
     
     UIViewController *rootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
@@ -57,30 +76,8 @@
     }
     
     [self dismissViewControllerAnimated:YES completion:nil];
-
     [nav pushViewController:viewController animated:NO];
     
-    
 }
-
-
-- (void)cw_registerShowIntractiveWithEdgeGesture:(BOOL)openEdgeGesture direction:(CWDrawerTransitionDirection)direction transitionBlock:(void(^)())transitionBlock {
-    
-    CWLateralSlideAnimator *animator = [CWLateralSlideAnimator lateralSlideAnimatorWithConfiguration:nil];
-    
-    self.transitioningDelegate = animator;
-    
-    objc_setAssociatedObject(self, &CWLateralSlideAnimatorKey, animator, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
-    CWInteractiveTransition *interactiveShow = [CWInteractiveTransition interactiveWithTransitiontype:CWDrawerTransitiontypeShow];
-    [interactiveShow addPanGestureForViewController:self];
-    [interactiveShow setValue:@(openEdgeGesture) forKey:@"openEdgeGesture"];
-    [interactiveShow setValue:transitionBlock forKey:@"transitionBlock"];
-    [interactiveShow setValue:@(direction) forKey:@"direction"];
-
-    [animator setValue:interactiveShow forKey:@"interactiveShow"];
-}
-
-
 
 @end

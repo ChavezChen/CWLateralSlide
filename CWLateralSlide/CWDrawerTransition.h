@@ -35,8 +35,8 @@ typedef NS_ENUM(NSUInteger,CWDrawerAnimationType) {
 @property (nonatomic,copy) NSArray *toViewSubViews;
 
 + (instancetype)shareInstance;
-+ (void)releaseInstance;
 
++ (void)releaseInstance;
 
 @end
 

@@ -11,15 +11,15 @@
 
 @interface CWInteractiveTransition : UIPercentDrivenInteractiveTransition
 
-@property (nonatomic,assign)BOOL interacting;
-
 @property (nonatomic,weak) CWLateralSlideConfiguration *configuration;
+@property (nonatomic,assign) BOOL interacting;
+
 
 - (instancetype)initWithTransitiontype:(CWDrawerTransitiontype)type;
+
 + (instancetype)interactiveWithTransitiontype:(CWDrawerTransitiontype)type;
 
 - (void)addPanGestureForViewController:(UIViewController *)viewController;
-
 
 @end
 

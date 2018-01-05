@@ -16,7 +16,13 @@
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     if([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]) {
         UIPanGestureRecognizer *pan = (UIPanGestureRecognizer *)gestureRecognizer;
+        //NSLog(@"%f -- %f", [pan translationInView:self].x, self.contentOffset.x);
         if([pan translationInView:self].x > 0.0f && self.contentOffset.x == 0.0f) {
+            //NSLog(@"左滑手势");
+            return NO;
+        }
+        if ([pan translationInView:self].x < 0.0f && self.contentSize.width - self.contentOffset.x <= self.bounds.size.width) {
+            //NSLog(@"右滑手势");
             return NO;
         }
     }

@@ -12,8 +12,6 @@
 
 @interface UIViewController (CWLateralSlide)
 
-
-
 /**
  呼出侧滑控制器的方法（主要）
 
@@ -25,17 +23,13 @@
                       animationType:(CWDrawerAnimationType)animationType
                       configuration:(CWLateralSlideConfiguration *)configuration;
 
-
 /**
- 注册手势驱动方法，一般在viewDidLoad调用，调用之后会添加一个支持侧滑的手势到本控制器
-
+ 注册手势驱动方法，侧滑呼出的方向自动确定，一般在viewDidLoad调用，调用之后会添加一个支持侧滑的手势到本控制器
+ 
  @param openEdgeGesture 是否开启边缘手势,边缘手势的开始范围为距离边缘50以内
- @param direction 侧滑呼出的方向，请与配置参数里面的方向保持一致，配置参数为nil是传左侧呼出
- @param transitionBlock 手势过程中执行的操作。传整个点击present的事件即可（看demo的使用）
+ @param transitionDirectionAutoBlock 手势过程中执行的操作。根据参数direction传整个点击present的事件即可（看demo的使用）
  */
-- (void)cw_registerShowIntractiveWithEdgeGesture:(BOOL)openEdgeGesture
-                                       direction:(CWDrawerTransitionDirection)direction transitionBlock:(void(^)())transitionBlock;
-
+- (void)cw_registerShowIntractiveWithEdgeGesture:(BOOL)openEdgeGesture transitionDirectionAutoBlock:(void(^)(CWDrawerTransitionDirection direction))transitionDirectionAutoBlock;
 
 /**
  自定义的push方法

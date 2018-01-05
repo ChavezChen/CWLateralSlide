@@ -35,7 +35,6 @@ typedef NS_ENUM(NSUInteger,CWDrawerTransitionDirection) {
  */
 @property (nonatomic,assign)float scaleY;
 
-
 /**
  菜单滑出的方向，默认为从左侧滑出
  */
@@ -47,14 +46,12 @@ typedef NS_ENUM(NSUInteger,CWDrawerTransitionDirection) {
 @property (nonatomic,strong)UIImage *backImage;
 
 
-
 /**
  默认配置
 
  @return 配置对象本身
  */
 + (instancetype)defaultConfiguration;
-
 
 /**
  创建一个配置对象的实例方法
@@ -67,7 +64,6 @@ typedef NS_ENUM(NSUInteger,CWDrawerTransitionDirection) {
  @return 配置对象本身
  */
 - (instancetype)initWithDistance:(float)distance maskAlpha:(float)alpha scaleY:(float)scaleY direction:(CWDrawerTransitionDirection)direction backImage:(UIImage *)backImage;
-
 
 /**
  创建一个配置对象的类方法

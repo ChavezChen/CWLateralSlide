@@ -11,16 +11,11 @@
 @interface CWInteractiveTransition ()
 
 @property (nonatomic,weak) UIViewController *weakVC;
-
 @property (nonatomic,assign) CWDrawerTransitiontype type;
-
 @property (nonatomic,assign) BOOL openEdgeGesture;
-
 @property (nonatomic,assign) CWDrawerTransitionDirection direction;
-
 @property (nonatomic,strong) CADisplayLink *link;
-
-@property (nonatomic,copy) void(^transitionBlock)();
+@property (nonatomic,copy) void(^transitionDirectionAutoBlock)(CWDrawerTransitionDirection direction);
 
 @end
 
@@ -59,7 +54,6 @@
     
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(cw_handleShowPan:)];
     [viewController.view addGestureRecognizer:pan];
-    
 }
 
 #pragma mark -GestureRecognizer
@@ -73,7 +67,6 @@
     
     UIPanGestureRecognizer *pan = note.object;
     [self handleGesture:pan];
-    
 }
 
 - (void)cw_handleShowPan:(UIPanGestureRecognizer *)pan {
@@ -81,31 +74,30 @@
     if (_type == CWDrawerTransitiontypeHidden) return;
     
     [self handleGesture:pan];
-    
 }
 
 - (void)hiddenBeganTranslationX:(CGFloat)x {
-    if ((x > 0 && _direction == CWDrawerTransitionDirectionLeft ) || (x < 0 && _direction == CWDrawerTransitionDirectionRight )) return;
+    if ((x > 0 && _direction == CWDrawerTransitionDirectionLeft ) ||
+        (x < 0 && _direction == CWDrawerTransitionDirectionRight )) return;
     self.interacting = YES;
-    //    NSLog(@"-------------------------");
-    
     [self.weakVC dismissViewControllerAnimated:YES completion:nil];
-    //    [self updateInteractiveTransition:0.001];
-    
-    //    NSLog(@"=========================");
 }
 
 - (void)showBeganTranslationX:(CGFloat)x gesture:(UIPanGestureRecognizer *)pan {
-    if ((x < 0 && _direction == CWDrawerTransitionDirectionLeft) || (x > 0 && _direction == CWDrawerTransitionDirectionRight)) return;
+//    NSLog(@"---->%f", x);
+    if (x >= 0) _direction = CWDrawerTransitionDirectionLeft;
+    else        _direction = CWDrawerTransitionDirectionRight;
+    
+    if ((x < 0 && _direction == CWDrawerTransitionDirectionLeft) ||
+        (x > 0 && _direction == CWDrawerTransitionDirectionRight)) return;
     
     CGFloat locX = [pan locationInView:_weakVC.view].x;
     //    NSLog(@"locX: %f",locX);
-    if (_openEdgeGesture && ((locX > 50 && _direction == CWDrawerTransitionDirectionLeft) || (locX < CGRectGetWidth(_weakVC.view.frame) - 50 && _direction == CWDrawerTransitionDirectionRight))) {
-        return;
-    }
+    if (_openEdgeGesture && ((locX > 50 && _direction == CWDrawerTransitionDirectionLeft) || (locX < CGRectGetWidth(_weakVC.view.frame) - 50 && _direction == CWDrawerTransitionDirectionRight))) return;
+    
     self.interacting = YES;
-    if (_transitionBlock) {
-        _transitionBlock();
+    if (_transitionDirectionAutoBlock) {
+        _transitionDirectionAutoBlock(_direction);
     }
 }
 
@@ -114,36 +106,35 @@
     CGFloat x = [pan translationInView:pan.view].x;
     
     _percent = 0;
-//    _percent = x / self.configuration.distance;
+    //_percent = x / self.configuration.distance;
     _percent = x / pan.view.frame.size.width;
-
+    
     if ((_direction == CWDrawerTransitionDirectionRight && _type == CWDrawerTransitiontypeShow) || (_direction == CWDrawerTransitionDirectionLeft && _type == CWDrawerTransitiontypeHidden)) {
         _percent = -_percent;
     }
     
     switch (pan.state) {
-        case UIGestureRecognizerStateBegan: {
-            if (_type == CWDrawerTransitiontypeShow) {
-                [self showBeganTranslationX:x gesture:pan];
-            }else {
-                [self hiddenBeganTranslationX:x];
-            }
+        case UIGestureRecognizerStateBegan:
             break;
-        }
         case UIGestureRecognizerStateChanged: {
-            _percent = fminf(fmaxf(_percent, 0.001), 1.0);
-//            NSLog(@"=x:%f width:%f ==%f",x,self.configuration.distance,_percent);
-            [self updateInteractiveTransition:_percent];
+            if (!self.interacting) { // 保证present只调用一次
+                if (_type == CWDrawerTransitiontypeShow) {
+                    // 0是零界点，滑动慢的时候向右边滑动可能会导致x为0然后在接下来的自动判断方向识别为向左滑
+                    if (x != 0) [self showBeganTranslationX:x gesture:pan];
+                }else {
+                    [self hiddenBeganTranslationX:x];
+                }
+            }else {
+                _percent = fminf(fmaxf(_percent, 0.001), 1.0);
+                [self updateInteractiveTransition:_percent];
+            }
             break;
         }
         case UIGestureRecognizerStateCancelled:
         case UIGestureRecognizerStateEnded:{
             self.interacting = NO;
-            if (_percent > 0.5) {
-                [self startDisplayerLink:_percent toFinish:YES];
-            }else {
-                [self startDisplayerLink:_percent toFinish:NO];
-            }
+            if (_percent > 0.5) [self startDisplayerLink:_percent toFinish:YES];
+            else                [self startDisplayerLink:_percent toFinish:NO];
             break;
         }
         default:
@@ -151,13 +142,13 @@
     }
 }
 
+
 - (void)startDisplayerLink:(CGFloat)percent toFinish:(BOOL)finish{
     
     _toFinish = finish;
     CGFloat remainDuration = finish ? self.duration * (1 - percent) : self.duration * percent;
     _remaincount = 60 * remainDuration;
     _oncePercent = finish ? (1 - percent) / _remaincount : percent / _remaincount;
-    
     [self starDisplayLink];
 }
 
@@ -191,7 +182,7 @@
 }
 
 - (void)dealloc {
-    //    NSLog(@"%s",__func__);
+//        NSLog(@"%s",__func__);
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

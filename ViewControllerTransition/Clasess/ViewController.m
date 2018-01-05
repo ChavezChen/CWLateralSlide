@@ -36,53 +36,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.tabBarController.view.backgroundColor = [UIColor whiteColor];
     
-    if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-    }
-    
-    [self setupNavBarItem];
-    
-    [self setupScrollView];
+    [self setupUI];
     
     // 注册手势驱动
     __weak typeof(self)weakSelf = self;
-    [self cw_registerShowIntractiveWithEdgeGesture:NO direction:CWDrawerTransitionDirectionLeft transitionBlock:^{
-        [weakSelf leftClick];
+    [self cw_registerShowIntractiveWithEdgeGesture:NO transitionDirectionAutoBlock:^(CWDrawerTransitionDirection direction) {
+        //NSLog(@"direction = %ld", direction);
+        if (direction == CWDrawerTransitionDirectionLeft) { // 左侧滑出
+            [weakSelf leftClick];
+        } else if (direction == CWDrawerTransitionDirectionRight) { // 右侧滑出
+            [weakSelf rightClick];
+        }
     }];
     
-}
-
-
-- (void)setupNavBarItem {
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(leftClick)];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(rightClick)];
 }
-
-- (void)setupScrollView {
-    CGFloat navigationHeight = self.navigationController.navigationBar.bounds.size.height;
-    CGFloat tabbarHeight = self.tabBarController.tabBar.bounds.size.height;
-    CWScrollView * contentScrollView = [[CWScrollView alloc] init];
-    contentScrollView.backgroundColor = [UIColor greenColor];
-    contentScrollView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - navigationHeight - tabbarHeight);
-    contentScrollView.pagingEnabled = YES;
-    contentScrollView.bounces = NO;
-    contentScrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.bounds) * 3, 0);
-    [self.view addSubview:contentScrollView];
-    _contentScrollView = contentScrollView;
-    _contentScrollView.delegate = self;
-//    _contentScrollView.showsHorizontalScrollIndicator = NO;
-    for (int i = 0; i < 3; i++) {
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(CGRectGetWidth(_contentScrollView.bounds) * i, 0, CGRectGetWidth(_contentScrollView.bounds), CGRectGetHeight(_contentScrollView.bounds)) style:UITableViewStylePlain];
-        tableView.delegate = self;
-        tableView.dataSource = self;
-        [_contentScrollView addSubview:tableView];
-    }
-}
-
 
 // 导航栏左边按钮的点击事件
 - (void)leftClick {
@@ -94,7 +63,7 @@
     
     // 调用这个方法
     [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:nil];
-
+    
 }
 
 - (void)rightClick {
@@ -104,7 +73,7 @@
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:0.8 direction:CWDrawerTransitionDirectionRight backImage:[UIImage imageNamed:@"0.jpg"]];
     
     [self cw_showDrawerViewController:vc animationType:0 configuration:conf];
-
+    
 }
 
 - (void)drawerDefaultAnimationleftScaleY {
@@ -132,7 +101,7 @@
     
     // 这个代码与框架无关，与demo相关，因为有兄弟在侧滑出来的界面，使用present到另一个界面返回的时候会有异常，这里提供各个场景的解决方式，需要在侧滑的界面present的同学可以借鉴一下！处理方式在leftViewController的viewDidAppear:方法内
     vc.drawerType = DrawerTypeMaskLeft;
-
+    
     // 调用这个方法
     [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeMask configuration:nil];
 }
@@ -144,10 +113,61 @@
     vc.drawerType = DrawerTypeMaskRight;
     
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:0 direction:CWDrawerTransitionDirectionRight backImage:nil];
-
+    
     [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeMask configuration:conf];
 }
 
+
+#pragma mark - setupUI
+
+- (void)setupUI {
+    self.tabBarController.view.backgroundColor = [UIColor whiteColor];
+    
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    
+    [self setupNavBarItem];
+    
+    [self setupScrollView];
+    //    [self setupTableView];
+}
+
+- (void)setupNavBarItem {
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(leftClick)];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(rightClick)];
+}
+
+
+- (void)setupTableView {
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)) style:UITableViewStylePlain];
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    //    tableView.backgroundColor = [UIColor redColor];
+    [self.view addSubview:tableView];
+}
+
+- (void)setupScrollView {
+    CGFloat navigationHeight = self.navigationController.navigationBar.bounds.size.height;
+    CGFloat tabbarHeight = self.tabBarController.tabBar.bounds.size.height;
+    CWScrollView * contentScrollView = [[CWScrollView alloc] init];
+    contentScrollView.backgroundColor = [UIColor greenColor];
+    contentScrollView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - navigationHeight - tabbarHeight);
+    contentScrollView.pagingEnabled = YES;
+    contentScrollView.bounces = NO;
+    contentScrollView.contentSize = CGSizeMake(CGRectGetWidth(self.view.bounds) * 3, 0);
+    [self.view addSubview:contentScrollView];
+    _contentScrollView = contentScrollView;
+    _contentScrollView.delegate = self;
+    _contentScrollView.showsHorizontalScrollIndicator = NO;
+    for (int i = 0; i < 3; i++) {
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(CGRectGetWidth(_contentScrollView.bounds) * i, 0, CGRectGetWidth(_contentScrollView.bounds), CGRectGetHeight(_contentScrollView.bounds)) style:UITableViewStylePlain];
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        [_contentScrollView addSubview:tableView];
+    }
+}
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -161,7 +181,7 @@
     }
     cell.textLabel.text = self.datadSource[indexPath.row];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//    cell.imageView.image = [UIImage imageNamed:@"header.jpg"];
+    //    cell.imageView.image = [UIImage imageNamed:@"header.jpg"];
     return cell;
 }
 
@@ -191,3 +211,4 @@
 }
 
 @end
+
