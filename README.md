@@ -2,7 +2,7 @@
 
 ## 更新：
 ```
-1、更新注册手势驱动界面方法cw_registerShowIntractiveWithEdgeGesture:更新之后只需要将方法换一下就好了（感谢idozhuoyong童鞋提供的优化方案🙏）
+1、更新注册手势驱动界面方法cw_registerShowIntractiveWithEdgeGesture:支持同时双边手势驱动，（感谢idozhuoyong童鞋提供的优化方案🙏）
 2、注册 demo增加侧滑抽屉界面进行系统present的场景与解决方式
 ```
 
