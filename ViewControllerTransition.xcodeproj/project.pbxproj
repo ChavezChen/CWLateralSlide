@@ -22,6 +22,7 @@
 		6661884E1FDEC7DE0038D644 /* CWLateralSlideAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 666188481FDEC7DE0038D644 /* CWLateralSlideAnimator.m */; };
 		6661884F1FDEC7DE0038D644 /* CWDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 666188491FDEC7DE0038D644 /* CWDrawerTransition.m */; };
 		666188501FDEC7DE0038D644 /* CWLateralSlideConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 6661884B1FDEC7DE0038D644 /* CWLateralSlideConfiguration.m */; };
+		666188DC2003ACFA0038D644 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 666188DB2003ACFA0038D644 /* 2.jpg */; };
 		669409DA1F10B4B10095D997 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 669409D91F10B4B10095D997 /* 1.jpg */; };
 		669409E01F10BA240095D997 /* NextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 669409DE1F10BA240095D997 /* NextTableViewCell.m */; };
 		669409E11F10BA240095D997 /* NextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 669409DF1F10BA240095D997 /* NextTableViewCell.xib */; };
@@ -59,6 +60,7 @@
 		666188491FDEC7DE0038D644 /* CWDrawerTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWDrawerTransition.m; sourceTree = "<group>"; };
 		6661884A1FDEC7DE0038D644 /* UIViewController+CWLateralSlide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CWLateralSlide.h"; sourceTree = "<group>"; };
 		6661884B1FDEC7DE0038D644 /* CWLateralSlideConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWLateralSlideConfiguration.m; sourceTree = "<group>"; };
+		666188DB2003ACFA0038D644 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		669409D91F10B4B10095D997 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		669409DD1F10BA240095D997 /* NextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextTableViewCell.h; sourceTree = "<group>"; };
 		669409DE1F10BA240095D997 /* NextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextTableViewCell.m; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			children = (
 				669409E81F13B9640095D997 /* 0.jpg */,
 				669409D91F10B4B10095D997 /* 1.jpg */,
+				666188DB2003ACFA0038D644 /* 2.jpg */,
 				1A8F224A1F04CD3E00322D76 /* NavigationController.h */,
 				1A8F224B1F04CD3E00322D76 /* NavigationController.m */,
 				1A8F224E1F04CD3E00322D76 /* TabbarController.h */,
@@ -225,6 +228,7 @@
 			files = (
 				669409DA1F10B4B10095D997 /* 1.jpg in Resources */,
 				1AB2C1F61F022F9E003F5EE0 /* LaunchScreen.storyboard in Resources */,
+				666188DC2003ACFA0038D644 /* 2.jpg in Resources */,
 				669409E11F10BA240095D997 /* NextTableViewCell.xib in Resources */,
 				1AB2C1F31F022F9E003F5EE0 /* Assets.xcassets in Resources */,
 				669409E91F13B9640095D997 /* 0.jpg in Resources */,

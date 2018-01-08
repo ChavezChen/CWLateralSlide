@@ -9,9 +9,7 @@
 #import "ViewController.h"
 #import "LeftViewController.h"
 #import "RightViewController.h"
-
 #import "CWScrollView.h"
-
 #import "UIViewController+CWLateralSlide.h"
 
 
@@ -57,10 +55,10 @@
 - (void)leftClick {
     // 自己随心所欲创建的一个控制器
     LeftViewController *vc = [[LeftViewController alloc] init];
-    
+
     // 这个代码与框架无关，与demo相关，因为有兄弟在侧滑出来的界面，使用present到另一个界面返回的时候会有异常，这里提供各个场景的解决方式，需要在侧滑的界面present的同学可以借鉴一下！处理方式在leftViewController的viewDidAppear:方法内
     vc.drawerType = DrawerDefaultLeft;
-    
+
     // 调用这个方法
     [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:nil];
     

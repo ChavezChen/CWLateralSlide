@@ -13,7 +13,6 @@
 #import "NextTableViewCell.h"
 
 #import "NextViewController.h"
-
 @interface LeftViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,weak) UITableView *tableView;
@@ -133,6 +132,8 @@
 
     if (indexPath.row == 0 && _drawerType != DrawerDefaultRight && _drawerType != DrawerTypeMaskRight) {
         [self presentViewController:vc animated:YES completion:nil];
+//        [self presentViewController:[TestViewController new] animated:YES completion:nil];
+
     }else {
         [self cw_pushViewController:vc];
     }

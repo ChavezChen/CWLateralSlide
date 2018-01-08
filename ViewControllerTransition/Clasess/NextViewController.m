@@ -48,15 +48,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [self setupHeader];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     [self setupTableView];
-    
 }
 
 - (void)setupTableView {
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 300, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)-300) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -65,14 +63,17 @@
     _tableView = tableView;
     
     [tableView registerNib:[UINib nibWithNibName:@"NextTableViewCell" bundle:nil] forCellReuseIdentifier:@"NextCell"];
+    
+    [self setupHeader];
 }
 
 - (void)setupHeader {
     UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 300)];
     imageV.backgroundColor = [UIColor clearColor];
-    imageV.contentMode = UIViewContentModeScaleAspectFill;
-    imageV.image = [UIImage imageNamed:@"0.jpg"];
-    [self.view addSubview:imageV];
+    imageV.contentMode = UIViewContentModeBottom;
+    imageV.image = [UIImage imageNamed:@"2.jpg"];
+
+    _tableView.tableHeaderView = imageV;
 }
 
 
