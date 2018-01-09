@@ -18,6 +18,9 @@
 {
     CWDrawerTransitiontype _TransitionType;
     CWDrawerAnimationType _animationType;
+    CGFloat _version;
+    CGFloat _hiddenStartTime;
+    CGFloat _hiddenrelativeDuration;
 }
 
 
@@ -26,6 +29,9 @@
         _TransitionType = transitionType;
         _animationType = animationType;
         _configuration = configuration;
+        if (_TransitionType == CWDrawerTransitiontypeHidden)
+        [self setupHiddenAnimationTime];
+        
     }
     return self;
 }
@@ -34,6 +40,14 @@
     return [[self alloc] initWithTransitionType:transitionType animationType:animationType configuration:configuration];
 }
 
+- (void)setupHiddenAnimationTime {
+    _hiddenStartTime = 0;
+    _hiddenrelativeDuration = 1.0;
+    if ([UIDevice currentDevice].systemVersion.floatValue >= 11.0) {
+        _hiddenStartTime = 0.015;
+        _hiddenrelativeDuration = 9.985;
+    }
+}
 
 #pragma mark - UIViewControllerAnimatedTransitioning
 - (NSTimeInterval)transitionDuration:(nullable id <UIViewControllerContextTransitioning>)transitionContext {
@@ -84,8 +98,8 @@
         backImageView = containerView.subviews.firstObject;
     
     [UIView animateKeyframesWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewKeyframeAnimationOptionCalculationModeCubic animations:^{
-        
-        [UIView addKeyframeWithRelativeStartTime:0.01 relativeDuration:0.99 animations:^{
+
+        [UIView addKeyframeWithRelativeStartTime:_hiddenStartTime relativeDuration:_hiddenrelativeDuration animations:^{
             toVC.view.transform = CGAffineTransformIdentity;
             fromVC.view.transform = CGAffineTransformIdentity;
             maskView.alpha = 0;
