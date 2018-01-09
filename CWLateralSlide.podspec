@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "CWLateralSlide"
-  s.version      = "1.4.0"
+  s.version      = "1.4.1"
   s.summary      = "侧滑框架."
 
   s.description  = "一行代码集成侧滑功能."
@@ -74,7 +74,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/ChavezChen/CWLateralSlide.git", :tag => "1.4.0" }
+  s.source       = { :git => "https://github.com/ChavezChen/CWLateralSlide.git", :tag => "1.4.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
