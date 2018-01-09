@@ -51,7 +51,6 @@
 - (void)addPanGestureForViewController:(UIViewController *)viewController {
     
     self.weakVC = viewController;
-    
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(cw_handleShowPan:)];
     [viewController.view addGestureRecognizer:pan];
 }
@@ -64,7 +63,6 @@
 - (void)cw_handleHiddenPan:(NSNotification *)note {
     
     if (_type == CWDrawerTransitiontypeShow) return;
-    
     UIPanGestureRecognizer *pan = note.object;
     [self handleGesture:pan];
 }
@@ -72,7 +70,6 @@
 - (void)cw_handleShowPan:(UIPanGestureRecognizer *)pan {
     
     if (_type == CWDrawerTransitiontypeHidden) return;
-    
     [self handleGesture:pan];
 }
 
@@ -163,7 +160,6 @@
 }
 
 - (void)cw_update {
-    
     if (_percent >= 1 && _toFinish) {
         [self stopDisplayerLink];
         [self finishInteractiveTransition];

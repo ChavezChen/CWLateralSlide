@@ -31,7 +31,6 @@
         _configuration = configuration;
         if (_TransitionType == CWDrawerTransitiontypeHidden)
         [self setupHiddenAnimationTime];
-        
     }
     return self;
 }
@@ -44,8 +43,8 @@
     _hiddenStartTime = 0;
     _hiddenrelativeDuration = 1.0;
     if ([UIDevice currentDevice].systemVersion.floatValue >= 11.0) {
-        _hiddenStartTime = 0.015;
-        _hiddenrelativeDuration = 9.985;
+        _hiddenStartTime = 0.026;
+        _hiddenrelativeDuration = 9.974;
     }
 }
 
@@ -76,8 +75,6 @@
     }else {
         
     }
-    
-    
 }
 
 - (void)animationViewHidden:(id <UIViewControllerContextTransitioning>)transitionContext {
@@ -91,7 +88,7 @@
             [view removeFromSuperview];
         }
     }
-    
+
     UIView *containerView = [transitionContext containerView];
     UIImageView *backImageView;
     if ([containerView.subviews.firstObject isKindOfClass:[UIImageView class]])
@@ -115,7 +112,6 @@
         [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
         
     }];
-    
 }
 
 - (void)defaultAnimationWithContext:(id <UIViewControllerContextTransitioning>)transitionContext {
@@ -180,7 +176,6 @@
             [transitionContext completeTransition:NO];
         }
     }];
-    
 }
 
 - (void)maskAnimationWithContext:(id <UIViewControllerContextTransitioning>)transitionContext {
@@ -227,8 +222,6 @@
             [transitionContext completeTransition:NO];
         }
     }];
-    
-    
 }
 
 
@@ -265,7 +258,6 @@ static dispatch_once_t cw_onceToken;
         
         UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
         [self addGestureRecognizer:pan];
-        
     }
     return self;
 }
@@ -276,7 +268,6 @@ static dispatch_once_t cw_onceToken;
 
 - (void)handleGesture:(UIPanGestureRecognizer *)pan {
     [[NSNotificationCenter defaultCenter] postNotificationName:CWLateralSlidePanNotication object:pan];
-    
 }
 
 + (void)releaseInstance{
