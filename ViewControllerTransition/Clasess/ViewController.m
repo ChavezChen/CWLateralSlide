@@ -128,7 +128,7 @@
     [self setupNavBarItem];
     
     [self setupScrollView];
-    //    [self setupTableView];
+//        [self setupTableView];
 }
 
 - (void)setupNavBarItem {
@@ -207,6 +207,19 @@
             break;
     }
 }
+
+////先要设Cell可编辑
+//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return YES;
+//}
+//
+////点击删除
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+//    //在这里实现删除操作
+//
+//}
+
+
 
 @end
 

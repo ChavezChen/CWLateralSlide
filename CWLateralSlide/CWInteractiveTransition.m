@@ -8,7 +8,7 @@
 
 #import "CWInteractiveTransition.h"
 
-@interface CWInteractiveTransition ()
+@interface CWInteractiveTransition ()<UIGestureRecognizerDelegate>
 
 @property (nonatomic,weak) UIViewController *weakVC;
 @property (nonatomic,assign) CWDrawerTransitiontype type;
@@ -52,6 +52,7 @@
     
     self.weakVC = viewController;
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(cw_handleShowPan:)];
+    pan.delegate = self;
     [viewController.view addGestureRecognizer:pan];
 }
 
@@ -180,6 +181,16 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    
+    if ([otherGestureRecognizer.view isKindOfClass:[UIScrollView class]]) {
+        return NO;
+    }
+    return YES;
+}
+
+
 
 @end
 
