@@ -198,7 +198,7 @@
 				TargetAttributes = {
 					1AB2C1E21F022F9E003F5EE0 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 6KT5LJJTYF;
+						DevelopmentTeam = ML49CE4G8Y;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -379,10 +379,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 6KT5LJJTYF;
+				DEVELOPMENT_TEAM = ML49CE4G8Y;
 				INFOPLIST_FILE = ViewControllerTransition/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.km.ViewControllerTransition765;
+				PRODUCT_BUNDLE_IDENTIFIER = com.km.ViewControllerTransition11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -391,10 +391,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 6KT5LJJTYF;
+				DEVELOPMENT_TEAM = ML49CE4G8Y;
 				INFOPLIST_FILE = ViewControllerTransition/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.km.ViewControllerTransition765;
+				PRODUCT_BUNDLE_IDENTIFIER = com.km.ViewControllerTransition11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
