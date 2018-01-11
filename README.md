@@ -1,9 +1,8 @@
 # CWLateralSlide
 
-## 更新：
+## 1.4.2版本更新：
 ```
-1、更新注册手势驱动界面方法cw_registerShowIntractiveWithEdgeGesture:支持同时双边手势驱动，（感谢idozhuoyong童鞋提供的优化方案🙏）
-2、demo增加侧滑抽屉界面进行系统present的场景与解决方式
+修改与cell侧滑删除冲突的问题。修改iphoneX会跳动的问题。修改缩放界面时界面失帧的问题
 ```
 
 目前有一些侧滑框架适用场景的局限性很高，且固定死的模板，比如设置一个leftVC，rightVC，middleVC为TabbarVC（根控制器），如果我要使用这种方式来实现侧滑，就必须根据它的要求来调整我们整个APP的架构，侵入型很高，新项目还好，老项目只能说，o shit！😁。假如界面要换交互方式，由于耦合高，替换成本是比较大的，而且侧滑的抽屉界面会一直存在内存里，展示在我们看不见的地方（屏幕外，或者根控制器下边）。
@@ -19,15 +18,15 @@
 ## 使用方法：
 **支持iOS7以上。**
 首先导入我们的分类：#import "UIViewController+CWLateralSlide.h" 里面仅有3个函数.
-   
-   1、如果想实现一下示例图中左侧点击侧滑的功能，只需要1行代码：
+   
+### 1、如果想实现一下示例图中左侧点击侧滑的功能，只需要1行代码：
 ```objective-c
 // 调用这个方法
 [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:nil];
 ```
 vc为你需要侧滑出来的控制器，调用这个方法你就拥有了侧滑功能+左划返回功能，其实这样就已经有了一个很好的侧滑功能了，如果需要更多的一些功能，可以往下看
 
-2、如果需要实现手势显示侧边控制器的功能，我们需要注册一个手势，使用也非常简单，代码如下
+### 2、如果需要实现手势显示侧边控制器的功能，我们需要注册一个手势，使用也非常简单，代码如下
 ```objective-c
     // 注册手势驱动
     __weak typeof(self)weakSelf = self;
@@ -43,7 +42,7 @@ vc为你需要侧滑出来的控制器，调用这个方法你就拥有了侧滑
 ```
 做完第二步，我们在界面上往右滑动的时候，左侧的控制器会跟着出现
 
-3、如果想要实现如示例图上面右侧按钮的点击这种自定义的效果，我们只需要在第一步的时候多加一行代码，就是给方法传入一个configuration。代码如下：
+### 3、如果想要实现如示例图上面右侧按钮的点击这种自定义的效果，我们只需要在第一步的时候多加一行代码，就是给方法传入一个configuration。代码如下：
 ```objective-c
 - (void)rightClick {
     
@@ -56,13 +55,13 @@ vc为你需要侧滑出来的控制器，调用这个方法你就拥有了侧滑
 ```
 这样你就有了如示例图里面带有一定缩放的侧滑功能
 
-4、由于我们实现的本质是系统的present，侧滑出来的控制器不带有导航控制器，但是我们又需要进行push操作，该怎么办呢？这个我们也又封装一个方法，代码如下;
+### 4、由于我们实现的本质是系统的present，侧滑出来的控制器不带有导航控制器，但是我们又需要进行push操作，该怎么办呢？这个我们也又封装一个方法，代码如下;
 ```objective-c
     NextViewController *vc = [NextViewController new];
     //  在侧滑的控制器内(没有导航控制器)，调用这个方法进行push操作就可以了
     [self cw_pushViewController:vc];
 ```
-5、主动关闭抽屉的方法
+### 5、主动关闭抽屉的方法
 ```objective-c
 [self dismissViewControllerAnimated:YES completion:nil];
 ```
