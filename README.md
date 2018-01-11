@@ -16,7 +16,8 @@
     
 ![效果](https://github.com/ChavezChen/CWLateralSlide/blob/master/示例图.gif)
 
-使用方法：
+## 使用方法：
+**支持iOS7以上。**
 首先导入我们的分类：#import "UIViewController+CWLateralSlide.h" 里面仅有3个函数.
    
    1、如果想实现一下示例图中左侧点击侧滑的功能，只需要1行代码：
