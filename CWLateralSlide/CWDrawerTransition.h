@@ -11,8 +11,8 @@
 #import "CWLateralSlideConfiguration.h"
 
 typedef NS_ENUM(NSUInteger,CWDrawerTransitiontype) {
-    CWDrawerTransitiontypeShow = 0,
-    CWDrawerTransitiontypeHidden
+    CWDrawerTransitiontypeShow = 0,      // 显示抽屉
+    CWDrawerTransitiontypeHidden,        // 隐藏抽屉
 };
 
 

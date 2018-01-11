@@ -138,9 +138,10 @@
     toVC.view.frame = CGRectMake(x, 0, CGRectGetWidth(containerView.frame), CGRectGetHeight(containerView.frame));
     [containerView addSubview:toVC.view];
     [containerView addSubview:fromVC.view];
-    
-    CGAffineTransform t1 = CGAffineTransformMakeTranslation(ret * width, 0);
-    CGAffineTransform t2 = CGAffineTransformMakeScale(1.0, self.configuration.scaleY);
+    // 计算缩放后需要平移的距离
+    CGFloat translationX = width - (kCWSCREENWIDTH * (1 - self.configuration.scaleY) / 2);
+    CGAffineTransform t1 = CGAffineTransformMakeScale(self.configuration.scaleY, self.configuration.scaleY);
+    CGAffineTransform t2 = CGAffineTransformMakeTranslation(ret * translationX, 0);
     CGAffineTransform fromVCTransform = CGAffineTransformConcat(t1, t2);
     CGAffineTransform toVCTransform;
     if (self.configuration.direction == CWDrawerTransitionDirectionRight) {

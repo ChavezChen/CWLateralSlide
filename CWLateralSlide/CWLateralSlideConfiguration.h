@@ -9,9 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-
 #define kCWSCREENWIDTH [UIScreen mainScreen].bounds.size.width
-
 
 typedef NS_ENUM(NSUInteger,CWDrawerTransitionDirection) {
     CWDrawerTransitionDirectionLeft = 0, // 左侧滑出

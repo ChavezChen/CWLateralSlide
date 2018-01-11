@@ -23,7 +23,7 @@
 {
     CGFloat _percent;
     CGFloat _remaincount;
-    BOOL _toFinish;
+    BOOL    _toFinish;
     CGFloat _oncePercent;
 }
 
