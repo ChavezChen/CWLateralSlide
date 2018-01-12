@@ -35,9 +35,9 @@
 - (NSArray *)titleArray{
     if (_titleArray == nil) {
         if (_drawerType == DrawerDefaultRight || _drawerType == DrawerTypeMaskRight) {
-            _titleArray = @[@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"主动收起抽屉"];
+            _titleArray = @[@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"显示alertView",@"主动收起抽屉"];
         }else {
-            _titleArray = @[@"present下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"主动收起抽屉"];
+            _titleArray = @[@"present下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"显示alertView",@"主动收起抽屉"];
         }
     }
     return _titleArray;
@@ -133,6 +133,11 @@
         return;
     }
     
+    if (indexPath.row == self.titleArray.count - 2) { // 显示alertView
+        [self showAlterView];
+        return;
+    }
+    
     NextViewController *vc = [NextViewController new];
     if (indexPath.row == 0 && _drawerType != DrawerDefaultRight && _drawerType != DrawerTypeMaskRight) {
         [self presentViewController:vc animated:YES completion:nil];
@@ -150,5 +155,11 @@
 }
 
 
+- (void)showAlterView {
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"hello world!" message:@"hello world!嘿嘿嘿" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"😂😄" style:UIAlertActionStyleDefault handler:nil];
+    [alertC addAction:action];
+    [self presentViewController:alertC animated:YES completion:nil];
+}
 
 @end
