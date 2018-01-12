@@ -35,9 +35,9 @@
 - (NSArray *)titleArray{
     if (_titleArray == nil) {
         if (_drawerType == DrawerDefaultRight || _drawerType == DrawerTypeMaskRight) {
-            _titleArray = @[@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面"];
+            _titleArray = @[@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"主动收起抽屉"];
         }else {
-            _titleArray = @[@"present下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面"];
+            _titleArray = @[@"present下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"主动收起抽屉"];
         }
     }
     return _titleArray;
@@ -128,8 +128,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    if (indexPath.row == self.titleArray.count - 1) { // 点击最后一个主动收起抽屉
+        [self dismissViewControllerAnimated:YES completion:nil];
+        return;
+    }
+    
     NextViewController *vc = [NextViewController new];
-
     if (indexPath.row == 0 && _drawerType != DrawerDefaultRight && _drawerType != DrawerTypeMaskRight) {
         [self presentViewController:vc animated:YES completion:nil];
 //        [self presentViewController:[TestViewController new] animated:YES completion:nil];

@@ -4,7 +4,7 @@
 //
 //  Created by chavez on 2017/6/29.
 //  Copyright © 2017年 chavez. All rights reserved.
-//
+//  v1.4.2
 
 #import <UIKit/UIKit.h>
 #import "CWLateralSlideAnimator.h"
