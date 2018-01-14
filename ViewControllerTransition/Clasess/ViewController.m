@@ -87,7 +87,7 @@
     
     vc.drawerType = DrawerDefaultRight;
     
-    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:0 direction:CWDrawerTransitionDirectionRight backImage:nil];
+    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:200 maskAlpha:0.4 scaleY:0 direction:CWDrawerTransitionDirectionRight backImage:nil];
     
     [self cw_showDrawerViewController:vc animationType:0 configuration:conf];
 }
@@ -129,6 +129,10 @@
     
     [self setupScrollView];
 //        [self setupTableView];
+    
+    if (@available(iOS 11.0, *)) {
+        self.contentScrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
 }
 
 - (void)setupNavBarItem {

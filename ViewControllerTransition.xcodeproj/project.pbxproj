@@ -382,7 +382,7 @@
 				DEVELOPMENT_TEAM = ML49CE4G8Y;
 				INFOPLIST_FILE = ViewControllerTransition/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.km.ViewControllerTransition770;
+				PRODUCT_BUNDLE_IDENTIFIER = com.km.ViewControllerTransition7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -394,7 +394,7 @@
 				DEVELOPMENT_TEAM = ML49CE4G8Y;
 				INFOPLIST_FILE = ViewControllerTransition/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.km.ViewControllerTransition770;
+				PRODUCT_BUNDLE_IDENTIFIER = com.km.ViewControllerTransition7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

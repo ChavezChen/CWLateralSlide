@@ -49,7 +49,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    self.navigationItem.title = @"😄😄😄";
     [self setupTableView];
 }
 
@@ -78,7 +78,7 @@
 
 
 - (void)dealloc {
-//    NSLog(@"%s",__func__);
+    NSLog(@"%s",__func__);
 }
 
 

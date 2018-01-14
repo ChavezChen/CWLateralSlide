@@ -45,9 +45,10 @@ UIKIT_EXTERN NSString *const CWLateralSlideAnimatorKey;
 UIKIT_EXTERN NSString *const CWLateralSlideMaskViewKey;
 UIKIT_EXTERN NSString *const CWLateralSlideInterativeKey;
 
-UIKIT_EXTERN NSString *const CWLateralSlidePanNotication;
-UIKIT_EXTERN NSString *const CWLateralSlideTapNotication;
+UIKIT_EXTERN NSString *const CWLateralSlidePanNoticationKey;
+UIKIT_EXTERN NSString *const CWLateralSlideTapNoticationKey;
 
+UIKIT_EXTERN NSString *const CWLateralSlideDirectionKey;
 
 
 

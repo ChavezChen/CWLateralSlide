@@ -260,11 +260,11 @@ static dispatch_once_t cw_onceToken;
 }
 
 - (void)singleTap {
-    [[NSNotificationCenter defaultCenter] postNotificationName:CWLateralSlideTapNotication object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:CWLateralSlideTapNoticationKey object:self];
 }
 
 - (void)handleGesture:(UIPanGestureRecognizer *)pan {
-    [[NSNotificationCenter defaultCenter] postNotificationName:CWLateralSlidePanNotication object:pan];
+    [[NSNotificationCenter defaultCenter] postNotificationName:CWLateralSlidePanNoticationKey object:pan];
 }
 
 + (void)releaseInstance{
@@ -283,10 +283,10 @@ NSString *const CWLateralSlideMaskViewKey = @"CWLateralSlideMaskViewKey";
 NSString *const CWLateralSlideAnimatorKey = @"CWLateralSlideAnimatorKey";
 NSString *const CWLateralSlideInterativeKey = @"CWLateralSlideInterativeKey";
 
-NSString *const CWLateralSlidePanNotication = @"CWLateralSlidePanNotication";
-NSString *const CWLateralSlideTapNotication = @"CWLateralSlideTapNotication";
+NSString *const CWLateralSlidePanNoticationKey = @"CWLateralSlidePanNoticationKey";
+NSString *const CWLateralSlideTapNoticationKey = @"CWLateralSlideTapNoticationKey";
 
-
+NSString *const CWLateralSlideDirectionKey = @"CWLateralSlideDirectionKey";
 
 
 

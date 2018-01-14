@@ -4,22 +4,6 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ViewControllerTransition/Clasess/NextViewController.m"
-            timestampString = "537201024.20179"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "-tableView:numberOfRowsInSection:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
@@ -36,7 +20,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CWLateralSlide/CWDrawerTransition.m"
-            timestampString = "537457924.666461"
+            timestampString = "537636155.1737339"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "165"
@@ -52,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CWLateralSlide/UIViewController+CWLateralSlide.m"
-            timestampString = "537464162.489871"
+            timestampString = "537636155.173808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
             landmarkName = "-cw_showDrawerViewController:animationType:configuration:"
             landmarkType = "7">
          </BreakpointContent>

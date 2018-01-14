@@ -29,6 +29,7 @@
         objc_setAssociatedObject(viewController, &CWLateralSlideAnimatorKey, animator, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     viewController.transitioningDelegate = animator;
+    objc_setAssociatedObject(viewController, &CWLateralSlideDirectionKey, @(configuration.direction), OBJC_ASSOCIATION_ASSIGN);
     
     CWInteractiveTransition *interactiveHidden = [CWInteractiveTransition interactiveWithTransitiontype:CWDrawerTransitiontypeHidden];
     [interactiveHidden setValue:viewController forKey:@"weakVC"];
@@ -74,9 +75,18 @@
         NSLog(@"This no UINavigationController...");
         return;
     }
+    NSNumber *direction = objc_getAssociatedObject(self, &CWLateralSlideDirectionKey);
+    NSString *subType = direction.integerValue ? kCATransitionFromLeft : kCATransitionFromRight;
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.20f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = subType;
+//    [nav.view.layer addAnimation:transition forKey:nil];
+    
     [nav pushViewController:viewController animated:NO];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 

@@ -38,8 +38,8 @@
 - (instancetype)initWithTransitiontype:(CWDrawerTransitiontype)type {
     if (self = [super init]) {
         _type = type;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cw_singleTap) name:CWLateralSlideTapNotication object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cw_handleHiddenPan:) name:CWLateralSlidePanNotication object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cw_singleTap) name:CWLateralSlideTapNoticationKey object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cw_handleHiddenPan:) name:CWLateralSlidePanNoticationKey object:nil];
     }
     return self;
 }
