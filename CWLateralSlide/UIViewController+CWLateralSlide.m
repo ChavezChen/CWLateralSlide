@@ -83,7 +83,7 @@
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     transition.type = kCATransitionPush;
     transition.subtype = subType;
-//    [nav.view.layer addAnimation:transition forKey:nil];
+    [nav.view.layer addAnimation:transition forKey:nil];
     
     [nav pushViewController:viewController animated:NO];
     [self dismissViewControllerAnimated:YES completion:nil];

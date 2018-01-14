@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:ViewControllerTransition.xcodeproj">
+      location = "self:/Users/chenwang/Desktop/CWLateralSlide/CWLateralSlideDemo.xcodeproj">
    </FileRef>
 </Workspace>
