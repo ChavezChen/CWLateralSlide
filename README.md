@@ -33,9 +33,8 @@ end
 1、执行rm ~/Library/Caches/CocoaPods/search_index.json 删除索引的缓存再搜索，如果这样也搜索不到的话更新cocoapods
 2、执行 pod repo update --verbose 更新成功之后就没问题了
 ```
-首先导入我们的分类：#import "UIViewController+CWLateralSlide.h" 里面仅有3个函数.
-   
 ### 1、如果想实现一下示例图中左侧点击侧滑的功能，只需要1行代码：
+首先导入我们的分类：#import "UIViewController+CWLateralSlide.h" 里面仅有3个函数.
 ```objective-c
 // 调用这个方法
 [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:nil];
