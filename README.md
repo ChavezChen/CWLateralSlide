@@ -19,7 +19,20 @@
 ![效果](https://github.com/ChavezChen/CWLateralSlide/blob/master/示例图.gif)
 
 ## 使用方法：
-**支持iOS7以上。**
+**支持iOS7以上。支持cocoapods.**
+目前是1.5.0版本，**强烈建议使用最新版本,最近不断的在进行优化**：
+```objective-c
+platform :ios, '7.0'
+
+target 'TargetName' do
+pod 'CWLateralSlide', '~> 1.5.0'
+end
+```
+**因为是新上传的，如果搜索不到最新版本，可以更新一下cocoapods或者清除一下repo的缓存再 重新搜索。。搜索不到的解决方法(适用于任何框架不能搜索到最新版本的情况)：**
+```
+1、执行rm ~/Library/Caches/CocoaPods/search_index.json 删除索引的缓存再搜索，如果这样也搜索不到的话更新cocoapods
+2、执行 pod repo update --verbose 更新成功之后就没问题了
+```
 首先导入我们的分类：#import "UIViewController+CWLateralSlide.h" 里面仅有3个函数.
    
 ### 1、如果想实现一下示例图中左侧点击侧滑的功能，只需要1行代码：
@@ -73,17 +86,4 @@ vc为你需要侧滑出来的控制器，调用这个方法你就拥有了侧滑
 
 还有不是很了解的可以下载demo看一下。有任何问题欢迎大家向我提issue，我会积极响应大家的问题。。
 
-目前也支持cocoapods，目前是1.5.0版本，**强烈建议使用最新版本,最近不断的在进行优化**：
-```objective-c
-platform :ios, '7.0'
-
-target 'TargetName' do
-pod 'CWLateralSlide', '~> 1.5.0'
-end
-```
-**因为是新上传的，如果搜索不到最新版本，可以更新一下cocoapods或者清除一下repo的缓存再 重新搜索。。搜索不到的解决方法(适用于任何框架不能搜索到最新版本的情况)：**
-```
-1、执行rm ~/Library/Caches/CocoaPods/search_index.json 删除索引的缓存再搜索，如果这样也搜索不到的话更新cocoapods
-2、执行 pod repo update --verbose 更新成功之后就没问题了
-```
 最后希望大家给个star支持一下，感谢。
