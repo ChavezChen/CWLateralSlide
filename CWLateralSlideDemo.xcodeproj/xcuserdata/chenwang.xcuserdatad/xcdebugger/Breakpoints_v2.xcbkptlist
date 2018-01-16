@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CWLateralSlide/UIViewController+CWLateralSlide.m"
-            timestampString = "537636738.5651979"
+            timestampString = "537801745.0834481"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "-cw_showDrawerViewController:animationType:configuration:"
             landmarkType = "7">
          </BreakpointContent>

@@ -60,7 +60,9 @@
     vc.drawerType = DrawerDefaultLeft;
 
     // 调用这个方法
-    [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:nil];
+    [self cw_showDefaultDrawerViewController:vc];
+    // 或者这样调用
+//    [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:nil];
     
 }
 
