@@ -19,7 +19,7 @@
     
 ![效果](https://github.com/ChavezChen/CWLateralSlide/blob/master/示例图.gif)
 
-## 使用方法：
+## 如何使用：
 **支持iOS7以上。支持cocoapods.**
 目前是1.5.1版本，**强烈建议使用最新版本,最近不断的在进行优化**：
 ```objective-c
@@ -38,7 +38,9 @@ end
 首先导入我们的分类：#import "UIViewController+CWLateralSlide.h" 里面仅有3个函数.
 ```objective-c
 // 调用这个方法
-[self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:nil];
+[self cw_showDefaultDrawerViewController:vc];
+// 或者这样～
+// [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:nil];
 ```
 vc为你需要侧滑出来的控制器，调用这个方法你就拥有了侧滑功能+左划返回功能，其实这样就已经有了一个很好的侧滑功能了，如果需要更多的一些功能，可以往下看
 
