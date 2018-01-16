@@ -14,6 +14,11 @@
 
 @implementation UIViewController (CWLateralSlide)
 
+// 显示默认抽屉
+- (void)cw_showDefaultDrawerViewController:(UIViewController *)viewController {
+    [self cw_showDrawerViewController:viewController animationType:CWDrawerAnimationTypeDefault configuration:nil];
+}
+
 // 显示抽屉
 - (void)cw_showDrawerViewController:(UIViewController *)viewController animationType:(CWDrawerAnimationType)animationType configuration:(CWLateralSlideConfiguration *)configuration {
     
