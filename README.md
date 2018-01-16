@@ -3,7 +3,7 @@
 目前有一些侧滑框架适用场景的局限性很高，且固定死的模板，比如设置一个leftVC，rightVC，middleVC为TabbarVC（根控制器），如果我要使用这种方式来实现侧滑，就必须根据它的要求来调整我们整个APP的架构，侵入型很高，新项目还好，老项目只能说，o shit！😁。假如界面要换交互方式，由于耦合高，替换成本是比较大的，而且侧滑的抽屉界面会一直存在内存里，展示在我们看不见的地方（屏幕外，或者根控制器下边）。
 
 我们的优势:没有所谓的leftVC，rightVC，对整个项目没有任何限制和依赖，不需要设置啥XXXTabbarController这种根控制器，也没有任何需要继承自某某类～真正的**0耦合、0侵入、0污染**。使用极致简单，真正的大白话操作。。侧滑的控制器拥有完整的生命周期函数调用。也就是说，侧滑的界面在隐藏的情况下，并不会对app产生额外的内存占用（正确的被释放）。
-## 1.5.1版本更新：
+## 1.5.1 version update：
 ```
 优化抽屉界面push动画效果
 
@@ -19,7 +19,7 @@
     
 ![效果](https://github.com/ChavezChen/CWLateralSlide/blob/master/示例图.gif)
 
-## 如何使用：
+## How To Use：
 **支持iOS7以上。支持cocoapods.**
 目前是1.5.1版本，**强烈建议使用最新版本,最近不断的在进行优化**：
 ```objective-c
@@ -34,12 +34,12 @@ end
 1、执行rm ~/Library/Caches/CocoaPods/search_index.json 删除索引的缓存再搜索，如果这样也搜索不到的话更新cocoapods
 2、执行 pod repo update --verbose 更新成功之后就没问题了
 ```
-### 1、如果想实现一下示例图中左侧点击侧滑的功能，只需要1行代码：
+### 1、如果想实现一下示例图中左侧点击侧滑的功能，只需要1行代码。If you want to achieve the effects of the left click on the drawer slide in gif，Need only one line of code：
 首先导入我们的分类：#import "UIViewController+CWLateralSlide.h" 里面仅有3个函数.
 ```objective-c
-// 调用这个方法
+// 调用这个方法，Using this method
 [self cw_showDefaultDrawerViewController:vc];
-// 或者这样～
+// 或者这样～Or it
 // [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:nil];
 ```
 vc为你需要侧滑出来的控制器，调用这个方法你就拥有了侧滑功能+左划返回功能，其实这样就已经有了一个很好的侧滑功能了，如果需要更多的一些功能，可以往下看
