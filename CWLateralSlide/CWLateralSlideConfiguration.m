@@ -30,21 +30,41 @@
 }
 
 - (float)distance {
-    if (_distance == 0)
+    if (_distance <= 0)
         return kCWSCREENWIDTH * 0.75;
     return _distance;
 }
 
 - (float)maskAlpha {
-    if (_maskAlpha == 0)
-        return 0.1;
+    if (_maskAlpha <= 0)
+        return 0.4;
     return _maskAlpha;
 }
 
 - (float)scaleY {
-    if (_scaleY == 0)
+    if (_scaleY <= 0)
         return 1.0;
     return _scaleY;
+}
+
+- (float)finishPercent {
+    if (_finishPercent <= 0)
+        return 0.5;
+    return _finishPercent;
+}
+
+- (NSTimeInterval)showAnimDuration {
+    if (_showAnimDuration <= 0)
+        return 0.25;
+    
+    return _showAnimDuration;
+}
+
+- (NSTimeInterval)HiddenAnimDuration {
+    if (_HiddenAnimDuration <= 0)
+        return 0.25;
+    
+    return _HiddenAnimDuration;
 }
 
 - (void)dealloc {

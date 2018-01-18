@@ -70,9 +70,16 @@
     
     RightViewController *vc = [[RightViewController alloc] init];
     
-    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:0.8 direction:CWDrawerTransitionDirectionRight backImage:[UIImage imageNamed:@"0.jpg"]];
+    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration defaultConfiguration];
+    conf.direction = CWDrawerTransitionDirectionRight; // 从右边滑出
+    conf.finishPercent = 0.1f;
+    conf.showAnimDuration = 1.0;
+    conf.HiddenAnimDuration = 1.0;
+//    conf.maskAlpha = 0.1;
+    conf.backImage = [UIImage imageNamed:@"0.jpg"];
+    conf.scaleY = 0.8;
     
-    [self cw_showDrawerViewController:vc animationType:0 configuration:conf];
+    [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:conf];
     
 }
 
@@ -81,7 +88,7 @@
     
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:0.8 direction:CWDrawerTransitionDirectionLeft backImage:[UIImage imageNamed:@"0.jpg"]];
     
-    [self cw_showDrawerViewController:vc animationType:0 configuration:conf];
+    [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:conf];
 }
 
 - (void)drawerDefaultAnimationRight{
@@ -89,9 +96,14 @@
     
     vc.drawerType = DrawerDefaultRight;
     
-    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:0 direction:CWDrawerTransitionDirectionRight backImage:nil];
+    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration defaultConfiguration];
+    conf.direction = CWDrawerTransitionDirectionRight; // 从右边滑出
+    conf.finishPercent = 0.1f;
+    conf.showAnimDuration = 0.1;
+    conf.HiddenAnimDuration = 0.1;
+    conf.maskAlpha = 0.1;
     
-    [self cw_showDrawerViewController:vc animationType:0 configuration:conf];
+    [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:conf];
 }
 
 
@@ -112,9 +124,53 @@
     
     vc.drawerType = DrawerTypeMaskRight;
     
-    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:0 direction:CWDrawerTransitionDirectionRight backImage:nil];
+    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration defaultConfiguration];
+    conf.direction = CWDrawerTransitionDirectionRight;
+    conf.showAnimDuration = 1.0f;
     
     [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeMask configuration:conf];
+}
+
+#pragma mark - UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.datadSource.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    }
+    cell.textLabel.text = self.datadSource[indexPath.row];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    //    cell.imageView.image = [UIImage imageNamed:@"header.jpg"];
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    switch (indexPath.row) {
+        case 0:
+            [self leftClick];
+            break;
+        case 1:
+            [self drawerDefaultAnimationRight];
+            break;
+        case 2:
+            [self drawerDefaultAnimationleftScaleY];
+            break;
+        case 3:
+            [self rightClick];
+            break;
+        case 4:
+            [self drawerMaskAnimationLeft];
+            break;
+        case 5:
+            [self drawerMaskAnimationRight];
+        default:
+            break;
+    }
 }
 
 
@@ -173,46 +229,7 @@
     }
 }
 
-#pragma mark - UITableViewDataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.datadSource.count;
-}
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-    }
-    cell.textLabel.text = self.datadSource[indexPath.row];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    //    cell.imageView.image = [UIImage imageNamed:@"header.jpg"];
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    switch (indexPath.row) {
-        case 0:
-            [self leftClick];
-            break;
-        case 1:
-            [self drawerDefaultAnimationRight];
-            break;
-        case 2:
-            [self drawerDefaultAnimationleftScaleY];
-            break;
-        case 3:
-            [self rightClick];
-            break;
-        case 4:
-            [self drawerMaskAnimationLeft];
-            break;
-        case 5:
-            [self drawerMaskAnimationRight];
-        default:
-            break;
-    }
-}
 
 ////先要设Cell可编辑
 //- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

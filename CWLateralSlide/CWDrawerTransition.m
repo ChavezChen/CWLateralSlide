@@ -46,7 +46,7 @@
 
 #pragma mark - UIViewControllerAnimatedTransitioning
 - (NSTimeInterval)transitionDuration:(nullable id <UIViewControllerContextTransitioning>)transitionContext {
-    return _TransitionType == CWDrawerTransitiontypeShow ? 0.25f : 0.25f;
+    return _TransitionType == CWDrawerTransitiontypeShow ? self.configuration.showAnimDuration : self.configuration.HiddenAnimDuration;
 }
 
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {

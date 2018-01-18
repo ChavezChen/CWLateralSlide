@@ -104,7 +104,6 @@
     CGFloat x = [pan translationInView:pan.view].x;
     
     _percent = 0;
-    //_percent = x / self.configuration.distance;
     _percent = x / pan.view.frame.size.width;
     
     if ((_direction == CWDrawerTransitionDirectionRight && _type == CWDrawerTransitiontypeShow) || (_direction == CWDrawerTransitionDirectionLeft && _type == CWDrawerTransitiontypeHidden)) {
@@ -131,8 +130,11 @@
         case UIGestureRecognizerStateCancelled:
         case UIGestureRecognizerStateEnded:{
             self.interacting = NO;
-            if (_percent > 0.5) [self startDisplayerLink:_percent toFinish:YES];
-            else                [self startDisplayerLink:_percent toFinish:NO];
+            if (_percent > self.configuration.finishPercent) {
+                [self startDisplayerLink:_percent toFinish:YES];
+            }else {
+               [self startDisplayerLink:_percent toFinish:NO];
+            }
             break;
         }
         default:
