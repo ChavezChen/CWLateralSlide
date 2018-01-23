@@ -57,7 +57,8 @@
     LeftViewController *vc = [[LeftViewController alloc] init];
 
     // 这个代码与框架无关，与demo相关，因为有兄弟在侧滑出来的界面，使用present到另一个界面返回的时候会有异常，这里提供各个场景的解决方式，需要在侧滑的界面present的同学可以借鉴一下！处理方式在leftViewController的viewDidAppear:方法内
-    vc.drawerType = DrawerDefaultLeft;
+    // 另外一种方式 直接使用 cw_presentViewController:方法也可以，两个方法的表示形式有点差异
+    vc.drawerType = DrawerDefaultLeft; // 为了表示各种场景才加上这个判断，如果只有单一场景这行代码完全不需要
 
     // 调用这个方法
     [self cw_showDefaultDrawerViewController:vc];
@@ -98,9 +99,9 @@
     
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration defaultConfiguration];
     conf.direction = CWDrawerTransitionDirectionRight; // 从右边滑出
-    conf.finishPercent = 0.1f;
-    conf.showAnimDuration = 0.1;
-    conf.HiddenAnimDuration = 0.1;
+    conf.finishPercent = 0.2f;
+    conf.showAnimDuration = 0.2;
+    conf.HiddenAnimDuration = 0.2;
     conf.maskAlpha = 0.1;
     
     [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:conf];

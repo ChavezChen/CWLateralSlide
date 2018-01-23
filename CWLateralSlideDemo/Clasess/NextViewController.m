@@ -98,13 +98,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NextViewController *vc = [NextViewController new];
     if (indexPath.row == 0) {
         [self dismissViewControllerAnimated:YES completion:nil];
         return;
     }
+    NextViewController *vc = [NextViewController new];
     [self.navigationController pushViewController:vc animated:YES];
-    
 }
 
 

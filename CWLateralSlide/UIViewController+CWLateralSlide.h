@@ -12,9 +12,9 @@
 
 @interface UIViewController (CWLateralSlide)
 
-/*-----------------------------------v1.5.2-----------------------------------------*/
-/*-----------------------------------v1.5.2-----------------------------------------*/
-/*-----------------------------------v1.5.2-----------------------------------------*/
+/*-----------------------------------v1.5.3-----------------------------------------*/
+/*-----------------------------------v1.5.3-----------------------------------------*/
+/*-----------------------------------v1.5.3-----------------------------------------*/
 
 /**
  显示默认抽屉
@@ -43,13 +43,19 @@
 - (void)cw_registerShowIntractiveWithEdgeGesture:(BOOL)openEdgeGesture transitionDirectionAutoBlock:(void(^)(CWDrawerTransitionDirection direction))transitionDirectionAutoBlock;
 
 /**
- 自定义的push方法
- 因为侧滑出来的控制器实际上是通过present出来的，这个时候是没有导航控制器的，而侧滑出来的控制器上面的一些点击事件需要再push下一个控制器的时候，我们只能通过寻找到根控制器找到对应的导航控制器再进行push操作，QQ的效果能证明是这么实现的
- @param viewController 需要push出来的控制器
+ Custom push method 自定义的push动画
+ push another viewController in the side slip out of the controller 在侧滑界面push另一个界面
+ @param viewController Need to push of the controller
  */
 - (void)cw_pushViewController:(UIViewController *)viewController;
 
 
+/**
+ Custom present method 自定义的present动画
+ present another viewController in the side slip out of the controller 在侧滑界面present另一个界面
+ @param viewController Need to present of the controller
+ */
+- (void)cw_presentViewController:(UIViewController *)viewController;
 
 
 @end

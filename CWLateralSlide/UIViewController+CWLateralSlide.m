@@ -35,7 +35,7 @@
     }
     viewController.transitioningDelegate = animator;
     objc_setAssociatedObject(viewController, &CWLateralSlideDirectionKey, @(configuration.direction), OBJC_ASSOCIATION_ASSIGN);
-    
+
     CWInteractiveTransition *interactiveHidden = [CWInteractiveTransition interactiveWithTransitiontype:CWDrawerTransitiontypeHidden];
     [interactiveHidden setValue:viewController forKey:@"weakVC"];
     [interactiveHidden setValue:@(configuration.direction) forKey:@"direction"];
@@ -92,7 +92,20 @@
     
     [nav pushViewController:viewController animated:NO];
     [self dismissViewControllerAnimated:YES completion:nil];
-    
 }
+
+// 抽屉内present页面
+- (void)cw_presentViewController:(UIViewController *)viewController {
+    
+    CWLateralSlideAnimator *animator = self.transitioningDelegate;
+    animator.configuration.HiddenAnimDuration = 0.15;
+    UIViewController *rootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [rootVC presentViewController:viewController animated:YES completion:nil];
+}
+
+
+
+
 
 @end
