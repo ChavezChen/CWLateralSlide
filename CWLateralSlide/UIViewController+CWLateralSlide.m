@@ -21,27 +21,30 @@
 
 // 显示抽屉
 - (void)cw_showDrawerViewController:(UIViewController *)viewController animationType:(CWDrawerAnimationType)animationType configuration:(CWLateralSlideConfiguration *)configuration {
+    
     if (viewController == nil) return;
-    if (configuration == nil) configuration = [CWLateralSlideConfiguration defaultConfiguration];
+    if (configuration == nil)
+        configuration = [CWLateralSlideConfiguration defaultConfiguration];
     
     CWLateralSlideAnimator *animator = objc_getAssociatedObject(self, &CWLateralSlideAnimatorKey);
+    
     if (animator == nil) {
         animator = [CWLateralSlideAnimator lateralSlideAnimatorWithConfiguration:configuration];
         objc_setAssociatedObject(viewController, &CWLateralSlideAnimatorKey, animator, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
-    animator.configuration = configuration;
-    animator.animationType = animationType;
     viewController.transitioningDelegate = animator;
-    
     objc_setAssociatedObject(viewController, &CWLateralSlideDirectionKey, @(configuration.direction), OBJC_ASSOCIATION_ASSIGN);
-    
+
     CWInteractiveTransition *interactiveHidden = [CWInteractiveTransition interactiveWithTransitiontype:CWDrawerTransitiontypeHidden];
     [interactiveHidden setValue:viewController forKey:@"weakVC"];
     [interactiveHidden setValue:@(configuration.direction) forKey:@"direction"];
     
     [animator setValue:interactiveHidden forKey:@"interactiveHidden"];
-    
+    animator.configuration = configuration;
+    animator.animationType = animationType;
+
     [self presentViewController:viewController animated:YES completion:nil];
+    
 }
 
 // 注册抽屉手势
@@ -49,6 +52,7 @@
     
     CWLateralSlideAnimator *animator = [CWLateralSlideAnimator lateralSlideAnimatorWithConfiguration:nil];
     self.transitioningDelegate = animator;
+    
     objc_setAssociatedObject(self, &CWLateralSlideAnimatorKey, animator, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
     CWInteractiveTransition *interactiveShow = [CWInteractiveTransition interactiveWithTransitiontype:CWDrawerTransitiontypeShow];
@@ -75,23 +79,23 @@
         nav = tabbar.childViewControllers[index];
     }else if ([rootVC isKindOfClass:[UINavigationController class]]) {
         nav = (UINavigationController *)rootVC;
-    }else {
+    }else  {
         NSLog(@"This no UINavigationController...");
         return;
     }
-    if (duration > 0) {
-        CWLateralSlideAnimator *animator = self.transitioningDelegate;
-        animator.configuration.HiddenAnimDuration = duration;
-    }
-    CATransition *transition = [CATransition animation];
     NSNumber *direction = objc_getAssociatedObject(self, &CWLateralSlideDirectionKey);
     NSString *subType = direction.integerValue ? kCATransitionFromLeft : kCATransitionFromRight;
+    CATransition *transition = [CATransition animation];
     transition.duration = 0.20f;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     transition.type = kCATransitionPush;
     transition.subtype = subType;
     [nav.view.layer addAnimation:transition forKey:nil];
     
+    if (duration > 0) {
+        CWLateralSlideAnimator *animator = self.transitioningDelegate;
+        animator.configuration.HiddenAnimDuration = duration;
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
     [nav pushViewController:vc animated:NO];
 }
@@ -103,6 +107,7 @@
 }
 
 - (void)cw_presentViewController:(UIViewController *)vc drewerHiddenDuration:(NSTimeInterval)duration {
+    
     if (duration > 0) {
         CWLateralSlideAnimator *animator = self.transitioningDelegate;
         animator.configuration.HiddenAnimDuration = duration;
