@@ -34,11 +34,7 @@
 
 - (NSArray *)titleArray{
     if (_titleArray == nil) {
-//        if (_drawerType == DrawerDefaultRight || _drawerType == DrawerTypeMaskRight) {
-//            _titleArray = @[@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"显示alertView",@"主动收起抽屉"];
-//        }else {
-            _titleArray = @[@"present下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"显示alertView",@"主动收起抽屉"];
-//        }
+        _titleArray = @[@"present下一个界面",@"Push下一个界面",@"Push下一个界面",@"Push下一个界面",@"显示alertView",@"主动收起抽屉"];
     }
     return _titleArray;
 }
@@ -140,13 +136,19 @@
     
     NextViewController *vc = [NextViewController new];
     if (indexPath.row == 0) {
-        if (_drawerType == DrawerDefaultLeft || _drawerType == DrawerTypeMaskLeft) { // 左侧滑出的情况用这种present方式
+        if (_drawerType == DrawerDefaultLeft) { // 默认动画左侧滑出的情况用这种present方式
             [self presentViewController:vc animated:YES completion:nil];
+        }else if (_drawerType == DrawerTypeMaskLeft) { // Mask动画左侧滑出的情况用这种present方式
+            [self cw_presentViewController:vc drewerHiddenDuration:0.01];
         }else{ // 右侧滑出的情况用这种present方式
             [self cw_presentViewController:vc];
         }
     }else {
-        [self cw_pushViewController:vc];
+        if (_drawerType == DrawerTypeMaskLeft) {
+            [self cw_pushViewController:vc drewerHiddenDuration:0.01];
+        }else {
+            [self cw_pushViewController:vc];
+        }
     }
     
 }

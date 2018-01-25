@@ -12,9 +12,9 @@
 
 @interface UIViewController (CWLateralSlide)
 
-/*-----------------------------------v1.5.3-----------------------------------------*/
-/*-----------------------------------v1.5.3-----------------------------------------*/
-/*-----------------------------------v1.5.3-----------------------------------------*/
+/*-----------------------------------v1.5.4-----------------------------------------*/
+/*-----------------------------------v1.5.4-----------------------------------------*/
+/*-----------------------------------v1.5.4-----------------------------------------*/
 
 /**
  显示默认抽屉
@@ -49,13 +49,28 @@
  */
 - (void)cw_pushViewController:(UIViewController *)viewController;
 
-
 /**
  Custom present method 自定义的present动画
  present another viewController in the side slip out of the controller 在侧滑界面present另一个界面
  @param viewController Need to present of the controller
  */
 - (void)cw_presentViewController:(UIViewController *)viewController;
+
+/**
+ Custom push method 自定义的push动画,比上面的API多了一个时间参数
+ push another viewController in the side slip out of the controller. 在侧滑界面push另一个界面
+ @param vc  Need to push of the controller
+ @param duration  The Drewer Hidden Animation Duration When Push. push时抽屉隐藏动画的持续时间
+ */
+- (void)cw_pushViewController:(UIViewController *)vc drewerHiddenDuration:(NSTimeInterval)duration;
+
+/**
+ Custom present method 自定义的present动画,比上面的API多了一个时间参数
+ present another viewController in the side slip out of the controller 在侧滑界面present另一个界面
+ @param vc Need to present of the controller
+ @param duration  The Drewer Hidden Animation Duration When present. present时抽屉隐藏动画的持续时间
+ */
+- (void)cw_presentViewController:(UIViewController *)vc drewerHiddenDuration:(NSTimeInterval)duration;
 
 
 @end
