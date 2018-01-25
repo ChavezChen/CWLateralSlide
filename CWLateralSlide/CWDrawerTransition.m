@@ -78,7 +78,7 @@
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    MaskView *maskView = [MaskView shareInstance];
+    CWMaskView *maskView = [CWMaskView shareInstance];
     for (UIView *view in toVC.view.subviews) {
         if (![maskView.toViewSubViews containsObject:view]) {
             [view removeFromSuperview];
@@ -102,7 +102,7 @@
     } completion:^(BOOL finished) {
         if (![transitionContext transitionWasCancelled]) {
             maskView.toViewSubViews = nil;
-            [MaskView releaseInstance];
+            [CWMaskView releaseInstance];
             [backImageView removeFromSuperview];
         }
         [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
@@ -114,7 +114,7 @@
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    MaskView *maskView = [MaskView shareInstance];
+    CWMaskView *maskView = [CWMaskView shareInstance];
     maskView.frame = fromVC.view.bounds;
     [fromVC.view addSubview:maskView];
     UIView *containerView = [transitionContext containerView];
@@ -169,7 +169,7 @@
             [containerView addSubview:fromVC.view];
         }else {
             [imageV removeFromSuperview];
-            [MaskView releaseInstance];
+            [CWMaskView releaseInstance];
             [transitionContext completeTransition:NO];
         }
     }];
@@ -179,7 +179,7 @@
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    MaskView *maskView = [MaskView shareInstance];
+    CWMaskView *maskView = [CWMaskView shareInstance];
     maskView.frame = fromVC.view.bounds;
     [fromVC.view addSubview:maskView];
     
@@ -215,7 +215,7 @@
             [containerView bringSubviewToFront:toVC.view];
             maskView.userInteractionEnabled = YES;
         }else {
-            [MaskView releaseInstance];
+            [CWMaskView releaseInstance];
             [transitionContext completeTransition:NO];
         }
     }];
@@ -230,12 +230,12 @@
 @end
 
 
-@implementation MaskView
-static MaskView *cw_shareInstance = nil;
+@implementation CWMaskView
+static CWMaskView *cw_shareInstance = nil;
 static dispatch_once_t cw_onceToken;
 + (instancetype)shareInstance {
     dispatch_once(&cw_onceToken, ^{
-        cw_shareInstance = [[MaskView alloc] init];
+        cw_shareInstance = [[CWMaskView alloc] init];
     });
     return cw_shareInstance;
 }
