@@ -90,7 +90,7 @@ vc为你需要侧滑出来的控制器，调用这个方法你就拥有了侧滑
 ```objective-c
 [self dismissViewControllerAnimated:YES completion:nil];
 ```
-因为我们实现的本质就是调用系统的present方法，所以关闭抽屉我们只需要调用系统的dismiss方法即可，注意：动画要设置为YES。
+因为我们实现的本质就是调用系统的present方法，所以关闭抽屉我们只需要调用系统的dismiss方法即可，**注意：动画要设置为YES**。
 
 
 还有不是很了解的可以下载demo看一下。有任何问题欢迎大家向我提issue，我会积极响应大家的问题。。
