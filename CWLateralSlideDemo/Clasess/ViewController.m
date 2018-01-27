@@ -178,7 +178,6 @@
 #pragma mark - setupUI
 
 - (void)setupUI {
-    self.tabBarController.view.backgroundColor = [UIColor whiteColor];
     
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
