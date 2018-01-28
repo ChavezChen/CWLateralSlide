@@ -23,7 +23,8 @@
     
     UINavigationBar *naviBar = [UINavigationBar appearance];
     [naviBar setTitleTextAttributes:attrs];
-//    [naviBar setBackgroundImage:[UIImage imageNamed:@"yitiji_date_nav_bg"] forBarMetrics:UIBarMetricsDefault];
+    // 解决iOS11界面缩放后导航栏空出状态栏的空隙的问题 方法1
+    [naviBar setBackgroundImage:[UIImage imageNamed:@"yitiji_date_nav_bg"] forBarMetrics:UIBarMetricsDefault];
 }
 
 
@@ -34,8 +35,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-//    return;
-    // 解决iOS11界面缩放后导航栏空出状态栏的空隙的问题
+    /*
+    // 解决iOS11界面缩放后导航栏空出状态栏的空隙的问题 方法2
     if (@available(iOS 11, *)) { // xcode9新特性 可以这样判断，xcode9以下只能用UIDevice systemVersion 来判断
         UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
         CGFloat statusH = CGRectGetHeight(statusBar.frame);
@@ -48,6 +49,7 @@
             }
         }
     }
+     */
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
