@@ -71,31 +71,32 @@
 
 - (void)cw_pushViewController:(UIViewController *)vc drewerHiddenDuration:(NSTimeInterval)duration {
     
+    CWLateralSlideAnimator *animator = (CWLateralSlideAnimator *)self.transitioningDelegate;
+    animator.configuration.HiddenAnimDuration = duration > 0 ? duration : animator.configuration.HiddenAnimDuration;
     UIViewController *rootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
     UINavigationController *nav;
+    NSString *TransitionType = kCATransitionPush;
     if ([rootVC isKindOfClass:[UITabBarController class]]) {
         UITabBarController *tabbar = (UITabBarController *)rootVC;
         NSInteger index = tabbar.selectedIndex;
         nav = tabbar.childViewControllers[index];
     }else if ([rootVC isKindOfClass:[UINavigationController class]]) {
+        if (animator.animationType == CWDrawerAnimationTypeDefault) TransitionType = kCATransitionFade;
         nav = (UINavigationController *)rootVC;
     }else  {
         NSLog(@"This no UINavigationController...");
         return;
     }
+    
     NSNumber *direction = objc_getAssociatedObject(self, &CWLateralSlideDirectionKey);
     NSString *subType = direction.integerValue ? kCATransitionFromLeft : kCATransitionFromRight;
     CATransition *transition = [CATransition animation];
     transition.duration = 0.20f;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-    transition.type = kCATransitionPush;
+    transition.type = TransitionType;
     transition.subtype = subType;
     [nav.view.layer addAnimation:transition forKey:nil];
     
-    if (duration > 0) {
-        CWLateralSlideAnimator *animator = self.transitioningDelegate;
-        animator.configuration.HiddenAnimDuration = duration;
-    }
     [self dismissViewControllerAnimated:YES completion:nil];
     [nav pushViewController:vc animated:NO];
 }
@@ -109,7 +110,7 @@
 - (void)cw_presentViewController:(UIViewController *)vc drewerHiddenDuration:(NSTimeInterval)duration {
     
     if (duration > 0) {
-        CWLateralSlideAnimator *animator = self.transitioningDelegate;
+        CWLateralSlideAnimator *animator = (CWLateralSlideAnimator *)self.transitioningDelegate;
         animator.configuration.HiddenAnimDuration = duration;
     }
     UIViewController *rootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
