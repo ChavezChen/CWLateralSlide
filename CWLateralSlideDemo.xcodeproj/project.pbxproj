@@ -398,7 +398,7 @@
 				DEVELOPMENT_TEAM = ML49CE4G8Y;
 				INFOPLIST_FILE = "$(SRCROOT)/CWLateralSlideDemo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Chavez.CWLateralSlide11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Chavez.CWLateralSlide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -410,7 +410,7 @@
 				DEVELOPMENT_TEAM = ML49CE4G8Y;
 				INFOPLIST_FILE = "$(SRCROOT)/CWLateralSlideDemo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Chavez.CWLateralSlide11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Chavez.CWLateralSlide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

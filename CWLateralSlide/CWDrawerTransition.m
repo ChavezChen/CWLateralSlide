@@ -131,7 +131,7 @@
     CGFloat width = self.configuration.distance;
     CGFloat x = - width / 2;
     CGFloat ret = 1;
-    if (self.configuration.direction == CWDrawerTransitionDirectionRight) {
+    if (self.configuration.direction == CWDrawerTransitionFromRight) {
         x = kCWSCREENWIDTH - width / 2;
         ret = -1;
     }
@@ -144,7 +144,7 @@
     CGAffineTransform t2 = CGAffineTransformMakeTranslation(ret * translationX, 0);
     CGAffineTransform fromVCTransform = CGAffineTransformConcat(t1, t2);
     CGAffineTransform toVCTransform;
-    if (self.configuration.direction == CWDrawerTransitionDirectionRight) {
+    if (self.configuration.direction == CWDrawerTransitionFromRight) {
         toVCTransform = CGAffineTransformMakeTranslation(ret * (x - CGRectGetWidth(containerView.frame) + width), 0);
     }else {
         toVCTransform = CGAffineTransformMakeTranslation(ret * width / 2, 0);
@@ -188,7 +188,7 @@
     CGFloat width = self.configuration.distance;
     CGFloat x = - width;
     CGFloat ret = 1;
-    if (self.configuration.direction == CWDrawerTransitionDirectionRight) {
+    if (self.configuration.direction == CWDrawerTransitionFromRight) {
         x = kCWSCREENWIDTH;
         ret = -1;
     }

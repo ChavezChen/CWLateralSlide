@@ -75,23 +75,23 @@
 }
 
 - (void)hiddenBeganTranslationX:(CGFloat)x {
-    if ((x > 0 && _direction == CWDrawerTransitionDirectionLeft ) ||
-        (x < 0 && _direction == CWDrawerTransitionDirectionRight )) return;
+    if ((x > 0 && _direction == CWDrawerTransitionFromLeft ) ||
+        (x < 0 && _direction == CWDrawerTransitionFromRight )) return;
     self.interacting = YES;
     [self.weakVC dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)showBeganTranslationX:(CGFloat)x gesture:(UIPanGestureRecognizer *)pan {
 //    NSLog(@"---->%f", x);
-    if (x >= 0) _direction = CWDrawerTransitionDirectionLeft;
-    else        _direction = CWDrawerTransitionDirectionRight;
+    if (x >= 0) _direction = CWDrawerTransitionFromLeft;
+    else        _direction = CWDrawerTransitionFromRight;
     
-    if ((x < 0 && _direction == CWDrawerTransitionDirectionLeft) ||
-        (x > 0 && _direction == CWDrawerTransitionDirectionRight)) return;
+    if ((x < 0 && _direction == CWDrawerTransitionFromLeft) ||
+        (x > 0 && _direction == CWDrawerTransitionFromRight)) return;
     
     CGFloat locX = [pan locationInView:_weakVC.view].x;
     //    NSLog(@"locX: %f",locX);
-    if (_openEdgeGesture && ((locX > 50 && _direction == CWDrawerTransitionDirectionLeft) || (locX < CGRectGetWidth(_weakVC.view.frame) - 50 && _direction == CWDrawerTransitionDirectionRight))) return;
+    if (_openEdgeGesture && ((locX > 50 && _direction == CWDrawerTransitionFromLeft) || (locX < CGRectGetWidth(_weakVC.view.frame) - 50 && _direction == CWDrawerTransitionFromRight))) return;
     
     self.interacting = YES;
     if (_transitionDirectionAutoBlock) {
@@ -106,7 +106,7 @@
     _percent = 0;
     _percent = x / pan.view.frame.size.width;
     
-    if ((_direction == CWDrawerTransitionDirectionRight && _type == CWDrawerTransitiontypeShow) || (_direction == CWDrawerTransitionDirectionLeft && _type == CWDrawerTransitiontypeHidden)) {
+    if ((_direction == CWDrawerTransitionFromRight && _type == CWDrawerTransitiontypeShow) || (_direction == CWDrawerTransitionFromLeft && _type == CWDrawerTransitiontypeHidden)) {
         _percent = -_percent;
     }
     

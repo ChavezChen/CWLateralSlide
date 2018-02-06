@@ -12,8 +12,8 @@
 #define kCWSCREENWIDTH [UIScreen mainScreen].bounds.size.width
 
 typedef NS_ENUM(NSUInteger,CWDrawerTransitionDirection) {
-    CWDrawerTransitionDirectionLeft = 0, // 左侧滑出
-    CWDrawerTransitionDirectionRight     // 右侧滑出
+    CWDrawerTransitionFromLeft = 0, // 左侧滑出
+    CWDrawerTransitionFromRight     // 右侧滑出
 };
 
 @interface CWLateralSlideConfiguration : NSObject

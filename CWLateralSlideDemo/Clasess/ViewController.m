@@ -41,9 +41,9 @@
     __weak typeof(self)weakSelf = self;
     [self cw_registerShowIntractiveWithEdgeGesture:NO transitionDirectionAutoBlock:^(CWDrawerTransitionDirection direction) {
         //NSLog(@"direction = %ld", direction);
-        if (direction == CWDrawerTransitionDirectionLeft) { // 左侧滑出
+        if (direction == CWDrawerTransitionFromLeft) { // 左侧滑出
             [weakSelf leftClick];
-        } else if (direction == CWDrawerTransitionDirectionRight) { // 右侧滑出
+        } else if (direction == CWDrawerTransitionFromRight) { // 右侧滑出
             [weakSelf rightClick];
         }
     }];
@@ -72,7 +72,7 @@
     RightViewController *vc = [[RightViewController alloc] init];
     
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration defaultConfiguration];
-    conf.direction = CWDrawerTransitionDirectionRight; // 从右边滑出
+    conf.direction = CWDrawerTransitionFromRight; // 从右边滑出
     conf.finishPercent = 0.1f;
     conf.showAnimDuration = 1.0;
     conf.HiddenAnimDuration = 1.0;
@@ -87,7 +87,7 @@
 - (void)drawerDefaultAnimationleftScaleY {
     RightViewController *vc = [[RightViewController alloc] init];
     
-    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:0.8 direction:CWDrawerTransitionDirectionLeft backImage:[UIImage imageNamed:@"0.jpg"]];
+    CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration configurationWithDistance:0 maskAlpha:0.4 scaleY:0.8 direction:CWDrawerTransitionFromLeft backImage:[UIImage imageNamed:@"0.jpg"]];
     
     [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:conf];
 }
@@ -98,7 +98,7 @@
     vc.drawerType = DrawerDefaultRight;
     
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration defaultConfiguration];
-    conf.direction = CWDrawerTransitionDirectionRight; // 从右边滑出
+    conf.direction = CWDrawerTransitionFromRight; // 从右边滑出
     conf.finishPercent = 0.2f;
     conf.showAnimDuration = 0.2;
     conf.HiddenAnimDuration = 0.2;
@@ -126,7 +126,7 @@
     vc.drawerType = DrawerTypeMaskRight;
     
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration defaultConfiguration];
-    conf.direction = CWDrawerTransitionDirectionRight;
+    conf.direction = CWDrawerTransitionFromRight;
     conf.showAnimDuration = 1.0f;
     
     [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeMask configuration:conf];

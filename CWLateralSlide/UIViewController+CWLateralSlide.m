@@ -59,7 +59,7 @@
     [interactiveShow addPanGestureForViewController:self];
     [interactiveShow setValue:@(openEdgeGesture) forKey:@"openEdgeGesture"];
     [interactiveShow setValue:transitionDirectionAutoBlock forKey:@"transitionDirectionAutoBlock"];
-    [interactiveShow setValue:@(CWDrawerTransitionDirectionLeft) forKey:@"direction"];
+    [interactiveShow setValue:@(CWDrawerTransitionFromLeft) forKey:@"direction"];
     
     [animator setValue:interactiveShow forKey:@"interactiveShow"];
 }
