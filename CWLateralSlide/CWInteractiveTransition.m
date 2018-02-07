@@ -184,12 +184,13 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+#pragma mark - UIGestureRecognizerDelegate
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     
-    if ([otherGestureRecognizer.view isKindOfClass:[UIScrollView class]]) {
-        return NO;
+    if ([otherGestureRecognizer.view isKindOfClass:[UITableView class]]) {
+        return YES;
     }
-    return YES;
+    return NO;
 }
 
 
