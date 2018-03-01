@@ -5,6 +5,8 @@
 我们的优势:没有所谓的leftVC，rightVC，对整个项目没有任何限制和依赖，不需要设置啥XXXTabbarController这种根控制器，也没有任何需要继承自某某类～真正的**0耦合、0侵入、0污染**。使用极致简单，真正的大白话操作。。侧滑的控制器拥有完整的生命周期函数调用。也就是说，侧滑的界面在隐藏的情况下，并不会对app产生额外的内存占用（正确的被释放）**最重要的是简单：只要一行代码就能拥有一个侧滑抽屉**。
 ## update：
 ```
+1.5.8
+重新调整控制器直接为tableviewController时手势冲突问题，如果主界面类似QQ聊天列表需要侧滑显示抽屉同时需要左划显示删除等按钮可以翻看文末的讲解。
 1.5.7
 修改控制器直接为tableviewController时手势冲突问题
 1.5.6
@@ -32,12 +34,12 @@
 
 ## How To Use：
 **支持iOS7以上。支持cocoapods.**
-目前是1.5.7版本，**强烈建议使用最新版本,最近不断的在进行优化**：
+目前是1.5.8版本，**强烈建议使用最新版本,最近不断的在进行优化**：
 ```objective-c
 platform :ios, '7.0'
 
 target 'TargetName' do
-pod 'CWLateralSlide', '~> 1.5.7'
+pod 'CWLateralSlide', '~> 1.5.8'
 end
 ```
 **因为是新上传的，如果搜索不到最新版本，可以更新一下cocoapods或者清除一下repo的缓存再 重新搜索。。搜索不到的解决方法(适用于任何框架不能搜索到最新版本的情况)：**
@@ -98,6 +100,21 @@ vc为你需要侧滑出来的控制器，调用这个方法你就拥有了侧滑
 
 ### 6、打开抽屉情况下的布局
 ![效果](https://github.com/ChavezChen/CWLateralSlide/blob/master/layoutImage/allLayout.png)
+
+**主界面类似QQ聊天列表需要侧滑显示抽屉同时需要左划显示删除等按钮手势的处理方式：**
+
+在CWInteractiveTransition.m的最后修改成如下，并在注册手势的时候将是否开启边缘手势设置为YES；即可达到和QQ聊天列表界面同样的效果。
+```
+#pragma mark - UIGestureRecognizerDelegate
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    
+    if ([[self viewController:otherGestureRecognizer.view] isKindOfClass:[UITableViewController class]] || [otherGestureRecognizer.view isKindOfClass:[UITableView class]]) {
+        return YES;
+    }
+    return NO;
+}
+```
+
 
 还有不是很了解的可以下载demo看一下。有任何问题欢迎大家向我提issue，我会积极响应大家的问题。。
 
