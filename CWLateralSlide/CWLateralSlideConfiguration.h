@@ -28,7 +28,6 @@ typedef NS_ENUM(NSUInteger,CWDrawerTransitionDirection) {
  */
 @property (nonatomic,assign) float finishPercent;
 
-
 /**
  抽屉显示动画的持续时间，默认为0.25f
  */

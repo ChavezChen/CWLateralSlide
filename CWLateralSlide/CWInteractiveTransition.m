@@ -56,6 +56,16 @@
     [viewController.view addGestureRecognizer:pan];
 }
 
+- (UIViewController *)viewController:(UIView *)view{
+    for (UIView* next = view; next; next = next.superview) {
+        UIResponder* nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController*)nextResponder;
+        }
+    }
+    return nil;
+}
+
 #pragma mark -GestureRecognizer
 - (void)cw_singleTap {
     [self.weakVC dismissViewControllerAnimated:YES completion:nil];
@@ -187,7 +197,7 @@
 #pragma mark - UIGestureRecognizerDelegate
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     
-    if ([otherGestureRecognizer.view isKindOfClass:[UITableView class]]) {
+    if ([[self viewController:otherGestureRecognizer.view] isKindOfClass:[UITableViewController class]]) {
         return YES;
     }
     return NO;
