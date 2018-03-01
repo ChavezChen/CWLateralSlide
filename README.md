@@ -6,7 +6,7 @@
 ## update：
 ```
 1.5.8
-重新调整控制器直接为tableviewController时手势冲突问题，如果主界面类似QQ聊天列表需要侧滑显示抽屉同时需要左划显示删除等按钮可以翻看文末的讲解。
+重新调整控制器直接为tableviewController时手势冲突问题，如果主界面类似QQ聊天列表需要侧滑显示抽屉同时需要左划显示删除等按钮可以翻看文末。
 1.5.7
 修改控制器直接为tableviewController时手势冲突问题
 1.5.6
@@ -103,7 +103,7 @@ vc为你需要侧滑出来的控制器，调用这个方法你就拥有了侧滑
 
 **主界面类似QQ聊天列表需要侧滑显示抽屉同时需要左划显示删除等按钮手势的处理方式：**
 
-在CWInteractiveTransition.m的最后修改成如下，并在注册手势的时候将是否开启边缘手势设置为YES；即可达到和QQ聊天列表界面同样的效果。
+在CWInteractiveTransition.m的最后修改成如下，并在注册手势的时候将是否开启边缘手势设置为YES；即可解决手势冲突的问题。
 ```
 #pragma mark - UIGestureRecognizerDelegate
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
