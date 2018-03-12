@@ -68,7 +68,7 @@
             [self.view.superview sendSubviewToBack:self.view];
             break;
         case DrawerTypeMaskLeft:
-            rect.size.width = CGRectGetWidth(self.view.frame) * 0.75;
+            rect.size.width = kCWSCREENWIDTH * 0.75;
             break;
         default:
             break;
