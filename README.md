@@ -1,5 +1,5 @@
 # CWLateralSlide
-![iOS7+](https://img.shields.io/badge/iOS-7%2B-blue.svg)
+![iOS7+](https://img.shields.io/badge/iOS-7%2B-orange.svg)
 [![Version](https://img.shields.io/cocoapods/v/CWLateralSlide.svg?style=flat)](https://cocoapods.org/pods/CWLateralSlide)
 
 打破传统侧滑抽屉框架LeftVC，RightVC，CenterVC模式，使用自定义转场动画实现的**0耦合、0侵入、0污染**的抽屉框架，抽屉控制器拥有完整的生命周期函数调用，关闭抽屉时抽屉不会展示在我们看不见的地方（屏幕外，或者根控制器下边），**最重要的是简单：只要一行代码就能拥有一个侧滑抽屉**。
