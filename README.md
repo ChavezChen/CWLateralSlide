@@ -19,7 +19,7 @@ target 'TargetName' do
 pod 'CWLateralSlide', '~> 1.5.8'
 end
 ```
-**如果搜索不到最新版本的解决方法(适用于任何框架不能搜索到最新版本的情况)：**
+**搜索不到最新版本的解决方法：**
 ```
 1、执行rm ~/Library/Caches/CocoaPods/search_index.json 删除索引的缓存再搜索，如果这样也搜索不到的话更新cocoapods
 2、执行 pod repo update --verbose 更新成功之后就没问题了
