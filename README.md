@@ -71,6 +71,7 @@ vc为你需要侧滑出来的控制器，调用这个方法你就拥有一个抽
 ```
 ### 5、主动关闭抽屉
 ```objective-c
+// 注意：动画要设置为YES
 [self dismissViewControllerAnimated:YES completion:nil];
 ```
 因为我们实现的本质就是调用系统的present方法，所以关闭抽屉我们只需要调用系统的dismiss方法即可，**注意：动画要设置为YES**。
