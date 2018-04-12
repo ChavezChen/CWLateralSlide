@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0830"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1AB2C1E21F022F9E003F5EE0"
-               BuildableName = "ViewControllerTransition.app"
-               BlueprintName = "ViewControllerTransition"
-               ReferencedContainer = "container:ViewControllerTransition.xcodeproj">
+               BuildableName = "CWLateralSlideDemo.app"
+               BlueprintName = "CWLateralSlideDemo"
+               ReferencedContainer = "container:CWLateralSlideDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1AB2C1E21F022F9E003F5EE0"
-            BuildableName = "ViewControllerTransition.app"
-            BlueprintName = "ViewControllerTransition"
-            ReferencedContainer = "container:ViewControllerTransition.xcodeproj">
+            BuildableName = "CWLateralSlideDemo.app"
+            BlueprintName = "CWLateralSlideDemo"
+            ReferencedContainer = "container:CWLateralSlideDemo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1AB2C1E21F022F9E003F5EE0"
-            BuildableName = "ViewControllerTransition.app"
-            BlueprintName = "ViewControllerTransition"
-            ReferencedContainer = "container:ViewControllerTransition.xcodeproj">
+            BuildableName = "CWLateralSlideDemo.app"
+            BlueprintName = "CWLateralSlideDemo"
+            ReferencedContainer = "container:CWLateralSlideDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1AB2C1E21F022F9E003F5EE0"
-            BuildableName = "ViewControllerTransition.app"
-            BlueprintName = "ViewControllerTransition"
-            ReferencedContainer = "container:ViewControllerTransition.xcodeproj">
+            BuildableName = "CWLateralSlideDemo.app"
+            BlueprintName = "CWLateralSlideDemo"
+            ReferencedContainer = "container:CWLateralSlideDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
