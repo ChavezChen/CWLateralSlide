@@ -231,6 +231,7 @@
 
 
 @implementation CWMaskView
+
 static CWMaskView *cw_shareInstance = nil;
 static dispatch_once_t cw_onceToken;
 + (instancetype)shareInstance {
@@ -238,6 +239,16 @@ static dispatch_once_t cw_onceToken;
         cw_shareInstance = [[CWMaskView alloc] init];
     });
     return cw_shareInstance;
+}
+
++ (void)releaseInstance{
+    [cw_shareInstance removeFromSuperview];
+    cw_onceToken = 0;
+    cw_shareInstance = nil;
+}
+
+- (void)dealloc {
+    //    NSLog(@"mask dealloc");
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -251,7 +262,6 @@ static dispatch_once_t cw_onceToken;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap)];
         tap.numberOfTapsRequired = 1;
         [self addGestureRecognizer:tap];
-        
         
         UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
         [self addGestureRecognizer:pan];
@@ -267,15 +277,8 @@ static dispatch_once_t cw_onceToken;
     [[NSNotificationCenter defaultCenter] postNotificationName:CWLateralSlidePanNoticationKey object:pan];
 }
 
-+ (void)releaseInstance{
-    [cw_shareInstance removeFromSuperview];
-    cw_onceToken = 0;
-    cw_shareInstance = nil;
-}
-
-- (void)dealloc {
-//    NSLog(@"mask dealloc");
-}
+// 屏蔽掉touchesbegin的响应链
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event { }
 
 @end
 

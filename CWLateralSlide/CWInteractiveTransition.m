@@ -68,6 +68,7 @@
 
 #pragma mark -GestureRecognizer
 - (void)cw_singleTap {
+    if (_type == CWDrawerTransitiontypeShow) return;
     [self.weakVC dismissViewControllerAnimated:YES completion:nil];
 }
 
