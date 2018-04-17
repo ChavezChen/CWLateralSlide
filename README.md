@@ -16,7 +16,7 @@
 platform :ios, '7.0'
 
 target 'TargetName' do
-pod 'CWLateralSlide', '~> 1.5.8'
+pod 'CWLateralSlide', '~> 1.5.9'
 end
 ```
 **搜索不到最新版本的解决方法：**
@@ -81,6 +81,8 @@ vc为你需要侧滑出来的控制器，调用这个方法你就拥有一个抽
 
 ## update：
 ```
+1.5.9
+修改在特定场景下收起抽屉会多次dismiss的bug。
 1.5.8
 重新调整控制器直接为tableviewController时手势冲突问题，如果主界面类似QQ聊天列表需要侧滑显示抽屉同时需要左划显示删除等按钮可以翻看文末。
 1.5.7
