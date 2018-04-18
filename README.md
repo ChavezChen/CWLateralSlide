@@ -118,7 +118,9 @@ vc为你需要侧滑出来的控制器，调用这个方法你就拥有一个抽
     return NO;
 }
 ```
+**关于iOS11 设置scale界面缩放时导航栏出现20像素高黑条或者浅白条的问题可以看看下面这个issue**
 
+[issues24](https://github.com/ChavezChen/CWLateralSlide/issues/24) 
 
 还有不是很了解的可以下载demo看一下。有任何问题欢迎大家向我提issue，我会积极响应大家的问题。。
 
