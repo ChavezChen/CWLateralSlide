@@ -16,7 +16,7 @@
 platform :ios, '7.0'
 
 target 'TargetName' do
-pod 'CWLateralSlide', '~> 1.5.8'
+pod 'CWLateralSlide', '~> 1.5.9'
 end
 ```
 **搜索不到最新版本的解决方法：**
@@ -81,6 +81,8 @@ vc为你需要侧滑出来的控制器，调用这个方法你就拥有一个抽
 
 ## update：
 ```
+1.5.9
+修改在特定场景下收起抽屉会多次dismiss的bug。
 1.5.8
 重新调整控制器直接为tableviewController时手势冲突问题，如果主界面类似QQ聊天列表需要侧滑显示抽屉同时需要左划显示删除等按钮可以翻看文末。
 1.5.7
@@ -116,7 +118,9 @@ vc为你需要侧滑出来的控制器，调用这个方法你就拥有一个抽
     return NO;
 }
 ```
+**关于iOS11 设置scale界面缩放时导航栏出现20像素高黑条或者浅白条的问题可以看看下面这个issue**
 
+[issues24](https://github.com/ChavezChen/CWLateralSlide/issues/24) 
 
 还有不是很了解的可以下载demo看一下。有任何问题欢迎大家向我提issue，我会积极响应大家的问题。。
 
