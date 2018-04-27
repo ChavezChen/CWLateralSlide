@@ -21,6 +21,9 @@
         _direction = direction;
         _backImage = backImage;
         _scaleY = scaleY;
+        _finishPercent = 0.4;
+        _showAnimDuration = 0.25;
+        _HiddenAnimDuration = 0.25;
     }
     return self;
 }
@@ -49,7 +52,7 @@
 
 - (float)finishPercent {
     if (_finishPercent <= 0)
-        return 0.5;
+        return 0.4;
     return _finishPercent;
 }
 

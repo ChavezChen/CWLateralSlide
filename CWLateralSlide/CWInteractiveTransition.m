@@ -174,10 +174,10 @@
 }
 
 - (void)cw_update {
-    if (_percent >= 1 && _toFinish) {
+    if (_percent >= 0.97 && _toFinish) {
         [self stopDisplayerLink];
         [self finishInteractiveTransition];
-    }else if (_percent <= 0 && !_toFinish) {
+    }else if (_percent <= 0.03 && !_toFinish) {
         [self stopDisplayerLink];
         [self cancelInteractiveTransition];
     }else {
@@ -186,8 +186,8 @@
         }else {
             _percent -= _oncePercent;
         }
-        _percent = fminf(fmaxf(_percent, 0.0), 1.0);
-        [self updateInteractiveTransition:_percent];
+        CGFloat percent = fminf(fmaxf(_percent, 0.03), 0.97);
+        [self updateInteractiveTransition:percent];
     }
 }
 

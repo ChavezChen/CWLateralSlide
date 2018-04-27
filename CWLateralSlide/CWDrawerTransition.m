@@ -90,7 +90,7 @@
     if ([containerView.subviews.firstObject isKindOfClass:[UIImageView class]])
         backImageView = containerView.subviews.firstObject;
     
-    [UIView animateKeyframesWithDuration:[self transitionDuration:transitionContext] delay:_hiddenDelayTime options:UIViewKeyframeAnimationOptionCalculationModeCubic animations:^{
+    [UIView animateKeyframesWithDuration:[self transitionDuration:transitionContext] delay:_hiddenDelayTime options:UIViewKeyframeAnimationOptionCalculationModeLinear animations:^{
 
         [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:1.0 animations:^{
             toVC.view.transform = CGAffineTransformIdentity;
