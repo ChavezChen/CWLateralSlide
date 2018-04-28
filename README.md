@@ -16,7 +16,7 @@
 platform :ios, '7.0'
 
 target 'TargetName' do
-pod 'CWLateralSlide', '~> 1.6.0'
+pod 'CWLateralSlide', '~> 1.6.1'
 end
 ```
 **搜索不到最新版本的解决方法：**
@@ -81,7 +81,7 @@ vc为你需要侧滑出来的控制器，调用这个方法你就拥有一个抽
 
 ## update：
 ```
-1.6.0
+1.6.1
 修改iOS8手势打开界面的时候闪动的问题。
 1.5.9
 修改在特定场景下收起抽屉会多次dismiss的bug。
