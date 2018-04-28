@@ -42,7 +42,7 @@
     [self cw_registerShowIntractiveWithEdgeGesture:NO transitionDirectionAutoBlock:^(CWDrawerTransitionDirection direction) {
         //NSLog(@"direction = %ld", direction);
         if (direction == CWDrawerTransitionFromLeft) { // 左侧滑出
-            [weakSelf leftClick];
+            [weakSelf drawerDefaultAnimationleftScaleY];
         } else if (direction == CWDrawerTransitionFromRight) { // 右侧滑出
             [weakSelf rightClick];
         }

@@ -120,7 +120,7 @@
     if ((_direction == CWDrawerTransitionFromRight && _type == CWDrawerTransitiontypeShow) || (_direction == CWDrawerTransitionFromLeft && _type == CWDrawerTransitiontypeHidden)) {
         _percent = -_percent;
     }
-    
+
     switch (pan.state) {
         case UIGestureRecognizerStateBegan:
             break;
@@ -133,13 +133,14 @@
                     [self hiddenBeganTranslationX:x];
                 }
             }else {
-                _percent = fminf(fmaxf(_percent, 0.001), 1.0);
+                _percent = fminf(fmaxf(_percent, 0.003), 0.97);
                 [self updateInteractiveTransition:_percent];
             }
             break;
         }
         case UIGestureRecognizerStateCancelled:
         case UIGestureRecognizerStateEnded:{
+
             self.interacting = NO;
             if (_percent > self.configuration.finishPercent) {
                 [self startDisplayerLink:_percent toFinish:YES];
@@ -155,7 +156,13 @@
 
 
 - (void)startDisplayerLink:(CGFloat)percent toFinish:(BOOL)finish{
-    
+    if (finish && percent >= 1) {
+        [self finishInteractiveTransition];
+        return;
+    }else if (!finish && percent <= 0) {
+        [self cancelInteractiveTransition];
+        return;
+    }
     _toFinish = finish;
     CGFloat remainDuration = finish ? self.duration * (1 - percent) : self.duration * percent;
     _remaincount = 60 * remainDuration;
