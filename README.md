@@ -109,7 +109,7 @@ vc为你需要侧滑出来的控制器，调用这个方法你就拥有一个抽
 
 **主界面类似QQ聊天列表需要侧滑显示抽屉同时需要左划显示删除等按钮手势的处理方式：**
 
-在CWInteractiveTransition.m的最后修改成如下，并在注册手势的时候将是否开启边缘手势设置为YES；即可解决手势冲突的问题。
+在CWInteractiveTransition.m的最后修改成如下，并在注册手势的时候将是否开启**边缘手势设置为YES**；即可解决手势冲突的问题。
 ```
 #pragma mark - UIGestureRecognizerDelegate
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
