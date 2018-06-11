@@ -7,9 +7,9 @@
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
 #import "TabbarController.h"
 #import "NavigationController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -25,7 +25,7 @@
     [self.window makeKeyAndVisible];
     
     self.window.rootViewController = [[TabbarController alloc] init];
-//    self.window.rootViewController = [[NavigationController alloc] initWithRootViewController:[[ViewController alloc] init]];
+
     return YES;
 }
 

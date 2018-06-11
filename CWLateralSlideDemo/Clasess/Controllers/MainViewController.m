@@ -6,14 +6,14 @@
 //  Copyright © 2017年 chavez. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "MainViewController.h"
 #import "LeftViewController.h"
 #import "RightViewController.h"
 #import "CWScrollView.h"
 #import "CWTableViewInfo.h"
 #import "UIViewController+CWLateralSlide.h"
 
-@interface ViewController ()
+@interface MainViewController ()
 
 @property (nonatomic,strong) NSArray *titleArray;
 @property (nonatomic,strong) NSArray *selArray;
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation ViewController
+@implementation MainViewController
 
 
 - (void)viewDidLoad {

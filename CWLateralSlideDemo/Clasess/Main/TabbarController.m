@@ -7,7 +7,7 @@
 //
 
 #import "TabbarController.h"
-#import "ViewController.h"
+#import "MainViewController.h"
 #import "NavigationController.h"
 
 #define iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
@@ -38,9 +38,9 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
 
-    [self setupChildVc:[[ViewController alloc] init] title:@"聊天" image:@"tab_zhushou" selectedImage:@"tab_zhushou_pre"];
+    [self setupChildVc:[MainViewController new] title:@"聊天" image:@"tab_zhushou" selectedImage:@"tab_zhushou_pre"];
 
-    [self setupChildVc:[[ViewController alloc] init] title:@"通讯录" image:@"tab_wenzhen" selectedImage:@"tab_wenzhen_pre"];
+    [self setupChildVc:[MainViewController new] title:@"通讯录" image:@"tab_wenzhen" selectedImage:@"tab_wenzhen_pre"];
     
 }
 
