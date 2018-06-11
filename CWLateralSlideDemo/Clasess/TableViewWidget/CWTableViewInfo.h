@@ -12,6 +12,9 @@
 
 @interface CWTableViewInfo : NSObject
 
+@property (nonatomic, assign) UITableViewCellSeparatorStyle separatorStyle;
+@property (nonatomic, strong) UIColor *backGroudColor;
+
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style;
 
 - (NSUInteger)getDataArrayCount;

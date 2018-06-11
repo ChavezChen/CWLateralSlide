@@ -15,9 +15,7 @@
 		1A3A469120CA707C00EEC534 /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1A3A468E20CA707C00EEC534 /* 0.jpg */; };
 		1A3A469C20CA708E00EEC534 /* NextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3A469420CA708E00EEC534 /* NextViewController.m */; };
 		1A3A469D20CA708F00EEC534 /* RightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3A469520CA708E00EEC534 /* RightViewController.m */; };
-		1A3A469E20CA708F00EEC534 /* NextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A3A469920CA708E00EEC534 /* NextTableViewCell.xib */; };
 		1A3A469F20CA708F00EEC534 /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3A469A20CA708E00EEC534 /* LeftViewController.m */; };
-		1A3A46A020CA708F00EEC534 /* NextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3A469B20CA708E00EEC534 /* NextTableViewCell.m */; };
 		1A3A46A420CA719E00EEC534 /* CWTableViewInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3A46A320CA719E00EEC534 /* CWTableViewInfo.m */; };
 		1A3A46AA20CA767400EEC534 /* CWTableViewCellInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3A46A920CA767400EEC534 /* CWTableViewCellInfo.m */; };
 		1A3A46AD20CA77A900EEC534 /* CWTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3A46AC20CA77A900EEC534 /* CWTableViewCell.m */; };
@@ -48,12 +46,9 @@
 		1A3A469320CA708E00EEC534 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
 		1A3A469420CA708E00EEC534 /* NextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextViewController.m; sourceTree = "<group>"; };
 		1A3A469520CA708E00EEC534 /* RightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightViewController.m; sourceTree = "<group>"; };
-		1A3A469620CA708E00EEC534 /* NextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextTableViewCell.h; sourceTree = "<group>"; };
 		1A3A469720CA708E00EEC534 /* RightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightViewController.h; sourceTree = "<group>"; };
 		1A3A469820CA708E00EEC534 /* NextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NextViewController.h; sourceTree = "<group>"; };
-		1A3A469920CA708E00EEC534 /* NextTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NextTableViewCell.xib; sourceTree = "<group>"; };
 		1A3A469A20CA708E00EEC534 /* LeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewController.m; sourceTree = "<group>"; };
-		1A3A469B20CA708E00EEC534 /* NextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NextTableViewCell.m; sourceTree = "<group>"; };
 		1A3A46A220CA719E00EEC534 /* CWTableViewInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CWTableViewInfo.h; sourceTree = "<group>"; };
 		1A3A46A320CA719E00EEC534 /* CWTableViewInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CWTableViewInfo.m; sourceTree = "<group>"; };
 		1A3A46A820CA767400EEC534 /* CWTableViewCellInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CWTableViewCellInfo.h; sourceTree = "<group>"; };
@@ -122,13 +117,10 @@
 			children = (
 				1A3A469320CA708E00EEC534 /* LeftViewController.h */,
 				1A3A469A20CA708E00EEC534 /* LeftViewController.m */,
-				1A3A469620CA708E00EEC534 /* NextTableViewCell.h */,
-				1A3A469420CA708E00EEC534 /* NextViewController.m */,
 				1A3A469720CA708E00EEC534 /* RightViewController.h */,
 				1A3A469520CA708E00EEC534 /* RightViewController.m */,
 				1A3A469820CA708E00EEC534 /* NextViewController.h */,
-				1A3A469B20CA708E00EEC534 /* NextTableViewCell.m */,
-				1A3A469920CA708E00EEC534 /* NextTableViewCell.xib */,
+				1A3A469420CA708E00EEC534 /* NextViewController.m */,
 			);
 			path = Drawer;
 			sourceTree = "<group>";
@@ -276,7 +268,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A3A469E20CA708F00EEC534 /* NextTableViewCell.xib in Resources */,
 				1AB2C1F61F022F9E003F5EE0 /* LaunchScreen.storyboard in Resources */,
 				1AB2C1F31F022F9E003F5EE0 /* Assets.xcassets in Resources */,
 				1A3A468F20CA707C00EEC534 /* 2.jpg in Resources */,
@@ -304,7 +295,6 @@
 				1A3A469D20CA708F00EEC534 /* RightViewController.m in Sources */,
 				6661884D1FDEC7DE0038D644 /* UIViewController+CWLateralSlide.m in Sources */,
 				1A3A468820CA706600EEC534 /* TabbarController.m in Sources */,
-				1A3A46A020CA708F00EEC534 /* NextTableViewCell.m in Sources */,
 				6661884F1FDEC7DE0038D644 /* CWDrawerTransition.m in Sources */,
 				1A3A468920CA706600EEC534 /* NavigationController.m in Sources */,
 				1AB2C1E81F022F9E003F5EE0 /* main.m in Sources */,

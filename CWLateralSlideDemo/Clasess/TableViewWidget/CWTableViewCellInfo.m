@@ -15,7 +15,7 @@
     self = [super init];
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleDefault;
-        self.accessoryType = UITableViewCellAccessoryNone;
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         self.cellStyle = UITableViewCellStyleValue1;
     }
     return self;

@@ -7,14 +7,11 @@
 //
 
 #import "RightViewController.h"
-
+#import "NextViewController.h"
+#import "CWTableViewInfo.h"
 #import "UIViewController+CWLateralSlide.h"
 
-#import "NextTableViewCell.h"
-
-#import "NextViewController.h"
-
-@interface RightViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface RightViewController ()
 
 @property (nonatomic,weak) UITableView *tableView;
 @property (nonatomic,strong) NSArray *imageArray;
@@ -22,97 +19,68 @@
 @end
 
 @implementation RightViewController
+{
+    CWTableViewInfo *_tableViewInfo;
+}
 
+- (void)dealloc {
+    NSLog(@"%s",__func__);
+}
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self setupTableView];
+}
 
+- (void)setupTableView {
+    
+    _tableViewInfo = [[CWTableViewInfo alloc] initWithFrame:CGRectMake(0, 300, kCWSCREENWIDTH * 0.75, CGRectGetHeight(self.view.bounds)-300) style:UITableViewStylePlain];
+    _tableViewInfo.backGroudColor = [UIColor clearColor];
+    _tableViewInfo.separatorStyle = UITableViewCellSeparatorStyleNone;
+    for (int i = 0; i < self.titleArray.count; i++) {
+        NSString *title = self.titleArray[i];
+        NSString *imageName = self.imageArray[i];
+        SEL sel = @selector(push);
+        CWTableViewCellInfo *cellInfo = [CWTableViewCellInfo cellInfoWithTitle:title imageName:imageName target:self sel:sel];
+        cellInfo.accessoryType = UITableViewCellAccessoryNone;
+        cellInfo.backGroudColor = [UIColor clearColor];
+        [_tableViewInfo addCell:cellInfo];
+    }
+    
+    [self.view addSubview:[_tableViewInfo getTableView]];
+    [[_tableViewInfo getTableView] reloadData];
+}
+
+#pragma mark - cell点击事件
+- (void)push {
+    NextViewController *vc = [NextViewController new];
+    [self cw_pushViewController:vc];
+}
+
+#pragma mark - Getter方法
 - (NSArray *)imageArray {
     if (_imageArray == nil) {
-        _imageArray = @[@"personal_member_icons",@"personal_myservice_icons",@"personal_news_icons",@"personal_order_icons",@"personal_preview_icons",@"personal_service_icons"];
+        _imageArray = @[@"personal_member_icons",
+                        @"personal_myservice_icons",
+                        @"personal_news_icons",
+                        @"personal_order_icons",
+                        @"personal_preview_icons",
+                        @"personal_service_icons"];
     }
     return _imageArray;
 }
 
 - (NSArray *)titleArray{
     if (_titleArray == nil) {
-        _titleArray = @[@"了解会员特权",@"钱包",@"个性装扮",@"我的收藏",@"我的相册",@"我的文件"];
+        _titleArray = @[@"了解会员特权",
+                        @"钱包",
+                        @"个性装扮",
+                        @"我的收藏",
+                        @"我的相册",
+                        @"我的文件"];
     }
     return _titleArray;
 }
-
-
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        
-    }
-    return self;
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    
-    [self setupTableView];
-    
-//    [self setupHeader];
-    
-}
-
-- (void)setupTableView {
-    
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 300, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)-300) style:UITableViewStylePlain];
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:tableView];
-    tableView.backgroundColor = [UIColor clearColor];
-    _tableView = tableView;
-    
-    [tableView registerNib:[UINib nibWithNibName:@"NextTableViewCell" bundle:nil] forCellReuseIdentifier:@"NextCell"];
-}
-
-//- (void)setupHeader {
-//    UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds) * 0.75, 300)];
-////    imageV.backgroundColor = [UIColor clearColor];
-//    imageV.contentMode = UIViewContentModeScaleAspectFit;
-//    imageV.image = [UIImage imageNamed:@"image.jpg"];
-//    [self.view addSubview:imageV];
-//}
-
-- (void)dealloc {
-    NSLog(@"%s",__func__);
-}
-
-
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.imageArray.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NextTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NextCell"];
-    cell.imageName = self.imageArray[indexPath.row];
-    cell.title = self.titleArray[indexPath.row];
-    cell.backgroundColor = [UIColor clearColor];
-    return cell;
-}
-
-#pragma mark UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    NextViewController *vc = [NextViewController new];
-
-    [self cw_pushViewController:vc ];
-    
-}
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
-}
-
 
 @end

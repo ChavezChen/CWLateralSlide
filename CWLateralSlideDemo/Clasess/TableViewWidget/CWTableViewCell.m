@@ -27,12 +27,11 @@
 - (void)setCellInfo:(CWTableViewCellInfo *)cellInfo {
     
     _cellInfo = cellInfo;
-    
     self.accessoryType = cellInfo.accessoryType;
     self.selectionStyle = cellInfo.selectionStyle;
+    self.backgroundColor = cellInfo.backGroudColor;
     
     self.textLabel.text = [cellInfo getCellInfoValueForKey:@"title"];
-    
     NSString *imageName = [cellInfo getCellInfoValueForKey:@"imageName"];
     if (imageName) {
         self.imageView.image = [UIImage imageNamed:imageName];

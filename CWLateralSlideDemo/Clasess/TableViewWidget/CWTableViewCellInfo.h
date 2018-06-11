@@ -15,6 +15,7 @@
 @property (nonatomic, assign) UITableViewCellAccessoryType accessoryType;
 @property (nonatomic, assign) UITableViewCellSelectionStyle selectionStyle;
 @property (nonatomic, assign) UITableViewCellStyle cellStyle;
+@property (nonatomic, strong) UIColor *backGroudColor;
 
 @property (nonatomic, assign) SEL actionSel;
 @property (nonatomic, weak) id actionTarget;

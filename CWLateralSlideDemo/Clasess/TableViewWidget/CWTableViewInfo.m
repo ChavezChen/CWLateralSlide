@@ -28,16 +28,27 @@
     return self;
 }
 
-
 - (void)setupTableViewWithFrame:(CGRect)frame style:(UITableViewStyle)style {
     
     _tableView = [[UITableView alloc] initWithFrame:frame style:style];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    
+    _tableView.rowHeight = 50;
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     if (@available(iOS 11.0, *)) {
         _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
+}
+
+#pragma mark - Setter方法
+- (void)setBackGroudColor:(UIColor *)backGroudColor {
+    _backGroudColor = backGroudColor;
+    _tableView.backgroundColor = backGroudColor;
+}
+
+- (void)setSeparatorStyle:(UITableViewCellSeparatorStyle)separatorStyle {
+    _separatorStyle = separatorStyle;
+    _tableView.separatorStyle = separatorStyle;
 }
 
 #pragma mark - public Method
@@ -57,7 +68,7 @@
 #pragma mark -UITableViewDataSource
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"%zd",_cellInfoArray.count);
+//    NSLog(@"%zd",_cellInfoArray.count);
     return _cellInfoArray.count;
 }
 
@@ -75,6 +86,7 @@
     return cell;
 }
 
+
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -87,7 +99,9 @@
     
     if (cellInfo.selectionStyle) {
         if ([target respondsToSelector:selector]) {
-            [target performSelector:selector withObject:cellInfo];
+            IMP imp = [target methodForSelector:selector];
+            void (*func)(id, SEL, CWTableViewCellInfo *, NSIndexPath *) = (void *)imp;
+            func(target, selector, cellInfo, indexPath);
         }
     }
     

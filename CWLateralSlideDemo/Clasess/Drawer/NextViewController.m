@@ -7,12 +7,10 @@
 //
 
 #import "NextViewController.h"
-
+#import "CWTableViewInfo.h"
 #import "UIViewController+CWLateralSlide.h"
 
-#import "NextTableViewCell.h"
-
-@interface NextViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface NextViewController ()
 
 @property (nonatomic,weak) UITableView *tableView;
 @property (nonatomic,strong) NSArray *imageArray;
@@ -21,48 +19,37 @@
 @end
 
 @implementation NextViewController
-
-- (NSArray *)imageArray {
-    if (_imageArray == nil) {
-        _imageArray = @[@"personal_member_icons",@"personal_myservice_icons",@"personal_news_icons",@"personal_order_icons",@"personal_preview_icons",@"personal_service_icons"];
-    }
-    return _imageArray;
-}
-
-- (NSArray *)titleArray{
-    if (_titleArray == nil) {
-        _titleArray = @[@"dimiss界面",@"push界面",@"呵呵呵呵",@"嘿嘿嘿嘿",@"哈哈哈哈",@"嘻嘻嘻嘻"];
-    }
-    return _titleArray;
-}
-
-
-- (instancetype)init
 {
-    self = [super init];
-    if (self) {
+    CWTableViewInfo *_tableViewInfo;
+}
 
-    }
-    return self;
+- (void)dealloc {
+    NSLog(@"%s",__func__);
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"😄😄😄";
     [self setupTableView];
 }
 
 - (void)setupTableView {
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)) style:UITableViewStylePlain];
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:tableView];
-//    tableView.backgroundColor = [UIColor clearColor];
-    _tableView = tableView;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+
+    _tableViewInfo = [[CWTableViewInfo alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     
-    [tableView registerNib:[UINib nibWithNibName:@"NextTableViewCell" bundle:nil] forCellReuseIdentifier:@"NextCell"];
+    for (int i = 0; i < self.titleArray.count; i++) {
+        NSString *title = self.titleArray[i];
+        NSString *imageName = self.imageArray[i];
+        SEL sel = @selector(didSelectCell:indexPath:);
+        CWTableViewCellInfo *cellInfo = [CWTableViewCellInfo cellInfoWithTitle:title imageName:imageName target:self sel:sel];
+        [_tableViewInfo addCell:cellInfo];
+    }
+    
+    [self.view addSubview:[_tableViewInfo getTableView]];
+    [[_tableViewInfo getTableView] reloadData];
     
     [self setupHeader];
 }
@@ -70,46 +57,45 @@
 - (void)setupHeader {
     UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 300)];
     imageV.backgroundColor = [UIColor clearColor];
-    imageV.contentMode = UIViewContentModeBottom;
+    imageV.contentMode = UIViewContentModeScaleAspectFill;
     imageV.image = [UIImage imageNamed:@"2.jpg"];
-
-    _tableView.tableHeaderView = imageV;
+    [imageV sizeToFit];
+    [_tableViewInfo getTableView].tableHeaderView = imageV;
 }
 
-
-- (void)dealloc {
-    NSLog(@"%s",__func__);
-}
-
-
-#pragma mark - UITableViewDataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.imageArray.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NextTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NextCell"];
-    cell.imageName = self.imageArray[indexPath.row];
-    cell.title = self.titleArray[indexPath.row];
-//    cell.backgroundColor = [UIColor clearColor];
-    return cell;
-}
-
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+#pragma mark - cell点击事件
+- (void)didSelectCell:(CWTableViewCellInfo *)cellInfo indexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         [self dismissViewControllerAnimated:YES completion:nil];
-        return;
+    }else {
+        NextViewController *vc = [NextViewController new];
+        [self.navigationController pushViewController:vc animated:YES];
     }
-    NextViewController *vc = [NextViewController new];
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
+#pragma mark - Getter方法
+- (NSArray *)imageArray {
+    if (_imageArray == nil) {
+        _imageArray = @[@"personal_member_icons",
+                        @"personal_myservice_icons",
+                        @"personal_news_icons",
+                        @"personal_order_icons",
+                        @"personal_preview_icons",
+                        @"personal_service_icons"];
+    }
+    return _imageArray;
 }
 
+- (NSArray *)titleArray{
+    if (_titleArray == nil) {
+        _titleArray = @[@"dimiss界面",
+                        @"push界面",
+                        @"呵呵呵呵",
+                        @"嘿嘿嘿嘿",
+                        @"哈哈哈哈",
+                        @"嘻嘻嘻嘻"];
+    }
+    return _titleArray;
+}
 
 @end
