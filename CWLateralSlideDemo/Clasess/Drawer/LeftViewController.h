@@ -15,6 +15,9 @@ typedef NS_ENUM(NSUInteger,DrawerType) {
     DrawerTypeMaskLeft,    // 遮盖动画，左侧划出
     DrawerTypeMaskRight    // 遮盖动画，右侧滑出
 };
+
 @interface LeftViewController : UIViewController
+
 @property (nonatomic,assign) DrawerType drawerType; // 抽屉类型
+
 @end

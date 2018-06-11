@@ -7,12 +7,10 @@
 //
 
 #import "LeftViewController.h"
-
 #import "UIViewController+CWLateralSlide.h"
-
 #import "NextTableViewCell.h"
-
 #import "NextViewController.h"
+
 @interface LeftViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,weak) UITableView *tableView;
@@ -40,13 +38,6 @@
 }
 
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-    }
-    return self;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

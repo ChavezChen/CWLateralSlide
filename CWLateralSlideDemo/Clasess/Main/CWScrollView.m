@@ -10,6 +10,23 @@
 
 @implementation CWScrollView
 
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.backgroundColor = [UIColor greenColor];
+        self.pagingEnabled = YES;
+        self.bounces = NO;
+        self.showsHorizontalScrollIndicator = NO;
+        self.contentSize = CGSizeMake(CGRectGetWidth(self.bounds) * 3, 0);
+        if (@available(iOS 11.0, *)) {
+            self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        }
+    }
+    return self;
+}
+
+
 /**
  *  重写手势，如果是左滑，则禁用掉scrollview自带的
  */
