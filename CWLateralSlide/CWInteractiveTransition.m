@@ -203,8 +203,18 @@
 }
 
 #pragma mark - UIGestureRecognizerDelegate
--(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+    SEL selector = @selector(cw_gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:);
+    if ([self.weakVC respondsToSelector:selector]) {
+        IMP imp = [self.weakVC methodForSelector:selector];
+        BOOL (*func)(id, SEL, UIGestureRecognizer *, UIGestureRecognizer *) = (void *)imp;
+        BOOL result = func(self.weakVC, selector, gestureRecognizer, otherGestureRecognizer);
+        return result;
+    }
+#pragma clang diagnostic pop
+    // 没有实现对应方法直接走以下默认逻辑
     if ([[self viewController:otherGestureRecognizer.view] isKindOfClass:[UITableViewController class]]) {
         return YES;
     }

@@ -216,8 +216,12 @@
     [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeMask configuration:conf];
 }
 
-
-
+#pragma mark - 自定义处理手势冲突接口
+#if 0
+- (BOOL)cw_gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;// 可以在这里实现自己需要处理的手势冲突逻辑
+}
+#endif
 
 @end
 
