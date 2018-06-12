@@ -120,7 +120,7 @@ vc为你需要侧滑出来的控制器，调用这个方法你就拥有一个抽
 
 实现自定义处理手势冲突接口、修改成如下，并在注册手势的时候将是否开启**边缘手势设置为YES**；即可解决手势冲突的问题。
 ```
-#pragma mark - UIGestureRecognizerDelegate
+#pragma mark - 自定义处理手势冲突接口
 -(BOOL)cw_gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     // 如果是自己创建tableview添加在VC的view上 这样写就足够了
     if ([otherGestureRecognizer.view isKindOfClass:[UITableView class]]) {
