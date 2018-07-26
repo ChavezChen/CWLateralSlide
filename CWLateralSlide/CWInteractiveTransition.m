@@ -127,8 +127,8 @@
         case UIGestureRecognizerStateChanged: {
             if (!self.interacting) { // 保证present只调用一次
                 if (_type == CWDrawerTransitiontypeShow) {
-                    // 0是零界点，滑动慢的时候向右边滑动可能会导致x为0然后在接下来的自动判断方向识别为向左滑
-                    if (x != 0) [self showBeganTranslationX:x gesture:pan];
+                    // 必须最少有20个位移才进行抽屉显示
+                    if (fabs(x) > 20) [self showBeganTranslationX:x gesture:pan];
                 }else {
                     [self hiddenBeganTranslationX:x];
                 }

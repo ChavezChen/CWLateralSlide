@@ -20,11 +20,17 @@
 @property (nonatomic,strong) NSMutableArray *tableViewInfonArray;
 
 @property (nonatomic,weak) CWScrollView * contentScrollView;
-
+@property (nonatomic,strong) LeftViewController *leftVC; // 强引用，可以避免每次显示抽屉都去创建
 @end
 
 @implementation MainViewController
 
+- (LeftViewController *)leftVC {
+    if (_leftVC == nil) {
+        _leftVC = [LeftViewController new];
+    }
+    return _leftVC;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -98,6 +104,7 @@
         }
         
         [[tableViewInfo getTableView] reloadData];
+        [tableViewInfo getTableView].scrollEnabled = NO;
         [_contentScrollView addSubview:[tableViewInfo getTableView]];
         [self.tableViewInfonArray addObject:tableViewInfo]; // 强引用
     }
@@ -133,15 +140,12 @@
 #pragma mark - cell的点击事件
 // 仿QQ从左侧划出
 - (void)defaultAnimationFromLeft {
-    // 自己随心所欲创建的一个控制器
-    LeftViewController *vc = [[LeftViewController alloc] init];
 
     // 这个代码与框架无关，与demo相关，因为有兄弟在侧滑出来的界面，使用present到另一个界面返回的时候会有异常，这里提供各个场景的解决方式，需要在侧滑的界面present的同学可以借鉴一下！处理方式在leftViewController的viewDidAppear:方法内。
     // 另外一种方式 直接使用 cw_presentViewController:方法也可以，两个方法的表示形式有点差异
-    vc.drawerType = DrawerDefaultLeft; // 为了表示各种场景才加上这个判断，如果只有单一场景这行代码完全不需要
+    self.leftVC.drawerType = DrawerDefaultLeft; // 为了表示各种场景才加上这个判断，如果只有单一场景这行代码完全不需要
 
-    // 调用这个方法
-    [self cw_showDefaultDrawerViewController:vc];
+    [self cw_showDefaultDrawerViewController:self.leftVC]; // 强引用leftVC，不用每次创建新的
     // 或者这样调用
 //    [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:nil];
 }
