@@ -104,7 +104,7 @@
         }
         
         [[tableViewInfo getTableView] reloadData];
-        [tableViewInfo getTableView].scrollEnabled = NO;
+//        [tableViewInfo getTableView].scrollEnabled = NO;
         [_contentScrollView addSubview:[tableViewInfo getTableView]];
         [self.tableViewInfonArray addObject:tableViewInfo]; // 强引用
     }
