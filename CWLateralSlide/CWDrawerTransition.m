@@ -79,9 +79,12 @@
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
     CWMaskView *maskView = [CWMaskView shareInstance];
-    for (UIView *view in toVC.view.subviews) {
-        if (![maskView.toViewSubViews containsObject:view]) {
-            [view removeFromSuperview];
+    // 导航控制器的navigationBar在导航栏先隐藏后显示的情况下会被删除，所以过滤掉导航控制器
+    if (![toVC isKindOfClass:[UINavigationController class]]) {
+        for (UIView *view in toVC.view.subviews) {
+            if (![maskView.toViewSubViews containsObject:view]) {
+                [view removeFromSuperview];
+            }
         }
     }
 
@@ -164,7 +167,10 @@
     } completion:^(BOOL finished) {
         if (![transitionContext transitionWasCancelled]) {
             maskView.userInteractionEnabled = YES;
-            maskView.toViewSubViews = fromVC.view.subviews;
+            // 导航控制器的navigationbar可能是先隐藏再显示，这里会不在fromVC.view.subviews，上面移除时会有问题
+            if (![toVC isKindOfClass:[UINavigationController class]]) {
+                maskView.toViewSubViews = fromVC.view.subviews;
+            }
             [transitionContext completeTransition:YES];
             [containerView addSubview:fromVC.view];
         }else {
