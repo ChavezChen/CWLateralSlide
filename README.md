@@ -16,7 +16,7 @@
 platform :ios, '7.0'
 
 target 'TargetName' do
-pod 'CWLateralSlide', '~> 1.6.1'
+pod 'CWLateralSlide', '~> 1.6.3'
 end
 ```
 **搜索不到最新版本的解决方法：**
