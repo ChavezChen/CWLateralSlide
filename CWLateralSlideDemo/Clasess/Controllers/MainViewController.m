@@ -140,12 +140,9 @@
 #pragma mark - cell的点击事件
 // 仿QQ从左侧划出
 - (void)defaultAnimationFromLeft {
-
-    // 这个代码与框架无关，与demo相关，因为有兄弟在侧滑出来的界面，使用present到另一个界面返回的时候会有异常，这里提供各个场景的解决方式，需要在侧滑的界面present的同学可以借鉴一下！处理方式在leftViewController的viewDidAppear:方法内。
-    // 另外一种方式 直接使用 cw_presentViewController:方法也可以，两个方法的表示形式有点差异
-    self.leftVC.drawerType = DrawerDefaultLeft; // 为了表示各种场景才加上这个判断，如果只有单一场景这行代码完全不需要
-
-    [self cw_showDefaultDrawerViewController:self.leftVC]; // 强引用leftVC，不用每次创建新的
+    
+    // 强引用leftVC，不用每次创建新的,也可以每次在这里创建leftVC，抽屉收起的时候会释放掉
+    [self cw_showDefaultDrawerViewController:self.leftVC];
     // 或者这样调用
 //    [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:nil];
 }
@@ -153,8 +150,6 @@
 // 仿QQ从右侧划出
 - (void)defaultAnimationFromRight{
     LeftViewController *vc = [[LeftViewController alloc] init];
-    
-    vc.drawerType = DrawerDefaultRight;
     
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration defaultConfiguration];
     conf.direction = CWDrawerTransitionFromRight; // 从右边滑出
@@ -198,9 +193,6 @@
 - (void)maskAnimationFromLeft{
     
     LeftViewController *vc = [[LeftViewController alloc] init];
-    
-    // 这个代码与框架无关，与demo相关，因为有兄弟在侧滑出来的界面，使用present到另一个界面返回的时候会有异常，这里提供各个场景的解决方式，需要在侧滑的界面present的同学可以借鉴一下！处理方式在leftViewController的viewDidAppear:方法内
-    vc.drawerType = DrawerTypeMaskLeft;
 
     // 调用这个方法
     [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeMask configuration:nil];
@@ -210,8 +202,6 @@
 - (void)maskAnimationFromRight{
     
     LeftViewController *vc = [[LeftViewController alloc] init];
-    
-    vc.drawerType = DrawerTypeMaskRight; // 可忽略
     
     CWLateralSlideConfiguration *conf = [CWLateralSlideConfiguration defaultConfiguration];
     conf.direction = CWDrawerTransitionFromRight;

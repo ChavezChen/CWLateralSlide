@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 
 #define kCWSCREENWIDTH [UIScreen mainScreen].bounds.size.width
+#define kCWSCREENHEIGHT [UIScreen mainScreen].bounds.size.height
 
 typedef NS_ENUM(NSUInteger,CWDrawerTransitionDirection) {
     CWDrawerTransitionFromLeft = 0, // 左侧滑出

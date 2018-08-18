@@ -66,7 +66,7 @@
 #pragma mark - cell点击事件
 - (void)didSelectCell:(CWTableViewCellInfo *)cellInfo indexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self cw_dismissViewController];
     }else {
         NextViewController *vc = [NextViewController new];
         [self.navigationController pushViewController:vc animated:YES];

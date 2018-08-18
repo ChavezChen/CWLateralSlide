@@ -37,25 +37,6 @@
     
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    CGRect rect = self.view.frame;
-    
-    switch (_drawerType) {
-        case DrawerDefaultLeft:
-            [self.view.superview sendSubviewToBack:self.view];
-            break;
-        case DrawerTypeMaskLeft:
-            rect.size.width = kCWSCREENWIDTH * 0.75;
-            break;
-        default:
-            break;
-    }
-    self.view.frame = rect;
-}
-
-
 - (void)setupHeader {
     UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kCWSCREENWIDTH * 0.75, 200)];
     imageV.backgroundColor = [UIColor clearColor];
@@ -94,19 +75,10 @@
     
     NextViewController *vc = [NextViewController new];
     if (indexPath.row == 0) {
-        if (_drawerType == DrawerDefaultLeft) { // 默认动画左侧滑出的情况用这种present方式
-            [self presentViewController:vc animated:YES completion:nil];
-        }else if (_drawerType == DrawerTypeMaskLeft) { // Mask动画左侧滑出的情况用这种present方式
-            [self cw_presentViewController:vc drewerHiddenDuration:0.01];
-        }else{ // 右侧滑出的情况用这种present方式
-            [self cw_presentViewController:vc];
-        }
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self cw_presentViewController:nav];
     }else {
-        if (_drawerType == DrawerTypeMaskLeft) {
-            [self cw_pushViewController:vc drewerHiddenDuration:0.01];
-        }else {
-            [self cw_pushViewController:vc];
-        }
+        [self cw_pushViewController:vc];
     }
 }
 
