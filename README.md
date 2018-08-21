@@ -68,6 +68,9 @@ vc为你需要侧滑出来的控制器，调用这个方法你就拥有一个抽
     NextViewController *vc = [NextViewController new];
     //  在侧滑的控制器内(没有导航控制器)，调用这个方法进行push操作就可以了
     [self cw_pushViewController:vc];
+    // present & dismiss
+    [self cw_presentViewController:vc];
+    [self cw_dismissViewController];
 ```
 ### 5、主动关闭抽屉
 ```objective-c
