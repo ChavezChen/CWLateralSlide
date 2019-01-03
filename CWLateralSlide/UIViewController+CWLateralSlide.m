@@ -11,7 +11,6 @@
 #import "CWDrawerTransition.h"
 #import <objc/runtime.h>
 
-
 @implementation UIViewController (CWLateralSlide)
 
 // 显示默认抽屉
@@ -56,10 +55,9 @@
     objc_setAssociatedObject(self, &CWLateralSlideAnimatorKey, animator, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
     CWInteractiveTransition *interactiveShow = [CWInteractiveTransition interactiveWithTransitiontype:CWDrawerTransitiontypeShow];
-    [interactiveShow addPanGestureForViewController:self];
     [interactiveShow setValue:@(openEdgeGesture) forKey:@"openEdgeGesture"];
     [interactiveShow setValue:transitionDirectionAutoBlock forKey:@"transitionDirectionAutoBlock"];
-    [interactiveShow setValue:@(CWDrawerTransitionFromLeft) forKey:@"direction"];
+    [interactiveShow addPanGestureForViewController:self];
     
     [animator setValue:interactiveShow forKey:@"interactiveShow"];
 }

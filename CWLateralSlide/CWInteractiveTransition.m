@@ -51,9 +51,23 @@
 - (void)addPanGestureForViewController:(UIViewController *)viewController {
     
     self.weakVC = viewController;
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(cw_handleShowPan:)];
-    pan.delegate = self;
-    [viewController.view addGestureRecognizer:pan];
+    if (self.openEdgeGesture) {
+        // 因为edges设置为（UIRectEdgeLeft | UIRectEdgeLeft）或者 UIRectEdgeAll都无效，所以增加左右两个边缘手势
+        UIScreenEdgePanGestureRecognizer *edgePanFromLeft = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(cw_handleEdgePan:)];
+        edgePanFromLeft.edges = UIRectEdgeLeft;
+        edgePanFromLeft.delegate = self;
+        [viewController.view addGestureRecognizer:edgePanFromLeft];
+        
+        UIScreenEdgePanGestureRecognizer *edgePanFromRight = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(cw_handleEdgePan:)];
+        edgePanFromRight.edges = UIRectEdgeRight;
+        edgePanFromRight.delegate = self;
+        [viewController.view addGestureRecognizer:edgePanFromRight];
+        
+    }else {
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(cw_handleShowPan:)];
+        pan.delegate = self;
+        [viewController.view addGestureRecognizer:pan];
+    }
 }
 
 - (UIViewController *)viewController:(UIView *)view{
@@ -100,20 +114,25 @@
     if ((x < 0 && _direction == CWDrawerTransitionFromLeft) ||
         (x > 0 && _direction == CWDrawerTransitionFromRight)) return;
     
-    CGFloat locX = [pan locationInView:_weakVC.view].x;
-    //    NSLog(@"locX: %f",locX);
-    if (_openEdgeGesture && ((locX > 50 && _direction == CWDrawerTransitionFromLeft) || (locX < CGRectGetWidth(_weakVC.view.frame) - 50 && _direction == CWDrawerTransitionFromRight))) return;
-    
     self.interacting = YES;
     if (_transitionDirectionAutoBlock) {
         _transitionDirectionAutoBlock(_direction);
     }
 }
 
+- (void)cw_updateInteractiveTransition {
+    _percent = fminf(fmaxf(_percent, 0.003), 0.97);
+    [self updateInteractiveTransition:_percent];
+}
+
+- (void)cw_endInteractiveTransition {
+    self.interacting = NO;
+    [self startTimerAnimationWithFinishTransition:_percent > self.configuration.finishPercent];
+}
+
 - (void)handleGesture:(UIPanGestureRecognizer *)pan  {
     
     CGFloat x = [pan translationInView:pan.view].x;
-    
     _percent = 0;
     _percent = x / pan.view.frame.size.width;
     
@@ -133,20 +152,13 @@
                     [self hiddenBeganTranslationX:x];
                 }
             }else {
-                _percent = fminf(fmaxf(_percent, 0.003), 0.97);
-                [self updateInteractiveTransition:_percent];
+                [self cw_updateInteractiveTransition];
             }
             break;
         }
         case UIGestureRecognizerStateCancelled:
         case UIGestureRecognizerStateEnded:{
-
-            self.interacting = NO;
-            if (_percent > self.configuration.finishPercent) {
-                [self startDisplayerLink:_percent toFinish:YES];
-            }else {
-               [self startDisplayerLink:_percent toFinish:NO];
-            }
+            [self cw_endInteractiveTransition];
             break;
         }
         default:
@@ -154,19 +166,51 @@
     }
 }
 
+#pragma mark edge gesture
+- (void)cw_handleEdgePan:(UIScreenEdgePanGestureRecognizer *)edgePan {
+    if (_type == CWDrawerTransitiontypeHidden) return;
+    
+    CGFloat x = [edgePan translationInView:edgePan.view].x;
+    _percent = 0;
+    _percent = x / edgePan.view.frame.size.width;
+    _direction = edgePan.edges == UIRectEdgeRight;
+    if (_direction == CWDrawerTransitionFromRight) {
+        _percent = -_percent;
+    }
+    switch (edgePan.state) {
+        case UIGestureRecognizerStateBegan: {
+            self.interacting = YES;
+            if (_transitionDirectionAutoBlock) {
+                _transitionDirectionAutoBlock(_direction);
+            }
+            break;
+        }
+        case UIGestureRecognizerStateChanged: {
+            [self cw_updateInteractiveTransition];
+            break;
+        }
+        case UIGestureRecognizerStateCancelled:
+        case UIGestureRecognizerStateEnded:{
+            [self cw_endInteractiveTransition];
+            break;
+        }
+        default:
+            break;
+    }
+}
 
-- (void)startDisplayerLink:(CGFloat)percent toFinish:(BOOL)finish{
-    if (finish && percent >= 1) {
+- (void)startTimerAnimationWithFinishTransition:(BOOL)isFinish {
+    if (isFinish && _percent >= 1) {
         [self finishInteractiveTransition];
         return;
-    }else if (!finish && percent <= 0) {
+    }else if (!isFinish && _percent <= 0) {
         [self cancelInteractiveTransition];
         return;
     }
-    _toFinish = finish;
-    CGFloat remainDuration = finish ? self.duration * (1 - percent) : self.duration * percent;
+    _toFinish = isFinish;
+    CGFloat remainDuration = isFinish ? self.duration * (1 - _percent) : self.duration * _percent;
     _remaincount = 60 * remainDuration;
-    _oncePercent = finish ? (1 - percent) / _remaincount : percent / _remaincount;
+    _oncePercent = isFinish ? (1 - _percent) / _remaincount : _percent / _remaincount;
     [self starDisplayLink];
 }
 

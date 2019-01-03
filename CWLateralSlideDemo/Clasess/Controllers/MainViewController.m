@@ -39,7 +39,7 @@
     
     // 注册手势驱动
     __weak typeof(self)weakSelf = self;
-    [self cw_registerShowIntractiveWithEdgeGesture:NO transitionDirectionAutoBlock:^(CWDrawerTransitionDirection direction) {
+    [self cw_registerShowIntractiveWithEdgeGesture:YES transitionDirectionAutoBlock:^(CWDrawerTransitionDirection direction) {
         if (direction == CWDrawerTransitionFromLeft) { // 左侧滑出
             [weakSelf defaultAnimationFromLeft];
         } else if (direction == CWDrawerTransitionFromRight) { // 右侧滑出
