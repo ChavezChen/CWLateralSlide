@@ -244,6 +244,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -415,6 +416,7 @@
 				DEVELOPMENT_TEAM = ML49CE4G8Y;
 				INFOPLIST_FILE = "$(SRCROOT)/CWLateralSlideDemo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.6.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Chavez.CWLateralSlide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -427,6 +429,7 @@
 				DEVELOPMENT_TEAM = ML49CE4G8Y;
 				INFOPLIST_FILE = "$(SRCROOT)/CWLateralSlideDemo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.6.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Chavez.CWLateralSlide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

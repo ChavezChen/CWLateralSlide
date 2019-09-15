@@ -87,7 +87,6 @@
             }
         }
     }
-
     UIView *containerView = [transitionContext containerView];
     UIImageView *backImageView;
     if ([containerView.subviews.firstObject isKindOfClass:[UIImageView class]])
@@ -109,7 +108,6 @@
             [backImageView removeFromSuperview];
         }
         [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
-        
     }];
 }
 

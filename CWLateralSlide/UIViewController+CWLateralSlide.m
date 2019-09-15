@@ -41,7 +41,9 @@
     [animator setValue:interactiveHidden forKey:@"interactiveHidden"];
     animator.configuration = configuration;
     animator.animationType = animationType;
-
+    if (@available(iOS 13.0, *)) {
+        viewController.modalPresentationStyle =  UIModalPresentationFullScreen;
+    }
     [self presentViewController:viewController animated:YES completion:nil];
     
 }
